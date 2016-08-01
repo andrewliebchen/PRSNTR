@@ -24,7 +24,7 @@ body {
   border: 1px solid;
 }
 
-.slides__meta {
+.slides__label {
   position: fixed;
   bottom: 0;
 }

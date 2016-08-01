@@ -33,7 +33,25 @@ class Presentation extends Component {
     };
 
     if (this.state.phone) {
-      return <div>This is a fone!</div>
+      return (
+        <div>
+          <div>
+            Slide {presentation.currentSlide + 1} / {slidesLength}
+          </div>
+          <div className="slides__actions">
+            <button
+              onClick={this.handlePrevSlide.bind(this)}
+              disabled={!this._canReverse()}>
+              Prev
+            </button>
+            <button
+              onClick={this.handleNextSlide.bind(this)}
+              disabled={!this._canAdvance()}>
+              Next
+            </button>
+          </div>
+        </div>
+      );
     }
 
     if (!dataIsReady) {
@@ -49,22 +67,8 @@ class Presentation extends Component {
             </div>
           )}
         </div>
-        <div className="slides__meta">
-          <div className="slides__label">
-            Slide {presentation.currentSlide + 1} / {slidesLength}
-          </div>
-          <div className="slides__actions">
-            <button
-              onClick={this.handlePrevSlide.bind(this)}
-              disabled={!this._canReverse()}>
-              Prev
-            </button>
-            <button
-              onClick={this.handleNextSlide.bind(this)}
-              disabled={!this._canAdvance()}>
-              Next
-            </button>
-          </div>
+        <div className="slides__label">
+          Slide {presentation.currentSlide + 1} / {slidesLength}
         </div>
       </div>
     );
