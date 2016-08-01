@@ -2,6 +2,13 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  font-size: 18px;
+}
+
 .slides {
   transition: 0.2s ease-in-out;
   position: fixed;

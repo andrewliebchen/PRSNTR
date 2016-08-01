@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import MobileDetect from 'mobile-detect';
 import { Presentations } from '../api/main';
 
 class Presentation extends Component {
+  constructor(props) {
+    const md = new MobileDetect(window.navigator.userAgent);
+
+    super(props);
+    this.state = {
+      phone: md.phone()
+    };
+  }
+
   _canAdvance() {
     const { presentation } = this.props;
     return presentation.slides.length - 1 > presentation.currentSlide;
@@ -21,6 +31,10 @@ class Presentation extends Component {
       width: `${slidesLength * 100}vw`,
       transform: `translateX(-${presentation.currentSlide * 100}vw)`
     };
+
+    if (this.state.phone) {
+      return <div>This is a fone!</div>
+    }
 
     if (!dataIsReady) {
       return <div>Loading...</div>;
