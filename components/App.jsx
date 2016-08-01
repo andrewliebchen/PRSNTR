@@ -6,7 +6,7 @@ import { Presentations } from '../api/main';
 class App extends Component {
   _canAdvance() {
     const { presentation } = this.props;
-    return presentation.slides.length > presentation.currentSlide;
+    return presentation.slides.length - 1 > presentation.currentSlide;
   };
 
   _canReverse() {
@@ -15,28 +15,35 @@ class App extends Component {
   }
 
   render() {
-    const { presentation } = this.props;
-    if (presentation) {
-      return (
-        <div>
-          Slide {presentation.currentSlide} / {presentation.slides.length}
-          <div>
-            <button
-              onClick={this.handlePrevSlide.bind(this)}
-              disabled={!this._canReverse()}>
-              Prev
-            </button>
-            <button
-              onClick={this.handleNextSlide.bind(this)}
-              disabled={!this._canAdvance()}>
-              Next
-            </button>
-          </div>
-        </div>
-      );
-    } else {
+    const { dataIsReady, presentation } = this.props;
+    if (!dataIsReady) {
       return <div>Loading...</div>;
     }
+
+    return (
+      <div className="container">
+        <div className="slides">
+          <div className="slide">
+            {presentation.slides[presentation.currentSlide]}
+          </div>
+        </div>
+        <div className="slides__label">
+          Slide {presentation.currentSlide + 1} / {presentation.slides.length}
+        </div>
+        <div className="slides__actions">
+          <button
+            onClick={this.handlePrevSlide.bind(this)}
+            disabled={!this._canReverse()}>
+            Prev
+          </button>
+          <button
+            onClick={this.handleNextSlide.bind(this)}
+            disabled={!this._canAdvance()}>
+            Next
+          </button>
+        </div>
+      </div>
+    );
   }
 
   handleNextSlide() {
@@ -59,7 +66,10 @@ class App extends Component {
 }
 
 export default createContainer(() => {
+  const dataHandle = Presentations.findOne();
+  const dataIsReady = dataHandle;
   return {
-    presentation: Presentations.findOne(),
+    dataIsReady,
+    presentation: dataIsReady ? Presentations.findOne() : [],
   };
 }, App);
