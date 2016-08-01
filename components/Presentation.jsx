@@ -32,6 +32,10 @@ class Presentation extends Component {
       transform: `translateX(-${presentation.currentSlide * 100}vw)`
     };
 
+    if (!dataIsReady) {
+      return <div>Loading...</div>;
+    }
+
     if (this.state.phone) {
       return (
         <div>
@@ -52,10 +56,6 @@ class Presentation extends Component {
           </div>
         </div>
       );
-    }
-
-    if (!dataIsReady) {
-      return <div>Loading...</div>;
     }
 
     return (
