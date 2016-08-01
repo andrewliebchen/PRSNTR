@@ -16,31 +16,41 @@ class App extends Component {
 
   render() {
     const { dataIsReady, presentation } = this.props;
+    const slidesLength = dataIsReady ? presentation.slides.length : 0;
+    const slidesStyle = {
+      width: `${slidesLength * 100}vw`,
+      transform: `translateX(-${presentation.currentSlide * 100}vw)`
+    };
+
     if (!dataIsReady) {
       return <div>Loading...</div>;
     }
 
     return (
       <div className="container">
-        <div className="slides">
-          <div className="slide">
-            {presentation.slides[presentation.currentSlide]}
+        <div className="slides" style={slidesStyle}>
+          {presentation.slides.map((slide, i) =>
+            <div className="slide" key={i}>
+              {slide}
+            </div>
+          )}
+        </div>
+        <div className="slides__meta">
+          <div className="slides__label">
+            Slide {presentation.currentSlide + 1} / {slidesLength}
           </div>
-        </div>
-        <div className="slides__label">
-          Slide {presentation.currentSlide + 1} / {presentation.slides.length}
-        </div>
-        <div className="slides__actions">
-          <button
-            onClick={this.handlePrevSlide.bind(this)}
-            disabled={!this._canReverse()}>
-            Prev
-          </button>
-          <button
-            onClick={this.handleNextSlide.bind(this)}
-            disabled={!this._canAdvance()}>
-            Next
-          </button>
+          <div className="slides__actions">
+            <button
+              onClick={this.handlePrevSlide.bind(this)}
+              disabled={!this._canReverse()}>
+              Prev
+            </button>
+            <button
+              onClick={this.handleNextSlide.bind(this)}
+              disabled={!this._canAdvance()}>
+              Next
+            </button>
+          </div>
         </div>
       </div>
     );

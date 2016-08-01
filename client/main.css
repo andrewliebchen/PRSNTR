@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+.slides {
+  transition: 0.2s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.slide {
+  width: 98vw;
+  margin: 1vw;
+  border: 1px solid;
+}
+
+.slides__meta {
+  position: fixed;
+  bottom: 0;
+}
