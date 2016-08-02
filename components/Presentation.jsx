@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import MobileDetect from 'mobile-detect';
 import ReactMarkdown from 'react-markdown';
+import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
 
 class Presentation extends Component {
@@ -22,6 +23,21 @@ class Presentation extends Component {
   _canReverse() {
     const { presentation } = this.props;
     return presentation.currentSlide > 0;
+  }
+
+  componentWillReceiveProps({ keydown }) {
+    if (keydown.event) {
+      switch (keydown.event.which) {
+        case 39:
+         this.handleNextSlide();
+         break;
+       case 37:
+         this.handlePrevSlide();
+         break;
+       default:
+         return false;
+      }
+    }
   }
 
   render() {
@@ -109,4 +125,4 @@ export default createContainer(({params}) => {
     dataIsReady,
     presentation: dataIsReady ? dataHandle : {},
   };
-}, Presentation);
+}, keydown(Presentation));

@@ -42,6 +42,7 @@ class NewSlide extends Component {
         }
       }
     });
+    this.refs.source.value = '';
   }
 }
 
@@ -98,7 +99,7 @@ class Admin extends Component {
   }
 
   handleMoveUp() {
-    
+
   }
 
   handleMoveDown() {
