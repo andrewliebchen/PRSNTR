@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import SwapArray from 'swap-array';
 import { Presentations } from '../api/main';
 
 class NewSlide extends Component {
@@ -78,12 +79,12 @@ class Admin extends Component {
                 </td>
                 <td>
                   <button
-                    onClick={this.handleMoveUp.bind(this)}
+                    onClick={this.handleMoveUp.bind(this, i)}
                     disabled={i === 0}>
                     👆
                   </button>
                   <button
-                    onClick={this.handleMoveDown.bind(this)}
+                    onClick={this.handleMoveDown.bind(this, i)}
                     disabled={i === presentation.slides.length - 1}>
                     👇
                   </button>
@@ -98,12 +99,22 @@ class Admin extends Component {
     );
   }
 
-  handleMoveUp() {
-
+  handleMoveUp(index) {
+    const { presentation } = this.props;
+    Presentations.update(presentation._id, {
+      $set: {
+        slides: SwapArray(presentation.slides, index, index - 1)
+      }
+    });
   }
 
-  handleMoveDown() {
-
+  handleMoveDown(index) {
+    const { presentation } = this.props;
+    Presentations.update(presentation._id, {
+      $set: {
+        slides: SwapArray(presentation.slides, index, index + 1)
+      }
+    });
   }
 
   handleDelete(slide) {
