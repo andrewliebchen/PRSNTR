@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import MobileDetect from 'mobile-detect';
+import ReactMarkdown from 'react-markdown';
 import { Presentations } from '../api/main';
 
 class Presentation extends Component {
@@ -65,7 +66,7 @@ class Presentation extends Component {
               <div className="slide__content">
                 {slide.type === 'image' ?
                   <img src={slide.source}/>
-                : <span>{slide.source}</span>}
+                : <ReactMarkdown source={slide.source}/>}
               </div>
             </div>
           )}
