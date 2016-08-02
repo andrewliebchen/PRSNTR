@@ -9,6 +9,16 @@ body {
   font-size: 18px;
 }
 
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th,
+td {
+  overflow: hidden;
+}
+
 .slides {
   transition: 0.2s ease-in-out;
   position: fixed;

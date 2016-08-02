@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Meteor } from 'meteor/meteor';
+import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import MobileDetect from 'mobile-detect';
 import { Presentations } from '../api/main';
@@ -93,11 +92,16 @@ class Presentation extends Component {
   }
 }
 
+Presentation.propTypes = {
+  dataIsReady: PropTypes.bool.isRequired,
+  presentation: PropTypes.object.isRequired
+}
+
 export default createContainer(({params}) => {
   const dataHandle = Presentations.findOne(params.id);
-  const dataIsReady = dataHandle;
+  const dataIsReady = dataHandle ? true : false;
   return {
     dataIsReady,
-    presentation: dataIsReady ? dataHandle : [],
+    presentation: dataIsReady ? dataHandle : {},
   };
 }, Presentation);
