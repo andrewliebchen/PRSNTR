@@ -62,7 +62,11 @@ class Presentation extends Component {
         <div className="slides" style={slidesStyle}>
           {presentation.slides.map((slide, i) =>
             <div className="slide" key={i}>
-              {slide}
+              <div className="slide__content">
+                {slide.type === 'image' ?
+                  <img src={slide.source}/>
+                : <span>{slide.source}</span>}
+              </div>
             </div>
           )}
         </div>

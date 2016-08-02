@@ -98,7 +98,7 @@ class Admin extends Component {
   }
 
   handleMoveUp() {
-
+    
   }
 
   handleMoveDown() {

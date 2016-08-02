@@ -19,6 +19,13 @@ td {
   overflow: hidden;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+
 .slides {
   transition: 0.2s ease-in-out;
   position: fixed;
@@ -26,12 +33,20 @@ td {
   left: 0;
   display: flex;
   overflow: hidden;
+  min-height: 100vh;
 }
 
 .slide {
   width: 98vw;
   margin: 1vw;
-  border: 1px solid;
+  position: relative;
+}
+
+.slide__content {
+  padding: 1rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .slides__label {
