@@ -101,20 +101,24 @@ class Admin extends Component {
 
   handleMoveUp(index) {
     const { presentation } = this.props;
-    Presentations.update(presentation._id, {
-      $set: {
-        slides: SwapArray(presentation.slides, index, index - 1)
-      }
-    });
+    if (index !== 0) {
+      Presentations.update(presentation._id, {
+        $set: {
+          slides: SwapArray(presentation.slides, index, index - 1)
+        }
+      });
+    }
   }
 
   handleMoveDown(index) {
     const { presentation } = this.props;
-    Presentations.update(presentation._id, {
-      $set: {
-        slides: SwapArray(presentation.slides, index, index + 1)
-      }
-    });
+    if (index !== presentation.slides.length - 1) {
+      Presentations.update(presentation._id, {
+        $set: {
+          slides: SwapArray(presentation.slides, index, index + 1)
+        }
+      });
+    }
   }
 
   handleDelete(slide) {
