@@ -6,12 +6,46 @@
 }
 
 .timer {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   font-feature-settings: "lnum" 1, "tnum" 1;
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 100;
 }
 
 .progress {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
+}
+
+.progress__container {
+  margin: 1rem;
+  display: flex;
+}
+
+.progress__slide {
+  $height: 2rem;
+  overflow: hidden;
+  // background-color: $gray;
+  flex: 1;
+  height: $height;
+  line-height: $height;
+  text-align: center;
+  margin-left: 0.25rem;
+  color: $gray;
+  border: 1px solid;
+
+  &:first-child {
+    margin: 0;
+    border-radius: $border-radius 0 0 $border-radius;
+  }
+
+  &:last-child {
+    border-radius: 0 $border-radius $border-radius 0;
+  }
+
+  &.is-current {
+    color: $gray-lighter;
+  }
 }
 
 .actions {

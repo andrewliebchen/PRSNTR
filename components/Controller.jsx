@@ -15,7 +15,17 @@ export default class Controller extends Component {
     return (
       <div className="controller">
         <Timer/>
-        <div className="progress"/>
+        <div className="progress">
+          <div className="progress__container">
+            {presentation.slides.map((slide, i) =>
+              <div
+                className={`progress__slide ${presentation.currentSlide === i ? 'is-current' : null}`}
+                key={i}>
+                {i + 1}
+              </div>
+            )}
+          </div>
+        </div>
         <div className="actions">
           <button
             onClick={changeSlide.bind(null, 'prev')}
