@@ -4,11 +4,12 @@ export default class Controller extends Component {
   render() {
     const { presentation, changeSlide, canReverse, canAdvance, slidesLength } = this.props;
     return (
-      <div>
-        <div>
-          Slide {presentation.currentSlide + 1} / {slidesLength}
+      <div className="controller">
+        <div className="timer">
+          <span>8:35</span>
         </div>
-        <div className="slides__actions">
+        <div className="progress"/>
+        <div className="actions">
           <button
             onClick={changeSlide.bind(null, 'prev')}
             disabled={!canReverse}>

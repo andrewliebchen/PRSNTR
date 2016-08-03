@@ -31,10 +31,10 @@ class Presentation extends Component {
     if (keydown.event) {
       switch (keydown.event.which) {
         case 39:
-         this.handleChangeSlide(null, 'next');
+         this.handleChangeSlide('next');
          break;
        case 37:
-         this.handleChangeSlide(null, 'prev');
+         this.handleChangeSlide('prev');
          break;
        default:
          return false;

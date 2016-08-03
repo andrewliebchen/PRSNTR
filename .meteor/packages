@@ -21,3 +21,4 @@ static-html
 react-meteor-data
 fourseven:scss
 seba:minifiers-autoprefixer
+mrt:normalize.css
