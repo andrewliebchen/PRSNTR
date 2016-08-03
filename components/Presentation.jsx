@@ -4,12 +4,14 @@ import MobileDetect from 'mobile-detect';
 import ReactMarkdown from 'react-markdown';
 import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
+import Controller from './Controller.jsx';
 
 class Presentation extends Component {
   constructor(props) {
     const md = new MobileDetect(window.navigator.userAgent);
 
     super(props);
+    this.handleChangeSlide = this.handleChangeSlide.bind(this);
     this.state = {
       phone: md.phone()
     };
@@ -29,10 +31,10 @@ class Presentation extends Component {
     if (keydown.event) {
       switch (keydown.event.which) {
         case 39:
-         this.handleNextSlide();
+         this.handleChangeSlide(null, 'next');
          break;
        case 37:
-         this.handlePrevSlide();
+         this.handleChangeSlide(null, 'prev');
          break;
        default:
          return false;
@@ -54,23 +56,12 @@ class Presentation extends Component {
 
     if (this.state.phone) {
       return (
-        <div>
-          <div>
-            Slide {presentation.currentSlide + 1} / {slidesLength}
-          </div>
-          <div className="slides__actions">
-            <button
-              onClick={this.handlePrevSlide.bind(this)}
-              disabled={!this._canReverse()}>
-              Prev
-            </button>
-            <button
-              onClick={this.handleNextSlide.bind(this)}
-              disabled={!this._canAdvance()}>
-              Next
-            </button>
-          </div>
-        </div>
+        <Controller
+          presentation={presentation}
+          changeSlide={this.handleChangeSlide}
+          canReverse={this._canReverse()}
+          canAdvance={this._canAdvance()}
+          slidesLength={slidesLength}/>
       );
     }
 
@@ -94,21 +85,26 @@ class Presentation extends Component {
     );
   }
 
-  handleNextSlide() {
+  handleChangeSlide(direction) {
     const { presentation } = this.props;
-    if (this._canAdvance()) {
-      Presentations.update(presentation._id, {
-        $inc: { currentSlide: 1 }
-      });
-    }
-  }
 
-  handlePrevSlide() {
-    const { presentation } = this.props;
-    if (this._canReverse()) {
-      Presentations.update(presentation._id, {
-        $inc: { currentSlide: -1 }
-      });
+    switch (direction) {
+      case 'next':
+        if (this._canAdvance()) {
+          Presentations.update(presentation._id, {
+            $inc: { currentSlide: 1 }
+          });
+        }
+        break;
+      case 'prev':
+        if (this._canReverse()) {
+          Presentations.update(presentation._id, {
+            $inc: { currentSlide: -1 }
+          });
+        }
+        break;
+      default:
+        return false;
     }
   }
 }
