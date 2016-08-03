@@ -1,13 +1,20 @@
 import React, { Component, PropTypes } from 'react';
+import timer from 'react-timer-hoc';
+import moment from 'moment';
+
+const countdown = ({ timer }) =>
+  <div className="timer">
+    {moment(timer.tick * timer.delay).format('mm:ss')}
+  </div>
+
+const Timer = timer(1000)(countdown);
 
 export default class Controller extends Component {
   render() {
     const { presentation, changeSlide, canReverse, canAdvance, slidesLength } = this.props;
     return (
       <div className="controller">
-        <div className="timer">
-          <span>8:35</span>
-        </div>
+        <Timer/>
         <div className="progress"/>
         <div className="actions">
           <button

@@ -7,6 +7,7 @@
 
 .timer {
   flex: 1 1 auto;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 .progress {
