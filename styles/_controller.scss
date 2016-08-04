@@ -1,16 +1,38 @@
+$controller-offset: 3vw;
+$slides-offset: 70vw;
+
 .controller {
-  display: flex;
-  flex-direction: column;
   height: 100vh;
   width: 100vw;
   background-color: $gray-dark;
   color: white;
 }
 
+.top,
+.bottom {
+  width: 100vw;
+  position: fixed;
+}
+
+.top {
+  top: 0;
+  bottom: 50vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+}
+
 .timer {
-  flex: 0 0 auto;
+  flex: 1;
+  position: relative;
+}
+
+.timer__count {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
   font-feature-settings: "lnum" 1, "tnum" 1;
-  text-align: center;
   font-size: 5rem;
   font-weight: 100;
 }
@@ -20,14 +42,14 @@
 }
 
 .progress__container {
-  margin: 1rem;
+  margin: 0 1rem 1rem;
   display: flex;
 }
 
 .progress__slide {
   $height: 2rem;
-  overflow: hidden;
   flex: 1;
+  overflow: hidden;
   height: $height;
   line-height: $height;
   text-align: center;
@@ -49,18 +71,35 @@
   }
 }
 
-.action {
+.actions {
   height: 50vh;
-  width: 100vw;
-  position: fixed;
   bottom: 1rem;
+}
 
-  .slides {
-    margin-left: -75vw;
-  }
+.action {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: block;
+}
 
-  .slide {
-    font-size: 6px;
-    border-radius: $border-radius;
-  }
+.action__prev {
+  left: 0;
+  right: $slides-offset;
+}
+
+.action__next {
+  left: 100vw - $slides-offset;
+  right: 0;
+}
+
+.controller__slides {
+  margin-left: -($slides-offset);
+}
+
+.controller__slide {
+  width: 100vw - ($controller-offset * 2);
+  margin: 0 $controller-offset;
+  font-size: 6px;
+  border-radius: $border-radius;
 }
