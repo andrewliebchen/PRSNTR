@@ -1,6 +1,6 @@
-@import "{}/styles/helpers";
-@import "{}/styles/slides";
-@import "{}/styles/controller";
+@import "helpers";
+@import "slides";
+@import "controller";
 
 * {
   box-sizing: border-box;
@@ -11,6 +11,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.5;
   font-size: 18px;
+  background-color: white;
+  color: $gray-dark;
 }
 
 table {

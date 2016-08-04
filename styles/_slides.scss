@@ -10,9 +10,11 @@
 }
 
 .slide {
-  width: 98vw;
-  margin: 1vw;
+  width: 96vw;
+  margin: 2vw;
   position: relative;
+  background-color: white;
+  color: $gray-dark;
 }
 
 .slide__content {
