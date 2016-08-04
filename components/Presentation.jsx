@@ -31,13 +31,17 @@ class Presentation extends Component {
     if (keydown.event) {
       switch (keydown.event.which) {
         case 39:
-         this.handleChangeSlide(1);
-         break;
-       case 37:
-         this.handleChangeSlide(-1);
-         break;
-       default:
-         return false;
+          if (this._canAdvance()) {
+            this.handleChangeSlide(1);
+          }
+          break;
+        case 37:
+          if (this._canReverse()) {
+            this.handleChangeSlide(-1);
+          }
+          break;
+        default:
+          return false;
       }
     }
   }
@@ -63,7 +67,10 @@ class Presentation extends Component {
 
     return (
       <div className="container">
-        <Slides slides={presentation.slides} currentSlide={presentation.currentSlide}/>
+        <Slides
+          slides={presentation.slides}
+          currentSlide={presentation.currentSlide}
+          prefix="presentation"/>
         <div className="slides__label">
           Slide {presentation.currentSlide + 1} / {slidesLength}
         </div>

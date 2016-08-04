@@ -1,6 +1,7 @@
 @import "helpers";
 @import "slides";
 @import "controller";
+@import "presentation";
 
 * {
   box-sizing: border-box;
@@ -32,7 +33,8 @@ img {
   margin: auto;
 }
 
-.slides__label {
-  position: fixed;
-  bottom: 0;
+body,
+.container {
+  width: 100vw;
+  overflow: hidden;
 }
