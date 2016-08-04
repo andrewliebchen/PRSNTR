@@ -1,4 +1,4 @@
-$controller-offset: 3vw;
+$controller-offset: 4vw;
 $slides-offset: 70vw;
 
 .controller {
@@ -22,6 +22,11 @@ $slides-offset: 70vw;
   padding-bottom: 1rem;
 }
 
+.bottom {
+  height: 50vh;
+  bottom: 0;
+}
+
 .timer {
   flex: 1;
   position: relative;
@@ -35,6 +40,7 @@ $slides-offset: 70vw;
   font-feature-settings: "lnum" 1, "tnum" 1;
   font-size: 5rem;
   font-weight: 100;
+  text-shadow: 0 1px 0 rgba(black, 0.5), 0 1px 3px rgba(black, 0.4), 0 5px 30px rgba(black, 0.2);
 }
 
 .progress {
@@ -72,8 +78,7 @@ $slides-offset: 70vw;
 }
 
 .actions {
-  height: 50vh;
-  bottom: 1rem;
+
 }
 
 .action {
@@ -95,6 +100,7 @@ $slides-offset: 70vw;
 
 .controller__slides {
   margin-left: -($slides-offset);
+  bottom: 2rem;
 }
 
 .controller__slide {
@@ -102,4 +108,15 @@ $slides-offset: 70vw;
   margin: 0 $controller-offset;
   font-size: 6px;
   border-radius: $border-radius;
+  box-shadow: 0 1px 0 rgba(black, 0.5), 0 1px 3px rgba(black, 0.4), 0 5px 30px rgba(black, 0.2);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to bottom, transparent 60%, rgba(black, 0.1));
+  }
 }
