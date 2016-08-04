@@ -1,3 +1,7 @@
+@import "{}/styles/helpers";
+@import "{}/styles/slides";
+@import "{}/styles/controller";
+
 * {
   box-sizing: border-box;
 }
@@ -24,29 +28,6 @@ img {
   max-width: 100%;
   max-height: 100%;
   margin: auto;
-}
-
-.slides {
-  transition: 0.2s ease-in-out;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  overflow: hidden;
-  min-height: 100vh;
-}
-
-.slide {
-  width: 98vw;
-  margin: 1vw;
-  position: relative;
-}
-
-.slide__content {
-  padding: 1rem;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .slides__label {

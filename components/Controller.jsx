@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import timer from 'react-timer-hoc';
 import moment from 'moment';
+import Slides from './Slides.jsx';
 
 const countdown = ({ timer }) =>
   <div className="timer">
@@ -26,17 +27,16 @@ export default class Controller extends Component {
             )}
           </div>
         </div>
-        <div className="actions">
-          <button
+        <div className="action">
+          <div
+            className="action__slide action__slide__prev"
             onClick={changeSlide.bind(null, 'prev')}
-            disabled={!canReverse}>
-            Prev
-          </button>
-          <button
+            disabled={!canReverse}/>
+          <div
+            className="action__slide action__slide__next"
             onClick={changeSlide.bind(null, 'next')}
-            disabled={!canAdvance}>
-            Next
-          </button>
+            disabled={!canAdvance}/>
+          <Slides slides={presentation.slides} currentSlide={presentation.currentSlide}/>
         </div>
       </div>
     );

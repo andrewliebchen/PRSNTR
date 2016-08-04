@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import MobileDetect from 'mobile-detect';
-import ReactMarkdown from 'react-markdown';
 import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
 import Controller from './Controller.jsx';
+import Slides from './Slides.jsx';
 
 class Presentation extends Component {
   constructor(props) {
@@ -45,10 +45,6 @@ class Presentation extends Component {
   render() {
     const { dataIsReady, presentation } = this.props;
     const slidesLength = dataIsReady ? presentation.slides.length : 0;
-    const slidesStyle = {
-      width: `${slidesLength * 100}vw`,
-      transform: `translateX(-${presentation.currentSlide * 100}vw)`
-    };
 
     if (!dataIsReady) {
       return <div>Loading...</div>;
@@ -67,17 +63,7 @@ class Presentation extends Component {
 
     return (
       <div className="container">
-        <div className="slides" style={slidesStyle}>
-          {presentation.slides.map((slide, i) =>
-            <div className="slide" key={i}>
-              <div className="slide__content">
-                {slide.type === 'image' ?
-                  <img src={slide.source}/>
-                : <ReactMarkdown source={slide.source}/>}
-              </div>
-            </div>
-          )}
-        </div>
+        <Slides slides={presentation.slides} currentSlide={presentation.currentSlide}/>
         <div className="slides__label">
           Slide {presentation.currentSlide + 1} / {slidesLength}
         </div>

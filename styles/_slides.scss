@@ -1,0 +1,23 @@
+.slides {
+  bottom: 0;
+  display: flex;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.2s ease-in-out;
+}
+
+.slide {
+  width: 98vw;
+  margin: 1vw;
+  position: relative;
+}
+
+.slide__content {
+  padding: 1rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

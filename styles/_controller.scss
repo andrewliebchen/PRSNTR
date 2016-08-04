@@ -25,7 +25,6 @@
 .progress__slide {
   $height: 2rem;
   overflow: hidden;
-  // background-color: $gray;
   flex: 1;
   height: $height;
   line-height: $height;
@@ -48,6 +47,19 @@
   }
 }
 
-.actions {
-  flex: 1 1 auto;
+.action {
+  height: 50vh;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+
+  .slides {
+    margin-left: -75vw;
+  }
+
+  .slide {
+    font-size: 6px;
+    border-radius: $border-radius;
+    border: 1px solid;
+  }
 }
