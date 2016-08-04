@@ -4,7 +4,8 @@ $slides-offset: 70vw;
 .controller {
   height: 100vh;
   width: 100vw;
-  background-color: $gray-dark;
+  // background-color: $gray-dark;
+  background-image: linear-gradient(-135deg, $gray, darken($gray-dark, 10%));
   color: white;
 }
 
