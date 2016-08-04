@@ -31,10 +31,10 @@ class Presentation extends Component {
     if (keydown.event) {
       switch (keydown.event.which) {
         case 39:
-         this.handleChangeSlide('next');
+         this.handleChangeSlide(1);
          break;
        case 37:
-         this.handleChangeSlide('prev');
+         this.handleChangeSlide(-1);
          break;
        default:
          return false;
@@ -71,27 +71,10 @@ class Presentation extends Component {
     );
   }
 
-  handleChangeSlide(direction) {
-    const { presentation } = this.props;
-
-    switch (direction) {
-      case 'next':
-        if (this._canAdvance()) {
-          Presentations.update(presentation._id, {
-            $inc: { currentSlide: 1 }
-          });
-        }
-        break;
-      case 'prev':
-        if (this._canReverse()) {
-          Presentations.update(presentation._id, {
-            $inc: { currentSlide: -1 }
-          });
-        }
-        break;
-      default:
-        return false;
-    }
+  handleChangeSlide(inc) {
+    Presentations.update(this.props.presentation._id, {
+      $inc: { currentSlide: inc }
+    });
   }
 }
 

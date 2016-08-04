@@ -23,11 +23,12 @@ export default class Controller extends Component {
           <div className="progress">
             <div className="progress__container">
               {presentation.slides.map((slide, i) =>
-                <div
+                <Tappable
                   className={`progress__slide ${presentation.currentSlide === i ? 'is-current' : null}`}
+                  onTap={changeSlide.bind(null, i - presentation.currentSlide)}
                   key={i}>
                   {i + 1}
-                </div>
+                </Tappable>
               )}
             </div>
           </div>
@@ -39,10 +40,10 @@ export default class Controller extends Component {
             prefix="controller"/>
           <Tappable
             className="action action__prev"
-            onTap={changeSlide.bind(null, 'prev')}/>
+            onTap={changeSlide.bind(null, -1)}/>
           <Tappable
             className="action action__next"
-            onTap={changeSlide.bind(null, 'next')}/>
+            onTap={changeSlide.bind(null, 1)}/>
         </div>
       </div>
     );
