@@ -55,7 +55,13 @@ class Admin extends Component {
             </div>
           </div>
         </div>
-        {this.state.newSlide && <NewSlide {...this.props}/>}
+        {this.state.newSlide &&
+          <div className="overlay">
+            <div className="overlay__content">
+              <NewSlide {...this.props}/>
+            </div>
+          </div>
+        }
       </div>
     );
   }

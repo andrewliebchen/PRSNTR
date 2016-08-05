@@ -40,3 +40,21 @@ body,
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+.overlay {
+  $offset: 0;
+  background-color: rgba($brand-primary, 0.9);
+  position: fixed;
+  top: $offset;
+  left: $offset;
+  bottom: $offset;
+  right: $offset;
+  z-index: 9;
+}
+
+.overlay__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
