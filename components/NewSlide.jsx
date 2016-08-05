@@ -1,17 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Presentations } from '../api/main';
+import ContentEditable from 'react-contenteditable';
 
 export default class NewSlide extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'image'
+      type: 'image',
+      Source: ''
     };
   }
 
   render() {
-    const { type } = this.state;
+    const { type, source } = this.state;
     return (
       <div>
         <select
@@ -20,8 +22,12 @@ export default class NewSlide extends Component {
           <option value="image">Image</option>
           <option value="text">Text</option>
         </select>
-        {type === 'image' && <input type="text" ref="source"/>}
-        {type === 'text' && <textarea ref="source"/>}
+        {type === 'image' &&
+          <input type="text" onChange={this.handleSourceChange.bind(this)}/>}
+        {type === 'text' &&
+          <ContentEditable
+            html={source}
+            onChange={this.handleSourceChange.bind(this)}/>}
         <button onClick={this.handleAddSlide.bind(this)}>Add slide</button>
       </div>
     );
@@ -31,17 +37,23 @@ export default class NewSlide extends Component {
     this.setState({type: event.target.value});
   }
 
+  handleSourceChange(event) {
+    this.setState({source: event.target.value});
+  }
+
   handleAddSlide() {
     event.preventDefault();
-    Presentations.update(this.props.presentation._id, {
-      $push: {
-        slides: {
-          type: this.state.type,
-          source: this.refs.source.value
+    const { type, source } = this.state;
+    if (source) {
+      Presentations.update(this.props.presentation._id, {
+        $push: {
+          slides: {
+            type: type,
+            source: source
+          }
         }
-      }
-    });
-    this.refs.source.value = '';
+      });
+    }
   }
 }
 
