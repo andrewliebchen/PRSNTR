@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Presentations } from '../api/main';
 import Tabs from 'react-simpletabs';
-import ContentEditable from 'react-contenteditable';
+import Textarea from 'react-expanding-textarea'
 
 export default class NewSlide extends Component {
   constructor(props) {
@@ -22,7 +22,11 @@ export default class NewSlide extends Component {
             <input type="text" onChange={this.handleSourceChange.bind(this)}/>
           </Tabs.Panel>
           <Tabs.Panel title="Text">
-            <ContentEditable html={source} onChange={this.handleSourceChange.bind(this)}/>
+          <Textarea
+            rows="1"
+            className="textarea"
+            placeholder="Add some content"
+            onChange={this.handleSourceChange.bind(this)} />
           </Tabs.Panel>
         </Tabs>
         <button onClick={this.handleAddSlide.bind(this)}>Add slide</button>
