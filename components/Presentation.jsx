@@ -66,7 +66,7 @@ class Presentation extends Component {
     }
 
     return (
-      <div className="container">
+      <div className="container presentation__container">
         <Slides
           slides={presentation.slides}
           currentSlide={presentation.currentSlide}

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import ReactMarkdown from 'react-markdown';
+import Slide from './Slide.jsx';
 
 export default class Slides extends Component {
   render() {
@@ -12,20 +12,15 @@ export default class Slides extends Component {
     return (
       <div className={`slides ${prefix}__slides`} style={slidesStyle}>
         {slides.map((slide, i) =>
-          <div className={`slide ${prefix}__slide`} key={i}>
-            <div className="slide__content">
-              {slide.type === 'image' ?
-                <img src={slide.source}/>
-              : <ReactMarkdown source={slide.source}/>}
-            </div>
-          </div>
+          <Slide
+            key={i}
+            slide={slide}
+            prefix={prefix}/>
         )}
       </div>
     );
   }
 }
-
-
 
 Slides.propTypes = {
   slides: PropTypes.array,

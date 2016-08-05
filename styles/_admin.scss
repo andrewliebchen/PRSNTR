@@ -1,0 +1,56 @@
+.admin__container {
+  background-color: $gray-dark;
+  min-height: 100vh;
+}
+
+.admin__slides {
+  margin: 1rem;
+}
+
+.admin__slide__container {
+  $size: 25vw;
+  float: left;
+  width: 25%;
+  height: $size;
+  position: relative;
+}
+
+.admin__slide {
+  $offset: 0.5rem;
+  position: absolute;
+  top: $offset;
+  left: $offset;
+  bottom: $offset;
+  right: $offset;
+  border-radius: $border-radius;
+  box-shadow: 0 1px 0 rgba(black, 0.5), 0 1px 3px rgba(black, 0.4), 0 5px 30px rgba(black, 0.2);
+
+
+  .slide__content {
+    padding: 1vw;
+    font-size: 0.5vw;
+  }
+}
+
+.admin__slide__overlay {
+  opacity: 0;
+  transition: 0.1s ease-in-out;
+  position: relative;
+  background-color: rgba($brand-primary, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .admin__slide__container:hover & {
+    opacity: 1;
+  }
+}
+
+.admin__slide__actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
