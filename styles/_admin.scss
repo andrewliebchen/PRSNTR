@@ -1,3 +1,6 @@
+$admin-slide-width: 25%;
+$admin-slide-height: 25vw;
+
 .admin__container {
   background-color: $gray-dark;
   min-height: 100vh;
@@ -8,10 +11,9 @@
 }
 
 .admin__slide__container {
-  $size: 25vw;
   float: left;
-  width: 25%;
-  height: $size;
+  width: $admin-slide-width;
+  height: $admin-slide-height;
   position: relative;
 }
 
@@ -24,7 +26,6 @@
   right: $offset;
   border-radius: $border-radius;
   box-shadow: 0 1px 0 rgba(black, 0.5), 0 1px 3px rgba(black, 0.4), 0 5px 30px rgba(black, 0.2);
-
 
   .slide__content {
     padding: 1vw;
@@ -49,6 +50,24 @@
 }
 
 .admin__slide__actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.new-slide-toggle {
+  color: $gray-light;
+  box-shadow: none;
+  border: 2px dashed;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.new-slide-toggle__label {
   position: absolute;
   top: 50%;
   left: 50%;

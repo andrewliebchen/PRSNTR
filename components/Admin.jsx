@@ -7,6 +7,13 @@ import NewSlide from './NewSlide.jsx';
 import Slide from './Slide.jsx';
 
 class Admin extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      newSlide: false
+    };
+  }
+
   render() {
     const { dataIsReady, presentation } = this.props;
 
@@ -40,10 +47,21 @@ class Admin extends Component {
               </Slide>
             </div>
           )}
+          <div className="admin__slide__container">
+            <div
+              className="new-slide-toggle admin__slide"
+              onClick={this.handleToggleNewSlide.bind(this)}>
+              <span className="new-slide-toggle__label">Add slide</span>
+            </div>
+          </div>
         </div>
-        <NewSlide {...this.props}/>
+        {this.state.newSlide && <NewSlide {...this.props}/>}
       </div>
     );
+  }
+
+  handleToggleNewSlide() {
+    this.setState({newSlide: !this.state.newSlide});
   }
 
   handleMoveUp(index) {
