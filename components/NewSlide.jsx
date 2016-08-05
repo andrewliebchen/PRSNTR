@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Presentations } from '../api/main';
+import Tabs from 'react-simpletabs';
 import ContentEditable from 'react-contenteditable';
 
 export default class NewSlide extends Component {
@@ -8,7 +9,7 @@ export default class NewSlide extends Component {
     super(props);
     this.state = {
       type: 'image',
-      Source: ''
+      source: null
     };
   }
 
@@ -16,25 +17,21 @@ export default class NewSlide extends Component {
     const { type, source } = this.state;
     return (
       <div>
-        <select
-          defaultValue={type}
-          onChange={this.handleChangeType.bind(this)}>
-          <option value="image">Image</option>
-          <option value="text">Text</option>
-        </select>
-        {type === 'image' &&
-          <input type="text" onChange={this.handleSourceChange.bind(this)}/>}
-        {type === 'text' &&
-          <ContentEditable
-            html={source}
-            onChange={this.handleSourceChange.bind(this)}/>}
+        <Tabs onAfterChange={this.handleChangeTab.bind(this)}>
+          <Tabs.Panel title="Image">
+            <input type="text" onChange={this.handleSourceChange.bind(this)}/>
+          </Tabs.Panel>
+          <Tabs.Panel title="Text">
+            <ContentEditable html={source} onChange={this.handleSourceChange.bind(this)}/>
+          </Tabs.Panel>
+        </Tabs>
         <button onClick={this.handleAddSlide.bind(this)}>Add slide</button>
       </div>
     );
   }
 
-  handleChangeType(event) {
-    this.setState({type: event.target.value});
+  handleChangeTab(selectedIndex) {
+    this.setState({type: selectedIndex === 1 ? 'image' : 'text'});
   }
 
   handleSourceChange(event) {
