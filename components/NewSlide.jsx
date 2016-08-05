@@ -23,7 +23,7 @@ export default class NewSlide extends Component {
           </Tabs.Panel>
           <Tabs.Panel title="Text">
           <Textarea
-            rows="1"
+            rows="3"
             className="textarea"
             placeholder="Add some content"
             onChange={this.handleSourceChange.bind(this)} />
