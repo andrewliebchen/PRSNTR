@@ -6,7 +6,33 @@
   width: 100vw;
 }
 
-.slides__label {
+.info {
+  transition: 0.1s linear;
   position: fixed;
-  bottom: 0;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgba($gray-dark, 0.3);
+  color: white;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: rgba($gray-dark, 0.9);
+  }
+}
+
+.info__item {
+  $size: 2rem;
+  user-select: none;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  display: inline-block;
+  min-width: $size;
+  height: $size;
+  line-height: $size;
+  text-align: center;
+  padding: 0 0.5rem;
+
+  &.is-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }

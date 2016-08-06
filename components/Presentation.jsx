@@ -71,8 +71,26 @@ class Presentation extends Component {
           slides={presentation.slides}
           currentSlide={presentation.currentSlide}
           prefix="presentation"/>
-        <div className="slides__label">
-          Slide {presentation.currentSlide + 1} / {slidesLength}
+        <div className="info">
+          <a
+            className={`info__item ${!this._canReverse() ? 'is-disabled' : ''}`}
+            onClick={this.handleChangeSlide.bind(null, -1)}>
+            👈
+          </a>
+          <a
+            className={`info__item ${!this._canAdvance() ? 'is-disabled' : ''}`}
+            onClick={this.handleChangeSlide.bind(null, 1)}
+            disabled={!this._canAdvance()}>
+            👉
+          </a>
+          <a
+            className={`info__item ${presentation.currentSlide === 0 ? 'is-disabled' : ''}`}
+            onClick={this.handleChangeSlide.bind(null, -(slidesLength - (slidesLength - presentation.currentSlide)))}>
+            🏃
+          </a>
+          <div className="info__item">
+            {presentation.currentSlide + 1} | {slidesLength}
+          </div>
         </div>
       </div>
     );
