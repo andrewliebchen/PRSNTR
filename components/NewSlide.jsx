@@ -19,7 +19,11 @@ export default class NewSlide extends Component {
       <div>
         <Tabs onAfterChange={this.handleChangeTab.bind(this)}>
           <Tabs.Panel title="Image">
-            <input type="text" onChange={this.handleSourceChange.bind(this)}/>
+            <input
+              type="url"
+              className="input"
+              onChange={this.handleSourceChange.bind(this)}
+              placeholder="http://example.com/portfolio.png"/>
           </Tabs.Panel>
           <Tabs.Panel title="Text">
           <Textarea
@@ -29,7 +33,11 @@ export default class NewSlide extends Component {
             onChange={this.handleSourceChange.bind(this)} />
           </Tabs.Panel>
         </Tabs>
-        <button onClick={this.handleAddSlide.bind(this)}>Add slide</button>
+        <button
+          className="button"
+          onClick={this.handleAddSlide.bind(this)}>
+          Add slide
+        </button>
       </div>
     );
   }

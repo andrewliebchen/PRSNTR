@@ -1,0 +1,16 @@
+.textarea {
+  display: block;
+  color: inherit;
+  font-family: monospace;
+  border-radius: $border-radius;
+  border: 1px solid;
+  padding: 0.25rem 0.5rem;
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  min-height: 3rem;
+
+  &::placeholder {
+    color: rgba(white, 0.5);
+  }
+}
