@@ -32,8 +32,8 @@ class NewSlide extends Component {
         </div>
         <CSSTransitionGroup
           transitionName="overlay"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}>
+          transitionEnterTimeout={250}
+          transitionLeaveTimeout={200}>
           {overlay &&
             <div className="overlay">
               <div className="overlay__content">

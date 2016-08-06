@@ -25,19 +25,23 @@
 
 .overlay-enter {
   opacity: 0.01;
+  transform: scale(0.5);
 
   &.overlay-enter-active {
     opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+    transform: scale(1);
+    transition: 0.25s $ease-in-out-back;
   }
 }
 
 
 .overlay-leave {
   opacity: 1;
+  transform: scale(1);
 
   &.overlay-leave-active {
     opacity: 0.01;
-    transition: opacity 0.3s ease-in-out;
+    transform: scale(0.5);
+    transition: 0.2s ease-in-out;
   }
 }
