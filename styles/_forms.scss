@@ -1,16 +1,44 @@
-.textarea {
-  display: block;
-  color: inherit;
-  font-family: monospace;
-  border-radius: $border-radius;
-  border: 1px solid;
-  padding: 0.25rem 0.5rem;
+.input,
+.textarea,
+.button {
+  appearance: none;
+  border: 0;
   background-color: transparent;
   outline: none;
+  border-radius: $border-radius;
   width: 100%;
-  min-height: 3rem;
+
+  &:focus {
+    box-shadow: 0 0 0 5px rgba(white, 0.3);
+  }
+}
+
+.input,
+.textarea {
+  padding: 0.5rem;
+  border: 1px solid;
+  display: block;
+  color: inherit;
 
   &::placeholder {
     color: rgba(white, 0.5);
   }
+}
+
+.input {
+
+}
+
+.textarea {
+  font-family: monospace;
+  min-height: 6rem;
+}
+
+.button {
+  background-color: white;
+  display: inline-block;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: $brand-primary;
 }

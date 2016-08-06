@@ -1,6 +1,6 @@
 .overlay {
   $offset: 0;
-  background-color: rgba($brand-primary, 0.9);
+  background-color: rgba($brand-primary, 0.95);
   position: fixed;
   top: $offset;
   left: $offset;
@@ -11,9 +11,6 @@
 }
 
 .overlay__content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  margin: 25% auto 1rem;
   width: 30rem;
 }
