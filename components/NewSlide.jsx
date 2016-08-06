@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { Meteor } from 'meteor/meteor';
+import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
 import Tabs from 'react-simpletabs';
 import Textarea from 'react-expanding-textarea'
 
-export default class NewSlide extends Component {
+class NewSlide extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +12,12 @@ export default class NewSlide extends Component {
       type: 'image',
       source: null
     };
+  }
+
+  componentWillReceiveProps({ keydown }) {
+    if (keydown.event && keydown.event.which === 27) {
+      this.setState({overlay: false});
+    }
   }
 
   render() {
@@ -36,11 +42,12 @@ export default class NewSlide extends Component {
                     placeholder="http://example.com/portfolio.png"/>
                 </Tabs.Panel>
                 <Tabs.Panel title="Text">
-                <Textarea
-                  rows="3"
-                  className="textarea"
-                  placeholder="Add some content"
-                  onChange={this.handleSourceChange.bind(this)} />
+                  <Textarea
+                    rows="3"
+                    className="textarea"
+                    placeholder="Add some content"
+                    onChange={this.handleSourceChange.bind(this)} />
+                  <small>Format with Markdown</small>
                 </Tabs.Panel>
               </Tabs>
               <button
@@ -49,6 +56,11 @@ export default class NewSlide extends Component {
                 Add slide
               </button>
             </div>
+            <a
+              className="overlay__toggle"
+              onClick={this.handleToggleNewSlide.bind(this)}>
+              Close
+            </a>
           </div>
         }
       </div>
@@ -87,3 +99,5 @@ export default class NewSlide extends Component {
 NewSlide.propTypes = {
   presentation: PropTypes.object
 };
+
+export default keydown(NewSlide);
