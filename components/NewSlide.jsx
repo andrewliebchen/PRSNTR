@@ -8,38 +8,55 @@ export default class NewSlide extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      overlay: false,
       type: 'image',
       source: null
     };
   }
 
   render() {
-    const { type, source } = this.state;
+    const { overlay, type, source } = this.state;
     return (
-      <div>
-        <Tabs onAfterChange={this.handleChangeTab.bind(this)}>
-          <Tabs.Panel title="Image">
-            <input
-              type="url"
-              className="input"
-              onChange={this.handleSourceChange.bind(this)}
-              placeholder="http://example.com/portfolio.png"/>
-          </Tabs.Panel>
-          <Tabs.Panel title="Text">
-          <Textarea
-            rows="3"
-            className="textarea"
-            placeholder="Add some content"
-            onChange={this.handleSourceChange.bind(this)} />
-          </Tabs.Panel>
-        </Tabs>
-        <button
-          className="button"
-          onClick={this.handleAddSlide.bind(this)}>
-          Add slide
-        </button>
+      <div className="admin__slide__container">
+        <div
+          className="new-slide-toggle admin__slide"
+          onClick={this.handleToggleNewSlide.bind(this)}>
+          <span className="new-slide-toggle__label">Add slide</span>
+        </div>
+
+        {overlay &&
+          <div className="overlay">
+            <div className="overlay__content">
+              <Tabs onAfterChange={this.handleChangeTab.bind(this)}>
+                <Tabs.Panel title="Image">
+                  <input
+                    type="url"
+                    className="input"
+                    onChange={this.handleSourceChange.bind(this)}
+                    placeholder="http://example.com/portfolio.png"/>
+                </Tabs.Panel>
+                <Tabs.Panel title="Text">
+                <Textarea
+                  rows="3"
+                  className="textarea"
+                  placeholder="Add some content"
+                  onChange={this.handleSourceChange.bind(this)} />
+                </Tabs.Panel>
+              </Tabs>
+              <button
+                className="button"
+                onClick={this.handleAddSlide.bind(this)}>
+                Add slide
+              </button>
+            </div>
+          </div>
+        }
       </div>
     );
+  }
+
+  handleToggleNewSlide() {
+    this.setState({overlay: !this.state.overlay});
   }
 
   handleChangeTab(selectedIndex) {
@@ -62,6 +79,7 @@ export default class NewSlide extends Component {
           }
         }
       });
+      this.setState({overlay: false});
     }
   }
 }
