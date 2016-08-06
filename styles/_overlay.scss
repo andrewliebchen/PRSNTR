@@ -22,3 +22,22 @@
   right: 2rem;
   display: inline-block;
 }
+
+.overlay-enter {
+  opacity: 0.01;
+
+  &.overlay-enter-active {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+}
+
+
+.overlay-leave {
+  opacity: 1;
+
+  &.overlay-leave-active {
+    opacity: 0.01;
+    transition: opacity 0.3s ease-in-out;
+  }
+}

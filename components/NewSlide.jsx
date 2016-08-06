@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import keydown from 'react-keydown';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { Presentations } from '../api/main';
 import Tabs from 'react-simpletabs';
 import Textarea from 'react-expanding-textarea'
@@ -29,40 +30,44 @@ class NewSlide extends Component {
           onClick={this.handleToggleNewSlide.bind(this)}>
           <span className="new-slide-toggle__label">Add slide</span>
         </div>
-
-        {overlay &&
-          <div className="overlay">
-            <div className="overlay__content">
-              <Tabs onAfterChange={this.handleChangeTab.bind(this)}>
-                <Tabs.Panel title="Image">
-                  <input
-                    type="url"
-                    className="input"
-                    onChange={this.handleSourceChange.bind(this)}
-                    placeholder="http://example.com/portfolio.png"/>
-                </Tabs.Panel>
-                <Tabs.Panel title="Text">
-                  <Textarea
-                    rows="3"
-                    className="textarea"
-                    placeholder="Add some content"
-                    onChange={this.handleSourceChange.bind(this)} />
-                  <small>Format with Markdown</small>
-                </Tabs.Panel>
-              </Tabs>
-              <button
-                className="button"
-                onClick={this.handleAddSlide.bind(this)}>
-                Add slide
-              </button>
+        <CSSTransitionGroup
+          transitionName="overlay"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}>
+          {overlay &&
+            <div className="overlay">
+              <div className="overlay__content">
+                <Tabs onAfterChange={this.handleChangeTab.bind(this)}>
+                  <Tabs.Panel title="Image">
+                    <input
+                      type="url"
+                      className="input"
+                      onChange={this.handleSourceChange.bind(this)}
+                      placeholder="http://example.com/portfolio.png"/>
+                  </Tabs.Panel>
+                  <Tabs.Panel title="Text">
+                    <Textarea
+                      rows="3"
+                      className="textarea"
+                      placeholder="Add some content"
+                      onChange={this.handleSourceChange.bind(this)} />
+                    <small>Format with Markdown</small>
+                  </Tabs.Panel>
+                </Tabs>
+                <button
+                  className="button"
+                  onClick={this.handleAddSlide.bind(this)}>
+                  Add slide
+                </button>
+              </div>
+              <a
+                className="overlay__toggle"
+                onClick={this.handleToggleNewSlide.bind(this)}>
+                Close
+              </a>
             </div>
-            <a
-              className="overlay__toggle"
-              onClick={this.handleToggleNewSlide.bind(this)}>
-              Close
-            </a>
-          </div>
-        }
+          }
+        </CSSTransitionGroup>
       </div>
     );
   }

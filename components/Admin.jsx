@@ -27,13 +27,14 @@ class Admin extends Component {
                     <button
                       onClick={this.handleMoveUp.bind(this, i)}
                       disabled={i === 0}>
-                      👆
+                      👈
                     </button>
                     <button
                       onClick={this.handleMoveDown.bind(this, i)}
                       disabled={i === presentation.slides.length - 1}>
-                      👇
+                      👉
                     </button>
+                    <button>✏️</button>
                     <button onClick={this.handleDelete.bind(this, slide)}>❌</button>
                   </div>
                 </div>
@@ -69,11 +70,13 @@ class Admin extends Component {
   }
 
   handleDelete(slide) {
-    Presentations.update(this.props.presentation._id, {
-      $pull: {
-        slides: slide
-      }
-    });
+    if (window.confirm('You sure you want to delete this slide?')) {
+      Presentations.update(this.props.presentation._id, {
+        $pull: {
+          slides: slide
+        }
+      });
+    }
   }
 }
 
