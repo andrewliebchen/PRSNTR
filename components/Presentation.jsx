@@ -72,6 +72,15 @@ class Presentation extends Component {
           currentSlide={presentation.currentSlide}
           prefix="presentation"/>
         <div className="info">
+
+          <div className="info__item">
+            {presentation.currentSlide + 1} | {slidesLength}
+          </div>
+          <a
+            className={`info__item ${presentation.currentSlide === 0 ? 'is-disabled' : ''}`}
+            onClick={this.handleChangeSlide.bind(null, -(slidesLength - (slidesLength - presentation.currentSlide)))}>
+            🏃
+          </a>
           <a
             className={`info__item ${!this._canReverse() ? 'is-disabled' : ''}`}
             onClick={this.handleChangeSlide.bind(null, -1)}>
@@ -83,14 +92,6 @@ class Presentation extends Component {
             disabled={!this._canAdvance()}>
             👉
           </a>
-          <a
-            className={`info__item ${presentation.currentSlide === 0 ? 'is-disabled' : ''}`}
-            onClick={this.handleChangeSlide.bind(null, -(slidesLength - (slidesLength - presentation.currentSlide)))}>
-            🏃
-          </a>
-          <div className="info__item">
-            {presentation.currentSlide + 1} | {slidesLength}
-          </div>
         </div>
       </div>
     );

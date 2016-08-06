@@ -9,11 +9,11 @@
 .info {
   transition: 0.1s linear;
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 0;
+  right: 0;
   background-color: rgba($gray-dark, 0.3);
   color: white;
-  border-radius: $border-radius;
+  border-radius: $border-radius 0 0 0;
 
   &:hover {
     background-color: rgba($gray-dark, 0.9);
