@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { Presentations } from '../api/main';
 import Icon from './Icons.jsx';
+import Overlay from './Overlay.jsx';
 
 export default class Settings extends Component {
   constructor(props) {
@@ -22,34 +22,24 @@ export default class Settings extends Component {
           onClick={this.handleOverlayToggle}>
           <Icon type="settings" size="1.5rem"/>
         </a>
-        {this.state.overlay &&
-          <CSSTransitionGroup
-            transitionName="overlay"
-            transitionEnterTimeout={250}
-            transitionLeaveTimeout={200}>
-            <div className="overlay">
-              <div className="overlay__content">
-                <div className="form-group">
-                  <label className="label">
-                    Presentation title
-                  </label>
-                  <input
-                    type="text"
-                    className="input"
-                    defaultValue={presentation.title ? presentation.title : 'Untitled'}
-                    ref="title"/>
-                </div>
-                <button className="button" onClick={this.handleSave.bind(this)}>
-                  Save changes
-                </button>
-              </div>
-              <a
-                className="overlay__toggle"
-                onClick={this.handleOverlayToggle}>
-                <Icon type="close" size="2rem"/>
-              </a>
-            </div>
-        </CSSTransitionGroup>}
+
+        <Overlay
+          show={this.state.overlay}
+          toggle={this.handleOverlayToggle}>
+          <div className="form-group">
+            <label className="label">
+              Presentation title
+            </label>
+            <input
+              type="text"
+              className="input"
+              defaultValue={presentation.title ? presentation.title : 'Untitled'}
+              ref="title"/>
+          </div>
+          <button className="button" onClick={this.handleSave.bind(this)}>
+            Save changes
+          </button>
+        </Overlay>
       </span>
     );
   }
@@ -59,7 +49,6 @@ export default class Settings extends Component {
   }
 
   handleSave() {
-    console.log(this.refs.title.value);
     Presentations.update(this.props.presentation._id, {
       $set: {
         title: this.refs.title.value

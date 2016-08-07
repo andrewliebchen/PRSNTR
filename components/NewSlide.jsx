@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import keydown from 'react-keydown';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { Presentations } from '../api/main';
 import Tabs from 'react-simpletabs';
 import Textarea from 'react-expanding-textarea';
 import Icon from './Icons.jsx';
+import Overlay from './Overlay.jsx';
 
 class NewSlide extends Component {
   constructor(props) {
@@ -31,51 +31,39 @@ class NewSlide extends Component {
           onClick={this.handleToggleNewSlide.bind(this)}>
           <span className="new-slide-toggle__label">Add slide</span>
         </div>
-        <CSSTransitionGroup
-          transitionName="overlay"
-          transitionEnterTimeout={250}
-          transitionLeaveTimeout={200}>
-          {overlay &&
-            <div className="overlay">
-              <div className="overlay__content">
-                <Tabs onAfterChange={this.handleChangeTab.bind(this)}>
-                  <Tabs.Panel title="Image slide">
-                    <p>
-                      Create an image-only slide by pasting the image URL below.
-                      For example, if the image is in your <code>/public</code> folder in Dropbox, select "Copy Public Link" from your context menu, and paste it here.
-                    </p>
-                    <input
-                      type="url"
-                      className="input"
-                      onChange={this.handleSourceChange.bind(this)}
-                      placeholder="http://example.com/portfolio.png"/>
-                  </Tabs.Panel>
-                  <Tabs.Panel title="Text slide">
-                    <p>
-                      Create a text-only slide by writing below.
-                      You can format your text with Markdown.
-                    </p>
-                    <Textarea
-                      rows="3"
-                      className="textarea"
-                      placeholder="Add some content"
-                      onChange={this.handleSourceChange.bind(this)} />
-                  </Tabs.Panel>
-                </Tabs>
-                <button
-                  className="button"
-                  onClick={this.handleAddSlide.bind(this)}>
-                  Add slide
-                </button>
-              </div>
-              <a
-                className="overlay__toggle"
-                onClick={this.handleToggleNewSlide.bind(this)}>
-                <Icon type="close" size="2rem"/>
-              </a>
-            </div>
-          }
-        </CSSTransitionGroup>
+        <Overlay
+          show={overlay}
+          toggle={this.handleToggleNewSlide.bind(this)}>
+          <Tabs onAfterChange={this.handleChangeTab.bind(this)}>
+            <Tabs.Panel title="Image slide">
+              <p>
+                Create an image-only slide by pasting the image URL below.
+                For example, if the image is in your <code>/public</code> folder in Dropbox, select "Copy Public Link" from your context menu, and paste it here.
+              </p>
+              <input
+                type="url"
+                className="input"
+                onChange={this.handleSourceChange.bind(this)}
+                placeholder="http://example.com/portfolio.png"/>
+            </Tabs.Panel>
+            <Tabs.Panel title="Text slide">
+              <p>
+                Create a text-only slide by writing below.
+                You can format your text with Markdown.
+              </p>
+              <Textarea
+                rows="3"
+                className="textarea"
+                placeholder="Add some content"
+                onChange={this.handleSourceChange.bind(this)} />
+            </Tabs.Panel>
+          </Tabs>
+          <button
+            className="button"
+            onClick={this.handleAddSlide.bind(this)}>
+            Add slide
+          </button>
+        </Overlay>
       </div>
     );
   }
