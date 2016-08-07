@@ -13,6 +13,11 @@ body {
 
 a {
   cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: $brand-primary;
+  }
 }
 
 img {

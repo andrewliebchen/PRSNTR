@@ -11,7 +11,7 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  background-color: rgba($gray-dark, 0.3);
+  background-color: rgba($gray-dark, 0.4);
   color: white;
   border-radius: $border-radius 0 0 0;
   display: flex;
@@ -33,10 +33,16 @@
   padding: 0 0.75rem;
   position: relative;
   flex: 1 1 auto;
+  fill: $gray-lighter;
+  color: $gray-lighter;
+
+  &:hover {
+    fill: white;
+  }
 
   &.is-disabled {
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.3;
   }
 
   .icon {
@@ -44,6 +50,6 @@
     left: 50%;
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
-    fill: white;
+    fill: inherit;
   }
 }
