@@ -76,7 +76,6 @@ class Presentation extends Component {
             currentSlide={presentation.currentSlide}
             prefix="presentation"/>
           <div className="info">
-
             <div className="info__item">
               {presentation.currentSlide + 1} | {slidesLength}
             </div>

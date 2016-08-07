@@ -21,7 +21,7 @@ class Admin extends Component {
       <DocumentTitle title="Admin | Slides dot 🎉">
         <div className="container admin__container">
           <header className="admin__header">
-            <h1>
+            <h1 className="admin__title">
               <a
                 href={`/${presentation._id}`}
                 title="View presentation">

@@ -25,7 +25,7 @@ class Settings extends Component {
     return (
       <span>
         <a
-          className="settings__toggle"
+          className="admin__settings__toggle"
           onClick={this.handleOverlayToggle}>
           <Icon type="settings" size="1.5rem"/>
         </a>
