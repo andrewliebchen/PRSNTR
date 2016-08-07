@@ -15,6 +15,7 @@ a {
   transition: 0.1s linear;
   cursor: pointer;
   text-decoration: none;
+  color: $brand-primary;
 
   &:hover {
     color: $brand-primary;
