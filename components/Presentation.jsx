@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import MobileDetect from 'mobile-detect';
 import keydown from 'react-keydown';
+import DocumentTitle from 'react-document-title';
 import { Presentations } from '../api/main';
 import Controller from './Controller.jsx';
 import Slides from './Slides.jsx';
@@ -67,34 +68,37 @@ class Presentation extends Component {
     }
 
     return (
-      <div className="container presentation__container">
-        <Slides
-          slides={presentation.slides}
-          currentSlide={presentation.currentSlide}
-          prefix="presentation"/>
-        <div className="info">
+      <DocumentTitle
+        title={`${presentation.title ? presentation.title : 'Untitled'} | Slides dot 🎉`}>
+        <div className="container presentation__container">
+          <Slides
+            slides={presentation.slides}
+            currentSlide={presentation.currentSlide}
+            prefix="presentation"/>
+          <div className="info">
 
-          <div className="info__item">
-            {presentation.currentSlide + 1} | {slidesLength}
+            <div className="info__item">
+              {presentation.currentSlide + 1} | {slidesLength}
+            </div>
+            <a
+              className={`info__item ${presentation.currentSlide === 0 ? 'is-disabled' : ''}`}
+              onClick={this.handleChangeSlide.bind(null, -(slidesLength - (slidesLength - presentation.currentSlide)))}>
+              <Icon type="previous"/>
+            </a>
+            <a
+              className={`info__item ${!this._canReverse() ? 'is-disabled' : ''}`}
+              onClick={this.handleChangeSlide.bind(null, -1)}>
+              <Icon type="rewind"/>
+            </a>
+            <a
+              className={`info__item ${!this._canAdvance() ? 'is-disabled' : ''}`}
+              onClick={this.handleChangeSlide.bind(null, 1)}
+              disabled={!this._canAdvance()}>
+              <Icon type="fast-forward"/>
+            </a>
           </div>
-          <a
-            className={`info__item ${presentation.currentSlide === 0 ? 'is-disabled' : ''}`}
-            onClick={this.handleChangeSlide.bind(null, -(slidesLength - (slidesLength - presentation.currentSlide)))}>
-            <Icon type="previous"/>
-          </a>
-          <a
-            className={`info__item ${!this._canReverse() ? 'is-disabled' : ''}`}
-            onClick={this.handleChangeSlide.bind(null, -1)}>
-            <Icon type="rewind"/>
-          </a>
-          <a
-            className={`info__item ${!this._canAdvance() ? 'is-disabled' : ''}`}
-            onClick={this.handleChangeSlide.bind(null, 1)}
-            disabled={!this._canAdvance()}>
-            <Icon type="fast-forward"/>
-          </a>
         </div>
-      </div>
+      </DocumentTitle>
     );
   }
 

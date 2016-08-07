@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
 import Icon from './Icons.jsx';
 import Overlay from './Overlay.jsx';
 
-export default class Settings extends Component {
+class Settings extends Component {
   constructor(props) {
     super(props);
     this.handleOverlayToggle = this.handleOverlayToggle.bind(this);
@@ -11,6 +12,12 @@ export default class Settings extends Component {
     this.state = {
       overlay: false
     };
+  }
+
+  componentWillReceiveProps({ keydown }) {
+    if (keydown.event && keydown.event.which === 27) {
+      this.setState({overlay: false});
+    }
   }
 
   render() {
@@ -64,3 +71,5 @@ export default class Settings extends Component {
 Settings.propTypes = {
   presentation: PropTypes.object
 };
+
+export default keydown(Settings);

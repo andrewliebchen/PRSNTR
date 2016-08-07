@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import SwapArray from 'swap-array';
+import DocumentTitle from 'react-document-title';
 import { Presentations } from '../api/main';
 import NewSlide from './NewSlide.jsx';
 import Slide from './Slide.jsx';
@@ -17,46 +18,48 @@ class Admin extends Component {
     }
 
     return (
-      <div className="container admin__container">
-        <header className="admin__header">
-          <h1>
-            <a
-              href={`/${presentation._id}`}
-              title="View presentation">
-              {presentation.title ? presentation.title : 'Untitled'}
-            </a>
-          </h1>
-          <Settings {...this.props}/>
+      <DocumentTitle title="Admin | Slides dot 🎉">
+        <div className="container admin__container">
+          <header className="admin__header">
+            <h1>
+              <a
+                href={`/${presentation._id}`}
+                title="View presentation">
+                {presentation.title ? presentation.title : 'Untitled'}
+              </a>
+            </h1>
+            <Settings {...this.props}/>
 
-        </header>
-        <div className="admin__slides">
-          {presentation.slides.map((slide, i) =>
-            <div className="admin__slide__container" key={i}>
-              <Slide
-                slide={slide}
-                prefix="admin">
-                <div className="admin__slide__overlay">
-                  <div className="admin__slide__actions">
-                    <button
-                      onClick={this.handleMoveUp.bind(this, i)}
-                      disabled={i === 0}>
-                      👈
-                    </button>
-                    <button
-                      onClick={this.handleMoveDown.bind(this, i)}
-                      disabled={i === presentation.slides.length - 1}>
-                      👉
-                    </button>
-                    <button>✏️</button>
-                    <button onClick={this.handleDelete.bind(this, slide)}>❌</button>
+          </header>
+          <div className="admin__slides">
+            {presentation.slides.map((slide, i) =>
+              <div className="admin__slide__container" key={i}>
+                <Slide
+                  slide={slide}
+                  prefix="admin">
+                  <div className="admin__slide__overlay">
+                    <div className="admin__slide__actions">
+                      <button
+                        onClick={this.handleMoveUp.bind(this, i)}
+                        disabled={i === 0}>
+                        👈
+                      </button>
+                      <button
+                        onClick={this.handleMoveDown.bind(this, i)}
+                        disabled={i === presentation.slides.length - 1}>
+                        👉
+                      </button>
+                      <button>✏️</button>
+                      <button onClick={this.handleDelete.bind(this, slide)}>❌</button>
+                    </div>
                   </div>
-                </div>
-              </Slide>
-            </div>
-          )}
-        <NewSlide {...this.props}/>
+                </Slide>
+              </div>
+            )}
+          <NewSlide {...this.props}/>
+          </div>
         </div>
-      </div>
+      </DocumentTitle>
     );
   }
 
