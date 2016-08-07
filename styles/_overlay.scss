@@ -21,6 +21,11 @@
   top: 2rem;
   right: 2rem;
   display: inline-block;
+  fill: rgba(white, 0.5);
+
+  &:hover {
+    fill: white;
+  }
 }
 
 .overlay-enter {
@@ -33,7 +38,6 @@
     transition: 0.25s $ease-in-out-back;
   }
 }
-
 
 .overlay-leave {
   opacity: 1;

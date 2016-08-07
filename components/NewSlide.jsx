@@ -3,7 +3,8 @@ import keydown from 'react-keydown';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { Presentations } from '../api/main';
 import Tabs from 'react-simpletabs';
-import Textarea from 'react-expanding-textarea'
+import Textarea from 'react-expanding-textarea';
+import Icon from './Icons.jsx';
 
 class NewSlide extends Component {
   constructor(props) {
@@ -38,20 +39,27 @@ class NewSlide extends Component {
             <div className="overlay">
               <div className="overlay__content">
                 <Tabs onAfterChange={this.handleChangeTab.bind(this)}>
-                  <Tabs.Panel title="Image">
+                  <Tabs.Panel title="Image slide">
+                    <p>
+                      Create an image-only slide by pasting the image URL below.
+                      For example, if the image is in your <code>/public</code> folder in Dropbox, select "Copy Public Link" from your context menu, and paste it here.
+                    </p>
                     <input
                       type="url"
                       className="input"
                       onChange={this.handleSourceChange.bind(this)}
                       placeholder="http://example.com/portfolio.png"/>
                   </Tabs.Panel>
-                  <Tabs.Panel title="Text">
+                  <Tabs.Panel title="Text slide">
+                    <p>
+                      Create a text-only slide by writing below.
+                      You can format your text with Markdown.
+                    </p>
                     <Textarea
                       rows="3"
                       className="textarea"
                       placeholder="Add some content"
                       onChange={this.handleSourceChange.bind(this)} />
-                    <small>Format with Markdown</small>
                   </Tabs.Panel>
                 </Tabs>
                 <button
@@ -63,7 +71,7 @@ class NewSlide extends Component {
               <a
                 className="overlay__toggle"
                 onClick={this.handleToggleNewSlide.bind(this)}>
-                Close
+                <Icon type="close" size="2rem"/>
               </a>
             </div>
           }
