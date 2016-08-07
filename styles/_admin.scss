@@ -4,6 +4,14 @@ $admin-slide-height: 25vw;
 .admin__container {
   background-color: $gray-dark;
   min-height: 100vh;
+
+  a {
+    color: white;
+  }
+}
+
+.admin__header {
+  text-align: center;
 }
 
 .admin__slides {

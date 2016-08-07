@@ -16,6 +16,11 @@ class Admin extends Component {
 
     return (
       <div className="container admin__container">
+        <header className="admin__header">
+          <h1>
+            <a href={`/${presentation._id}`} title="View presentation">Title</a>
+          </h1>
+        </header>
         <div className="admin__slides">
           {presentation.slides.map((slide, i) =>
             <div className="admin__slide__container" key={i}>
