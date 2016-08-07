@@ -5,6 +5,7 @@ import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
 import Controller from './Controller.jsx';
 import Slides from './Slides.jsx';
+import Icon from './Icons.jsx';
 
 class Presentation extends Component {
   constructor(props) {
@@ -79,18 +80,18 @@ class Presentation extends Component {
           <a
             className={`info__item ${presentation.currentSlide === 0 ? 'is-disabled' : ''}`}
             onClick={this.handleChangeSlide.bind(null, -(slidesLength - (slidesLength - presentation.currentSlide)))}>
-            🏃
+            <Icon type="previous"/>
           </a>
           <a
             className={`info__item ${!this._canReverse() ? 'is-disabled' : ''}`}
             onClick={this.handleChangeSlide.bind(null, -1)}>
-            👈
+            <Icon type="rewind"/>
           </a>
           <a
             className={`info__item ${!this._canAdvance() ? 'is-disabled' : ''}`}
             onClick={this.handleChangeSlide.bind(null, 1)}
             disabled={!this._canAdvance()}>
-            👉
+            <Icon type="fast-forward"/>
           </a>
         </div>
       </div>
