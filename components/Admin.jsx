@@ -5,6 +5,8 @@ import SwapArray from 'swap-array';
 import { Presentations } from '../api/main';
 import NewSlide from './NewSlide.jsx';
 import Slide from './Slide.jsx';
+import Icon from './Icons.jsx';
+import Settings from './Settings.jsx';
 
 class Admin extends Component {
   render() {
@@ -18,8 +20,14 @@ class Admin extends Component {
       <div className="container admin__container">
         <header className="admin__header">
           <h1>
-            <a href={`/${presentation._id}`} title="View presentation">Title</a>
+            <a
+              href={`/${presentation._id}`}
+              title="View presentation">
+              {presentation.title ? presentation.title : 'Untitled'}
+            </a>
           </h1>
+          <Settings {...this.props}/>
+
         </header>
         <div className="admin__slides">
           {presentation.slides.map((slide, i) =>
