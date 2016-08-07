@@ -29,9 +29,30 @@ img {
   margin: auto;
 }
 
+svg {
+  fill: inherit;
+}
+
 body,
 .container {
   width: 100vw;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.container__inverse,
+.container__blue {
+  color: white;
+
+  a {
+    @include inverse-link-color;
+  }
+}
+
+.container__inverse {
+  background-color: $gray-dark;
+}
+
+.container__blue {
+  background-color: rgba($brand-primary, 0.95);
 }

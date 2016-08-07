@@ -9,3 +9,32 @@ $border-radius: 5px;
 
 $transition: 0.1s ease-in-out;
 $ease-in-out-back: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+
+$shadow-base:
+  0 1px 0 rgba(black, 0.5),
+  0 1px 3px rgba(black, 0.4),
+  0 5px 30px rgba(black, 0.2);
+
+$width-base: 30rem;
+
+@mixin inverse-link-color {
+  $color: rgba(white, 0.5);
+  fill: $color;
+  color: $color;
+
+  &:hover {
+    $color: white;
+    fill: white;
+    color: white;
+  }
+}
+
+@mixin hatch($color: rgba($brand-primary, 0.3), $width: 10px) {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    $color $width / 2,
+    $color $width
+  );
+}

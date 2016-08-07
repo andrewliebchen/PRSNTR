@@ -17,7 +17,7 @@ export default class Controller extends Component {
   render() {
     const { presentation, changeSlide, canReverse, canAdvance, slidesLength } = this.props;
     return (
-      <div className="controller">
+      <div className="controller container__inverse">
         <div className="top">
           <Timer/>
           <div className="progress">

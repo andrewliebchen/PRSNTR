@@ -1,18 +1,16 @@
 .overlay {
   $offset: 0;
-  background-color: rgba($brand-primary, 0.95);
   position: fixed;
   top: $offset;
   left: $offset;
   bottom: $offset;
   right: $offset;
   z-index: 9;
-  color: white;
 }
 
 .overlay__content {
   margin: 25% auto 1rem;
-  width: 30rem;
+  width: $width-base;
 }
 
 .overlay__toggle {

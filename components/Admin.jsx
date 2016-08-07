@@ -19,7 +19,7 @@ class Admin extends Component {
 
     return (
       <DocumentTitle title="Admin | Slides dot 🎉">
-        <div className="container admin__container">
+        <div className="container container__inverse admin">
           <header className="admin__header">
             <h1 className="admin__title">
               <a

@@ -53,6 +53,6 @@ label {
   color: $brand-primary;
 
   &:hover {
-    box-shadow: 0 1px 0 rgba(black, 0.5), 0 1px 3px rgba(black, 0.4), 0 5px 30px rgba(black, 0.2);
+    box-shadow: $shadow-base;
   }
 }
