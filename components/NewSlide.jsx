@@ -49,6 +49,7 @@ class NewSlide extends Component {
                 className="input"
                 onChange={this.handleSourceChange.bind(this)}
                 placeholder="http://example.com/portfolio.png"
+                ref="source"
                 autoFocus/>
             </Tabs.Panel>
             <Tabs.Panel title="Text slide">
@@ -61,6 +62,7 @@ class NewSlide extends Component {
                 className="textarea"
                 placeholder="Add some content"
                 onChange={this.handleSourceChange.bind(this)}
+                ref="source"
                 autoFocus />
             </Tabs.Panel>
           </Tabs>
@@ -100,6 +102,7 @@ class NewSlide extends Component {
         }
       }, (error, success) => {
         if (success) {
+          this.refs.source.value = '';
           this.setState({
             source: null,
             isLoading: false
