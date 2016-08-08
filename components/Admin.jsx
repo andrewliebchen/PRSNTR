@@ -9,6 +9,14 @@ import Slide from './Slide.jsx';
 import Icon from './Icons.jsx';
 import Settings from './Settings.jsx';
 
+const Action = (props) =>
+  <a
+    className="admin__slide__action"
+    onClick={props.handleClick}
+    title={props.title}>
+    <Icon type={props.type} size="1.5rem"/>
+  </a>
+
 class Admin extends Component {
   render() {
     const { dataIsReady, presentation } = this.props;
@@ -39,18 +47,21 @@ class Admin extends Component {
                   prefix="admin">
                   <div className="admin__slide__overlay">
                     <div className="admin__slide__actions">
-                      <button
-                        onClick={this.handleMoveUp.bind(this, i)}
-                        disabled={i === 0}>
-                        👈
-                      </button>
-                      <button
-                        onClick={this.handleMoveDown.bind(this, i)}
-                        disabled={i === presentation.slides.length - 1}>
-                        👉
-                      </button>
-                      <button>✏️</button>
-                      <button onClick={this.handleDelete.bind(this, slide)}>❌</button>
+                      <Action title="Edit" handleClick={null} type="edit"/>
+                      {i > 0 &&
+                        <Action
+                          title="Move left"
+                          handleClick={this.handleMoveUp.bind(this, i)}
+                          type="arrow-left"/>}
+                      {i < presentation.slides.length &&
+                        <Action
+                          title="Move right"
+                          handleClick={this.handleMoveDown.bind(this, i)}
+                          type="arrow-right"/>}
+                      <Action
+                        title="Delete"
+                        handleClick={this.handleDelete.bind(this, slide)}
+                        type="delete"/>
                     </div>
                   </div>
                 </Slide>

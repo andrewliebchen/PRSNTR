@@ -29,6 +29,18 @@ $width-base: 30rem;
   }
 }
 
+@mixin svg-outline {
+  stroke: rgba(white, 0.5);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: transparent;
+
+  &:hover {
+    fill: white;
+  }
+}
+
 @mixin hatch($color: rgba($brand-primary, 0.3), $width: 10px) {
   background-image: repeating-linear-gradient(
     45deg,
