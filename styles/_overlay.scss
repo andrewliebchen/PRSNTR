@@ -9,7 +9,10 @@
 }
 
 .overlay__content {
-  margin: 25% auto 1rem;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
   width: $width-base;
 }
 
