@@ -98,10 +98,7 @@ class NewSlide extends Component {
         }
       }, (error, success) => {
         if (success) {
-          this.setState({
-            overlay: false,
-            isLoading: false
-          });
+          this.setState({isLoading: false});
         }
       });
     }
