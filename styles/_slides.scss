@@ -15,7 +15,19 @@
 }
 
 .slide__content {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide__content__image {
+  margin: 0 auto;
   padding: 2rem;
+}
+
+.slide__content__text {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 2rem 4rem;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
