@@ -48,7 +48,8 @@ class NewSlide extends Component {
                 type="url"
                 className="input"
                 onChange={this.handleSourceChange.bind(this)}
-                placeholder="http://example.com/portfolio.png"/>
+                placeholder="http://example.com/portfolio.png"
+                autoFocus/>
             </Tabs.Panel>
             <Tabs.Panel title="Text slide">
               <p>
@@ -59,7 +60,8 @@ class NewSlide extends Component {
                 rows="3"
                 className="textarea"
                 placeholder="Add some content"
-                onChange={this.handleSourceChange.bind(this)} />
+                onChange={this.handleSourceChange.bind(this)}
+                autoFocus />
             </Tabs.Panel>
           </Tabs>
           <button
