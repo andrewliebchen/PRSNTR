@@ -19,22 +19,22 @@ $width-base: 30rem;
 
 @mixin inverse-link-color {
   $color: rgba(white, 0.5);
-  fill: $color;
   color: $color;
+  fill: $color;
 
   &:hover {
     $color: white;
-    fill: white;
     color: white;
+    fill: white;
   }
 }
 
 @mixin svg-outline {
-  stroke: rgba(white, 0.5);
-  stroke-width: 2;
+  fill: transparent;
   stroke-linecap: round;
   stroke-linejoin: round;
-  fill: transparent;
+  stroke-width: 2;
+  stroke: rgba(white, 0.5);
 
   &:hover {
     fill: white;

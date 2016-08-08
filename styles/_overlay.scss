@@ -1,10 +1,10 @@
 .overlay {
   $offset: 0;
-  position: fixed;
-  top: $offset;
-  left: $offset;
   bottom: $offset;
+  left: $offset;
+  position: fixed;
   right: $offset;
+  top: $offset;
   z-index: 9;
 }
 
@@ -15,11 +15,11 @@
 
 .overlay__toggle {
   color: inherit;
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
   display: inline-block;
   fill: rgba(white, 0.5);
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
 
   &:hover {
     fill: white;

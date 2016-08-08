@@ -4,18 +4,18 @@
 
 label {
   display: block;
-  padding-bottom: 0.5rem;
   font-size: 0.9rem;
+  padding-bottom: 0.5rem;
 }
 
 .input,
 .textarea,
 .button {
   appearance: none;
-  border: 0;
   background-color: transparent;
-  outline: none;
   border-radius: $border-radius;
+  border: 0;
+  outline: none;
   width: 100%;
 
   &:focus {
@@ -25,18 +25,14 @@ label {
 
 .input,
 .textarea {
-  padding: 0.5rem;
   border: 1px solid;
-  display: block;
   color: inherit;
+  display: block;
+  padding: 0.5rem;
 
   &::placeholder {
     color: rgba(white, 0.5);
   }
-}
-
-.input {
-
 }
 
 .textarea {
@@ -46,11 +42,11 @@ label {
 
 .button {
   background-color: white;
+  color: $brand-primary;
   display: inline-block;
+  font-weight: bold;
   padding: 1rem;
   text-align: center;
-  font-weight: bold;
-  color: $brand-primary;
 
   &:hover {
     box-shadow: $shadow-base;

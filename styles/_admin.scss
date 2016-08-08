@@ -12,15 +12,15 @@ $admin-slide-height: 25vw;
 }
 
 .admin__title {
-  margin: 0;
   letter-spacing: 0.02em;
+  margin: 0;
 }
 
 .admin__settings__toggle {
+  display: block;
+  height: 100%;
   padding: 0.5rem;
   position: relative;
-  height: 100%;
-  display: block;
 
   .icon {
     @include svg-outline;
@@ -36,37 +36,37 @@ $admin-slide-height: 25vw;
 
 .admin__slide__container {
   float: left;
-  width: $admin-slide-width;
   height: $admin-slide-height;
   position: relative;
+  width: $admin-slide-width;
 }
 
 .admin__slide {
   $offset: 0.5rem;
   position: absolute;
-  top: $offset;
-  left: $offset;
-  bottom: $offset;
-  right: $offset;
   border-radius: $border-radius;
+  bottom: $offset;
   box-shadow: $shadow-base;
+  left: $offset;
+  right: $offset;
+  top: $offset;
 
   .slide__content {
-    padding: 1vw;
     font-size: 0.5vw;
+    padding: 1vw;
   }
 }
 
 .admin__slide__overlay {
-  opacity: 0;
-  transition: 0.1s ease-in-out;
-  position: relative;
   background-color: rgba($brand-primary, 0.8);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  position: relative;
+  right: 0;
+  top: 0;
+  transition: 0.1s ease-in-out;
 
   .admin__slide__container:hover & {
     opacity: 1;
@@ -75,8 +75,8 @@ $admin-slide-height: 25vw;
 
 .admin__slide__actions {
   position: absolute;
-  top: 0.75rem;
   right: 0.25rem;
+  top: 0.75rem;
 }
 
 .admin__slide__action {
@@ -85,16 +85,16 @@ $admin-slide-height: 25vw;
 
 .new-slide-toggle {
   @include inverse-link-color;
-  transition: 0.1s linear;
   border: 2px dashed;
   box-shadow: none;
   cursor: pointer;
+  transition: 0.1s linear;
   user-select: none;
 }
 
 .new-slide-toggle__label {
+  left: 50%;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate3d(-50%, -50%, 0);
 }

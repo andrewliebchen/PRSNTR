@@ -8,21 +8,21 @@ $slides-offset: 70vw;
 
 .top,
 .bottom {
-  width: 100vw;
   position: fixed;
+  width: 100vw;
 }
 
 .top {
-  top: 0;
   bottom: 50vh;
   display: flex;
   flex-direction: column;
   padding-bottom: 1rem;
+  top: 0;
 }
 
 .bottom {
-  height: 50vh;
   bottom: 0;
+  height: 50vh;
 }
 
 .timer {
@@ -31,14 +31,14 @@ $slides-offset: 70vw;
 }
 
 .timer__count {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
   font-feature-settings: "lnum" 1, "tnum" 1;
   font-size: 5rem;
   font-weight: bold;
+  left: 50%;
+  position: absolute;
   text-shadow: $shadow-base;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
 }
 
 .progress {
@@ -46,25 +46,25 @@ $slides-offset: 70vw;
 }
 
 .progress__container {
-  margin: 0 1rem 1rem;
   display: flex;
+  margin: 0 1rem 1rem;
 }
 
 .progress__slide {
   $height: 2rem;
+  border: 1px solid;
+  color: $gray-light;
+  display: block;
   flex: 1;
-  overflow: hidden;
   height: $height;
   line-height: $height;
-  text-align: center;
   margin-left: 0.25rem;
-  color: $gray-light;
-  border: 1px solid;
-  display: block;
+  overflow: hidden;
+  text-align: center;
 
   &:first-child {
-    margin: 0;
     border-radius: $border-radius 0 0 $border-radius;
+    margin: 0;
   }
 
   &:last-child {
@@ -77,10 +77,10 @@ $slides-offset: 70vw;
 }
 
 .action {
-  position: absolute;
-  top: 0;
   bottom: 0;
   display: block;
+  position: absolute;
+  top: 0;
 }
 
 .action__prev {
@@ -94,14 +94,14 @@ $slides-offset: 70vw;
 }
 
 .controller__slides {
-  margin-left: -($slides-offset);
   bottom: 2rem;
+  margin-left: -($slides-offset);
 }
 
 .controller__slide {
-  width: 100vw - ($controller-offset * 2);
-  margin: 0 $controller-offset;
-  font-size: 6px;
   border-radius: $border-radius;
   box-shadow: $shadow-base;
+  font-size: 6px;
+  margin: 0 $controller-offset;
+  width: 100vw - ($controller-offset * 2);
 }

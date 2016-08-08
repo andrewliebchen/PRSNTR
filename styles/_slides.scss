@@ -9,9 +9,9 @@
 }
 
 .slide {
-  position: relative;
   background-color: white;
   color: $gray-dark;
+  position: relative;
 }
 
 .slide__content {
@@ -24,7 +24,7 @@
   h2,
   h3,
   h4 {
-    margin-top: 0;
     line-height: 1.2;
+    margin-top: 0;
   }
 }

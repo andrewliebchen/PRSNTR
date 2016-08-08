@@ -3,21 +3,21 @@
 }
 
 .tabs-menu {
+  display: flex;
   margin: 0 0 2rem;
   padding: 0;
-  display: flex;
 }
 
 li.tabs-menu-item { // Specificity override
+  border: 1px solid white;
+  display: block;
+  flex: 1;
+  font-weight: 600;
+  line-height: 2;
   list-style: none;
   padding: 0;
-  flex: 1;
   text-align: center;
-  display: block;
-  border: 1px solid white;
-  line-height: 2;
   user-select: none;
-  font-weight: 600;
 
   &:first-child {
     border-radius: $border-radius 0 0 $border-radius;
@@ -37,7 +37,7 @@ li.tabs-menu-item { // Specificity override
   }
 
   a {
-    display: block;
     color: inherit;
+    display: block;
   }
 }

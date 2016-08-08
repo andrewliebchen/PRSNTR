@@ -1,20 +1,16 @@
-.presentation__slides {
-
-}
-
 .presentation__slide {
   width: 100vw;
 }
 
 .info {
-  transition: 0.1s linear;
-  position: fixed;
-  bottom: 0;
-  right: 0;
   background-color: rgba($gray-dark, 0.4);
-  color: white;
   border-radius: $border-radius 0 0 0;
+  bottom: 0;
+  color: white;
   display: flex;
+  position: fixed;
+  right: 0;
+  transition: 0.1s linear;
 
   &:hover {
     background-color: rgba($gray-dark, 0.9);
@@ -23,31 +19,31 @@
 
 .info__item {
   $size: 2rem;
-  user-select: none;
-  font-feature-settings: "lnum" 1, "tnum" 1;
+  color: $gray-lighter;
   display: inline-block;
-  min-width: $size;
+  fill: $gray-lighter;
+  flex: 1 1 auto;
+  font-feature-settings: "lnum" 1, "tnum" 1;
   height: $size;
   line-height: $size;
-  text-align: center;
+  min-width: $size;
   padding: 0 0.75rem;
   position: relative;
-  flex: 1 1 auto;
-  fill: $gray-lighter;
-  color: $gray-lighter;
+  text-align: center;
+  user-select: none;
 
   &:hover {
     fill: white;
   }
 
   &.is-disabled {
-    pointer-events: none;
     opacity: 0.3;
+    pointer-events: none;
   }
 
   .icon {
-    position: absolute;
     left: 50%;
+    position: absolute;
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
   }
