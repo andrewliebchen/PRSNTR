@@ -56,3 +56,20 @@ body,
 .container__blue {
   background-color: rgba($brand-primary, 0.95);
 }
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+
+  .spinner {
+    $size: 3rem;
+    height: $size;
+    width: $size;
+  }
+
+  .cube {
+    background-color: $gray-lighter;
+  }
+}

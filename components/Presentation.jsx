@@ -7,6 +7,7 @@ import { Presentations } from '../api/main';
 import Controller from './Controller.jsx';
 import Slides from './Slides.jsx';
 import Icon from './Icons.jsx';
+import Loader from './Loader.jsx';
 
 class Presentation extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class Presentation extends Component {
     const slidesLength = dataIsReady ? presentation.slides.length : 0;
 
     if (!dataIsReady) {
-      return <div>Loading...</div>;
+      return <Loader/>;
     }
 
     if (this.state.phone) {

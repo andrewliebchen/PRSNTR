@@ -8,6 +8,7 @@ import NewSlide from './NewSlide.jsx';
 import Slide from './Slide.jsx';
 import Icon from './Icons.jsx';
 import Settings from './Settings.jsx';
+import Loader from './Loader.jsx';
 
 const Action = (props) =>
   <a
@@ -22,7 +23,7 @@ class Admin extends Component {
     const { dataIsReady, presentation } = this.props;
 
     if (!dataIsReady) {
-      return <div>Loading...</div>;
+      return <Loader/>;
     }
 
     return (
