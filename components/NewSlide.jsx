@@ -3,6 +3,7 @@ import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
 import Tabs from 'react-simpletabs';
 import Textarea from 'react-expanding-textarea';
+import Spinner from 'react-spinkit';
 import Icon from './Icons.jsx';
 import Overlay from './Overlay.jsx';
 
@@ -12,7 +13,8 @@ class NewSlide extends Component {
     this.state = {
       overlay: false,
       type: 'image',
-      source: null
+      source: null,
+      isLoading: false
     };
   }
 
@@ -23,14 +25,14 @@ class NewSlide extends Component {
   }
 
   render() {
-    const { overlay, type, source } = this.state;
+    const { overlay, type, source, isLoading } = this.state;
     return (
       <div className="admin__slide__container">
         <div
           className="new-slide-toggle admin__slide"
           onClick={this.handleToggleNewSlide.bind(this)}>
           <span className="new-slide-toggle__label">
-            <Icon type="plus" size="3rem"/>
+            <Icon type="plus" size="2rem"/>
           </span>
         </div>
         <Overlay
@@ -63,7 +65,7 @@ class NewSlide extends Component {
           <button
             className="button"
             onClick={this.handleAddSlide.bind(this)}>
-            Add slide
+            {isLoading ? <Spinner spinnerName="three-bounce" noFadeIn/> : 'Add slide'}
           </button>
         </Overlay>
       </div>
@@ -86,6 +88,7 @@ class NewSlide extends Component {
     event.preventDefault();
     const { type, source } = this.state;
     if (source) {
+      this.setState({isLoading: true});
       Presentations.update(this.props.presentation._id, {
         $push: {
           slides: {
@@ -93,8 +96,14 @@ class NewSlide extends Component {
             source: source
           }
         }
+      }, (error, success) => {
+        if (success) {
+          this.setState({
+            overlay: false,
+            isLoading: false
+          });
+        }
       });
-      this.setState({overlay: false});
     }
   }
 }

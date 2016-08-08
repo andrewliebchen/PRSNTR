@@ -55,4 +55,12 @@ label {
   &:hover {
     box-shadow: $shadow-base;
   }
+
+  .spinner {
+    transform: translateY(3px) scale(0.9);
+
+    > div {
+      background-color: $brand-primary;
+    }
+  }
 }
