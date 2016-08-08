@@ -100,7 +100,10 @@ class NewSlide extends Component {
         }
       }, (error, success) => {
         if (success) {
-          this.setState({isLoading: false});
+          this.setState({
+            source: null,
+            isLoading: false
+          });
         }
       });
     }
