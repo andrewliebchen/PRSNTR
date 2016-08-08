@@ -29,7 +29,9 @@ class NewSlide extends Component {
         <div
           className="new-slide-toggle admin__slide"
           onClick={this.handleToggleNewSlide.bind(this)}>
-          <span className="new-slide-toggle__label">Add slide</span>
+          <span className="new-slide-toggle__label">
+            <Icon type="plus" size="3rem"/>
+          </span>
         </div>
         <Overlay
           show={overlay}
