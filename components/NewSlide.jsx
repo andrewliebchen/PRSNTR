@@ -68,9 +68,14 @@ class NewSlide extends Component {
           </Tabs>
           <button
             className="button"
-            onClick={this.handleAddSlide.bind(this)}>
+            onClick={this.handleAddSlide.bind(this, true)}>
             {isLoading ? <Spinner spinnerName="three-bounce" noFadeIn/> : 'Add slide'}
           </button>
+          <a
+            className="new-slide__secondary"
+            onClick={this.handleAddSlide.bind(this, false)}>
+            Add slide and close
+          </a>
         </Overlay>
       </div>
     );
@@ -88,8 +93,7 @@ class NewSlide extends Component {
     this.setState({source: event.target.value});
   }
 
-  handleAddSlide() {
-    event.preventDefault();
+  handleAddSlide(keepOpen) {
     const { type, source } = this.state;
     if (source) {
       this.setState({isLoading: true});
@@ -102,9 +106,13 @@ class NewSlide extends Component {
         }
       }, (error, success) => {
         if (success) {
-          this.setState({isLoading: false});
-          this.refs.source.value = '';
-          this.refs.source.focus();
+          if (keepOpen) {
+            this.setState({isLoading: false});
+            this.refs.source.value = '';
+            this.refs.source.focus();
+          } else {
+            this.setState({overlay: false});
+          }
         }
       });
     }

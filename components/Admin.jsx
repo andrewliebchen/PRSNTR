@@ -48,7 +48,7 @@ class Admin extends Component {
                   prefix="admin">
                   <div className="admin__slide__overlay">
                     <div className="admin__slide__actions">
-                      <Action title="Edit" handleClick={null} type="edit"/>
+                      {/*<Action title="Edit" handleClick={null} type="edit"/>*/}
                       {i > 0 &&
                         <Action
                           title="Move left"
