@@ -3,12 +3,12 @@ $admin-slide-height: 25vw;
 
 .admin {
   min-height: 100vh;
+  padding: 2rem;
 }
 
 .admin__header {
   display: flex;
   justify-content: center;
-  padding-top: 2rem;
 }
 
 .admin__title {
@@ -31,7 +31,9 @@ $admin-slide-height: 25vw;
 }
 
 .admin__slides {
-  margin: 1rem;
+  @include clearfix;
+  padding: 1rem;
+  overflow: hidden;
 }
 
 .admin__slide__container {

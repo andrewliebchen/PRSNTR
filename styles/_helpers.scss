@@ -41,12 +41,10 @@ $width-base: 30rem;
   }
 }
 
-@mixin hatch($color: rgba($brand-primary, 0.3), $width: 10px) {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 5px,
-    $color $width / 2,
-    $color $width
-  );
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
 }
