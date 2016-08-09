@@ -41,31 +41,11 @@ $slides-offset: 70vw;
   transform: translate3d(-50%, -50%, 0);
 }
 
-.progress {
+.controller__progress {
   flex: 0 0 auto;
-}
 
-.progress__container {
-  background-color: $gray;
-  border-radius: $border-radius;
-  display: flex;
-  margin: 0 1rem;
-  overflow: hidden;
-}
-
-.progress__slide {
-  $height: 2rem;
-  display: block;
-  flex: 1;
-  height: $height;
-
-  + .progress__slide {
-    border-left: 3px solid $gray-dark;
-  }
-
-  &.is-current,
-  &.has-passed {
-    background-color: $brand-primary;
+  .progress {
+    margin: 0 1rem;
   }
 }
 

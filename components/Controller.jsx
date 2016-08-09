@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import timer from 'react-timer-hoc';
 import moment from 'moment';
-import classnames from 'classnames';
 import Tappable from 'react-tappable';
 import Slides from './Slides.jsx';
+import Progress from './Progress.jsx';
 
 const countdown = ({ timer }) =>
   <div className="timer">
@@ -21,22 +21,8 @@ export default class Controller extends Component {
       <div className="controller container__inverse">
         <div className="top">
           <Timer/>
-          <div className="progress">
-            <div className="progress__container">
-              {presentation.slides.map((slide, i) => {
-                const slideClassName = classnames({
-                  'progress__slide': true,
-                  'is-current': presentation.currentSlide === i,
-                  'has-passed': presentation.currentSlide > i
-                });
-                return (
-                  <Tappable
-                    className={slideClassName}
-                    onTap={changeSlide.bind(null, i - presentation.currentSlide)}
-                    key={i}/>
-                );
-              })}
-            </div>
+          <div className="controller__progress">
+            <Progress {...this.props}/>
           </div>
         </div>
         <div className="actions bottom">

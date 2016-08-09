@@ -1,0 +1,24 @@
+.progress {
+  background-color: $gray;
+  border-radius: $border-radius;
+  display: flex;
+  overflow: hidden;
+  height: 2rem;
+}
+
+.progress__slide {
+  border-left-width: 3px;
+  display: block;
+  flex: 1;
+  height: inherit;
+
+  + .progress__slide {
+    border-left-color: $gray-dark;
+    border-left-style: solid;
+  }
+
+  &.is-current,
+  &.has-passed {
+    background-color: $brand-primary;
+  }
+}

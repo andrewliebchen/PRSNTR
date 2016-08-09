@@ -8,6 +8,7 @@ import Controller from './Controller.jsx';
 import Slides from './Slides.jsx';
 import Icon from './Icons.jsx';
 import Loader from './Loader.jsx';
+import Progress from './Progress.jsx';
 
 class Presentation extends Component {
   constructor(props) {
@@ -77,8 +78,10 @@ class Presentation extends Component {
             currentSlide={presentation.currentSlide}
             prefix="presentation"/>
           <div className="info">
-            <div className="info__item">
-              {presentation.currentSlide + 1} | {slidesLength}
+            <div className="info__progress info__item">
+              <Progress
+                presentation={presentation}
+                changeSlide={this.handleChangeSlide}/>
             </div>
             <a
               className={`info__item ${presentation.currentSlide === 0 ? 'is-disabled' : ''}`}

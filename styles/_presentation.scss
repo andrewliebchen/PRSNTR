@@ -3,33 +3,30 @@
 }
 
 .info {
-  background-color: rgba($gray-dark, 0.4);
+  background-color: $gray-dark;
   border-radius: $border-radius 0 0 0;
   bottom: 0;
   color: white;
   display: flex;
+  opacity: 0.6;
   position: fixed;
   right: 0;
   transition: 0.1s linear;
 
   &:hover {
-    background-color: rgba($gray-dark, 0.9);
+    opacity: 1;
   }
 }
 
 .info__item {
   $size: 2rem;
   color: $gray-lighter;
-  display: inline-block;
   fill: $gray-lighter;
-  flex: 1 1 auto;
-  font-feature-settings: "lnum" 1, "tnum" 1;
   height: $size;
   line-height: $size;
   min-width: $size;
   padding: 0 0.75rem;
   position: relative;
-  text-align: center;
   user-select: none;
 
   &:hover {
@@ -46,5 +43,20 @@
     position: absolute;
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+.info__progress {
+
+  .progress {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1rem;
+  }
+
+  .progress__slide {
+    min-width: 1rem;
+    border-left-width: 1px;
   }
 }
