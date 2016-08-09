@@ -46,10 +46,10 @@ $slides-offset: 70vw;
 }
 
 .progress__container {
+  background-color: $gray;
+  border-radius: $border-radius;
   display: flex;
   margin: 0 1rem;
-  border-radius: $border-radius;
-  background-color: $gray;
   overflow: hidden;
 }
 
