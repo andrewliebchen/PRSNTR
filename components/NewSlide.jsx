@@ -102,11 +102,9 @@ class NewSlide extends Component {
         }
       }, (error, success) => {
         if (success) {
+          this.setState({isLoading: false});
           this.refs.source.value = '';
-          this.setState({
-            source: null,
-            isLoading: false
-          });
+          this.refs.source.focus();
         }
       });
     }
