@@ -1,3 +1,17 @@
+@keyframes pulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
 .timer {
   flex: 1;
   position: relative;
@@ -19,4 +33,14 @@
 .stopwatch__count {
   font-size: 5rem;
   font-weight: bold;
+}
+
+.countdown__count {
+  font-size: 2rem;
+  color: $gray-light;
+
+  &.warning {
+    color: $brand-error;
+    animation: pulse 0.5s ease-in infinite;
+  }
 }

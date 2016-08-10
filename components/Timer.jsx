@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import timer from 'react-timer-hoc';
 import moment from 'moment';
+import classnames from 'classnames';
 
 const Stopwatch = ({ timer }) =>
   <div className="stopwatch">
@@ -12,10 +13,16 @@ const Stopwatch = ({ timer }) =>
 const Countdown = ({ timer, synchronizeWith, presentationTime }) => {
   const now = Date.now();
   const startTime = presentationTime * 60000;
+  const remainder = startTime - (now - synchronizeWith);
+  const countClassName = classnames({
+    'countdown__count': true,
+    'count': true,
+    'warning': remainder < 120000 // two minute warning
+  })
   return (
     <div className="countdown">
-      <div className="countdown__count count">
-        {moment(startTime - (now - synchronizeWith)).format('mm:ss')}
+      <div className={countClassName}>
+        {moment(remainder).format('mm:ss')}
       </div>
     </div>
   );
