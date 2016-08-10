@@ -43,6 +43,17 @@ class Settings extends Component {
               defaultValue={presentation.title ? presentation.title : 'Untitled'}
               ref="title"/>
           </div>
+          <div className="form-group">
+            <label className="label">
+              Presentation time
+            </label>
+            <input
+              type="number"
+              className="input"
+              defaultValue={presentation.time ? presentation.time : null}
+              ref="time"/>
+            <small>Target length of the presentation, in minutes</small>
+          </div>
           <button className="button" onClick={this.handleSave.bind(this)}>
             Save changes
           </button>
@@ -58,7 +69,8 @@ class Settings extends Component {
   handleSave() {
     Presentations.update(this.props.presentation._id, {
       $set: {
-        title: this.refs.title.value
+        title: this.refs.title.value,
+        time: this.refs.time.value
       }
     }, (error, success) => {
       if (success) {
