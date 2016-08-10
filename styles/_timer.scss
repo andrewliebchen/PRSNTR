@@ -1,0 +1,22 @@
+.timer {
+  flex: 1;
+  position: relative;
+}
+
+.timer__container {
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  position: absolute;
+  text-align: center;
+}
+
+.count {
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  line-height: 1.1;
+}
+
+.stopwatch__count {
+  font-size: 5rem;
+  font-weight: bold;
+}

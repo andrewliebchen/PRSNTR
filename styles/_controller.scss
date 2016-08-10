@@ -25,22 +25,6 @@ $slides-offset: 70vw;
   height: 50vh;
 }
 
-.timer {
-  flex: 1;
-  position: relative;
-}
-
-.timer__count {
-  font-feature-settings: "lnum" 1, "tnum" 1;
-  font-size: 5rem;
-  font-weight: bold;
-  left: 50%;
-  position: absolute;
-  text-shadow: $shadow-base;
-  top: 50%;
-  transform: translate3d(-50%, -50%, 0);
-}
-
 .controller__progress {
   flex: 0 0 auto;
 

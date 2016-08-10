@@ -1,0 +1,42 @@
+import React, { PropTypes } from 'react';
+import timer from 'react-timer-hoc';
+import moment from 'moment';
+
+const Stopwatch = ({ timer }) =>
+  <div className="stopwatch">
+    <div className="stopwatch__count count">
+      {moment(timer.tick * timer.delay).format('mm:ss')}
+    </div>
+  </div>
+
+const Countdown = ({ timer, synchronizeWith, presentationTime }) => {
+  const now = Date.now();
+  const startTime = presentationTime * 60000;
+  return (
+    <div className="countdown">
+      <div className="countdown__count count">
+        {moment(startTime - (now - synchronizeWith)).format('mm:ss')}
+      </div>
+    </div>
+  );
+}
+
+const StopwatchTimer = timer(1000)(Stopwatch);
+const CountdownTimer = timer(1000)(Countdown);
+
+const Timer = (props) =>
+  <div className="timer">
+    <div className="timer__container">
+      <StopwatchTimer/>
+      {props.presentation.time && props.presentation.time > 0 &&
+        <CountdownTimer
+          presentationTime={props.presentation.time}
+          synchronizeWith={Date.now()}/>}
+    </div>
+  </div>
+
+Timer.propTypes = {
+  presentation: PropTypes.object
+};
+
+export default Timer;
