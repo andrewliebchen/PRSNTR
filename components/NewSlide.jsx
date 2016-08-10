@@ -111,7 +111,10 @@ class NewSlide extends Component {
             this.refs.source.value = '';
             this.refs.source.focus();
           } else {
-            this.setState({overlay: false});
+            this.setState({
+              overlay: false,
+              isLoading: false
+            });
           }
         }
       });
