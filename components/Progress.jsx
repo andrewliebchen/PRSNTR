@@ -4,7 +4,7 @@ import Tappable from 'react-tappable';
 
 export default class Progress extends Component {
   render() {
-    const { presentation, changeSlide } = this.props;
+    const { presentation, changeSlide, showProgress } = this.props;
     return (
       <div className="progress">
         {presentation.slides.map((slide, i) => {
@@ -20,6 +20,10 @@ export default class Progress extends Component {
               key={i}/>
           );
         })}
+        {showProgress && presentation.time && presentation.time > 0 &&
+          <div
+            className="progress__progress"
+            style={{animationDuration: `${presentation.time * 60}s`}}/>}
       </div>
     );
   }
@@ -27,5 +31,6 @@ export default class Progress extends Component {
 
 Progress.propTypes = {
   presentation: PropTypes.object,
-  changeSlide: PropTypes.func
+  changeSlide: PropTypes.func,
+  showProgress: PropTypes.bool
 };

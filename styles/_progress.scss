@@ -1,16 +1,34 @@
+@keyframes progress-bar {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
 .progress {
-  background-color: $gray;
-  border-radius: $border-radius;
   display: flex;
-  overflow: hidden;
   height: 2rem;
+  position: relative;
 }
 
 .progress__slide {
+  background-color: $gray;
   border-left-width: 3px;
   display: block;
   flex: 1;
   height: inherit;
+  overflow: hidden;
+
+  &:first-of-type {
+    border-radius: $border-radius 0 0 $border-radius;
+  }
+
+  &:last-of-type {
+    border-radius: 0 $border-radius $border-radius 0;
+  }
 
   + .progress__slide {
     border-left-color: $gray-dark;
@@ -21,4 +39,15 @@
   &.has-passed {
     background-color: $brand-primary;
   }
+}
+
+.progress__progress {
+  $offset: 0.25rem;
+  animation: progress-bar 2s linear forwards;
+  background-color: white;
+  bottom: -($offset);
+  position: absolute;
+  top: -($offset);
+  transform: translateX(-50%);
+  width: 5px;
 }

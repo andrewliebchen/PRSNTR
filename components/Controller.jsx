@@ -12,7 +12,7 @@ export default class Controller extends Component {
         <div className="top">
           <Timer presentation={presentation}/>
           <div className="controller__progress">
-            <Progress {...this.props}/>
+            <Progress {...this.props} showProgress/>
           </div>
         </div>
         <div className="actions bottom">
