@@ -6,9 +6,9 @@ import DocumentTitle from 'react-document-title';
 import { Presentations } from '../api/main';
 import Controller from './Controller.jsx';
 import Slides from './Slides.jsx';
-import Icon from './Icons.jsx';
 import Loader from './Loader.jsx';
-import Progress from './Progress.jsx';
+import Info from './Info.jsx';
+
 
 class Presentation extends Component {
   constructor(props) {
@@ -77,29 +77,12 @@ class Presentation extends Component {
             slides={presentation.slides}
             currentSlide={presentation.currentSlide}
             prefix="presentation"/>
-          <div className="info">
-            <div className="info__progress info__item">
-              <Progress
-                presentation={presentation}
-                changeSlide={this.handleChangeSlide}/>
-            </div>
-            <a
-              className={`info__item ${presentation.currentSlide === 0 ? 'is-disabled' : ''}`}
-              onClick={this.handleChangeSlide.bind(null, -(slidesLength - (slidesLength - presentation.currentSlide)))}>
-              <Icon type="previous"/>
-            </a>
-            <a
-              className={`info__item ${!this._canReverse() ? 'is-disabled' : ''}`}
-              onClick={this.handleChangeSlide.bind(null, -1)}>
-              <Icon type="rewind"/>
-            </a>
-            <a
-              className={`info__item ${!this._canAdvance() ? 'is-disabled' : ''}`}
-              onClick={this.handleChangeSlide.bind(null, 1)}
-              disabled={!this._canAdvance()}>
-              <Icon type="fast-forward"/>
-            </a>
-          </div>
+          <Info
+            presentation={presentation}
+            changeSlide={this.handleChangeSlide}
+            canReverse={this._canReverse()}
+            canAdvance={this._canAdvance()}
+            slidesLength={slidesLength}/>
         </div>
       </DocumentTitle>
     );
