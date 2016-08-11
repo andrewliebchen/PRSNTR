@@ -31,6 +31,8 @@ const Countdown = ({ timer, synchronizeWith, presentationTime }) => {
 const StopwatchTimer = timer(1000)(Stopwatch);
 const CountdownTimer = timer(1000)(Countdown);
 
+const timeNow = Date.now(); // Can't be in the render method, because it reloads...
+
 const Timer = (props) =>
   <div className="timer">
     <div className="timer__container">
@@ -38,7 +40,7 @@ const Timer = (props) =>
       {props.presentation.time && props.presentation.time > 0 &&
         <CountdownTimer
           presentationTime={props.presentation.time}
-          synchronizeWith={Date.now()}/>}
+          synchronizeWith={timeNow}/>}
     </div>
   </div>
 
