@@ -14,23 +14,17 @@
   position: relative;
 }
 
-.slide__content {
-  height: 100vh;
-  overflow: hidden;
-}
-
-.slide__content__image {
-  margin: 0 auto;
+.slide__content__image,
+.slide__content__text {
   padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
 }
 
 .slide__content__text {
-  display: inline-block;
-  margin: 0 auto;
-  padding: 2rem 4rem;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 60rem;
 
   h1,
   h2,

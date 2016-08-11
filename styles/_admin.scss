@@ -53,9 +53,14 @@ $admin-slide-height: 20vw;
   right: $offset;
   top: $offset;
 
-  .slide__content {
+  .slide__content__image,
+  .slide__content__text {
+    padding: 1rem;
+  }
+
+  .slide__content__text {
     font-size: 0.5vw;
-    padding: 1vw;
+    width: 100%;
   }
 }
 

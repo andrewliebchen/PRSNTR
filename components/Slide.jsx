@@ -6,15 +6,13 @@ export default class Slide extends Component {
     const { slide, prefix, children } = this.props;
     return (
       <div className={`slide ${prefix}__slide`}>
-        <div className="slide__content">
-          {slide.type === 'image' ?
-            <img
-              className="slide__content__image"
-              src={slide.source}/>
-          : <ReactMarkdown
-              className="slide__content__text"
-              source={slide.source}/>}
-        </div>
+        {slide.type === 'image' ?
+          <img
+            className="slide__content__image"
+            src={slide.source}/>
+        : <ReactMarkdown
+            className="slide__content__text"
+            source={slide.source}/>}
         {children}
       </div>
     );
