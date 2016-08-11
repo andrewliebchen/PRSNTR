@@ -61,4 +61,8 @@ $slides-offset: 70vw;
   font-size: 6px;
   margin: 0 $controller-offset;
   width: 100vw - ($controller-offset * 2);
+
+  .slide__content__text {
+    width: 100%;
+  }
 }
