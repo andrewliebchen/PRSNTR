@@ -18,16 +18,21 @@
 }
 
 .timer__container {
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  position: absolute;
-  text-align: center;
+  .controller & {
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    position: absolute;
+    text-align: center;
+  }
 }
 
 .count {
   font-feature-settings: "lnum" 1, "tnum" 1;
-  line-height: 1.1;
+
+  .controller & {
+    line-height: 1.1;
+  }
 }
 
 .stopwatch__count {
@@ -36,11 +41,13 @@
 }
 
 .countdown__count {
-  font-size: 2rem;
-  color: $gray-light;
-
   &.warning {
     color: $brand-error;
     animation: pulse 0.5s ease-in infinite;
+  }
+
+  .controller & {
+    font-size: 2rem;
+    color: $gray-light;
   }
 }

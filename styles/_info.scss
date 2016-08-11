@@ -1,0 +1,59 @@
+.info {
+  bottom: 0;
+  color: white;
+  display: flex;
+  opacity: 0.6;
+  position: fixed;
+  left: 50%;
+  transition: 0.1s linear;
+  transform: translateX(-50%);
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.info__item {
+  $size: 2rem;
+  color: $gray-lighter;
+  fill: $gray-lighter;
+  height: $size;
+  line-height: $size;
+  min-width: $size;
+  padding: 0 0.25rem;
+  position: relative;
+  user-select: none;
+
+  &:hover {
+    fill: $brand-primary;
+  }
+
+  &.is-disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .icon {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+.info__progress {
+  .progress {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1rem;
+  }
+
+  .progress__slide {
+    min-width: 0.5rem;
+
+    + .progress__slide {
+      margin-left: 2px;
+    }
+  }
+}

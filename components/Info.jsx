@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import Progress from './Progress.jsx';
 import Icon from './Icons.jsx';
+import Timer from './Timer.jsx';
 
 const Action = (props) =>
   <a className={props.className}
@@ -14,6 +15,9 @@ export default class Info extends Component {
     const { presentation, changeSlide, canReverse, canAdvance, slidesLength } = this.props;
     return (
       <div className="info">
+        <div className="info__item">
+          <Timer presentation={presentation}/>
+        </div>
         <div className="info__progress info__item">
           <Progress
             presentation={presentation}

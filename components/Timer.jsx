@@ -36,7 +36,7 @@ const timeNow = Date.now(); // Can't be in the render method, because it reloads
 const Timer = (props) =>
   <div className="timer">
     <div className="timer__container">
-      <StopwatchTimer/>
+      {props.stopwatch && <StopwatchTimer/>}
       {props.presentation.time && props.presentation.time > 0 &&
         <CountdownTimer
           presentationTime={props.presentation.time}
@@ -45,7 +45,8 @@ const Timer = (props) =>
   </div>
 
 Timer.propTypes = {
-  presentation: PropTypes.object
+  presentation: PropTypes.object,
+  stopwatch: PropTypes.bool
 };
 
 export default Timer;

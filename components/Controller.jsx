@@ -10,7 +10,7 @@ export default class Controller extends Component {
     return (
       <div className="controller container__inverse">
         <div className="top">
-          <Timer presentation={presentation}/>
+          <Timer presentation={presentation} stopwatch/>
           <div className="controller__progress">
             <Progress {...this.props} showProgress/>
           </div>

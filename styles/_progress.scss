@@ -15,8 +15,7 @@
 }
 
 .progress__slide {
-  background-color: $gray;
-  border-left-width: 3px;
+  background-color: $gray-light;
   display: block;
   flex: 1;
   height: inherit;
@@ -31,8 +30,7 @@
   }
 
   + .progress__slide {
-    border-left-color: $gray-dark;
-    border-left-style: solid;
+    margin-left: 3px;
   }
 
   &.is-current,
