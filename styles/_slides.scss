@@ -14,6 +14,11 @@
   position: relative;
 }
 
+.slide__inverse {
+  background-color: $gray-dark;
+  color: white;
+}
+
 .slide__content__image,
 .slide__content__text {
   padding: 2rem;

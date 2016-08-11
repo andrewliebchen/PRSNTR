@@ -52,6 +52,7 @@ $admin-slide-height: 20vw;
   left: $offset;
   right: $offset;
   top: $offset;
+  overflow: hidden;
 
   .slide__content__image,
   .slide__content__text {
@@ -73,6 +74,7 @@ $admin-slide-height: 20vw;
   right: 0;
   top: 0;
   transition: 0.1s ease-in-out;
+  border-radius: inherit;
 
   .admin__slide__container:hover & {
     opacity: 1;

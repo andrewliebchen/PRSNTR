@@ -63,6 +63,10 @@ class Admin extends Component {
                         title="Delete"
                         handleClick={this.handleDelete.bind(this, slide)}
                         type="delete"/>
+                      <Action
+                        title="Contrast"
+                        handleClick={this.handleBackgroundToggle.bind(this, slide)}
+                        type="contrast"/>
                     </div>
                   </div>
                 </Slide>
@@ -105,6 +109,13 @@ class Admin extends Component {
         }
       });
     }
+  }
+
+  handleBackgroundToggle(slide) {
+    Meteor.call('toggleBackground', {
+      presentationId: this.props.presentation._id,
+      slide: slide
+    });
   }
 }
 
