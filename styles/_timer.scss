@@ -41,13 +41,13 @@
 }
 
 .countdown__count {
-  &.warning {
-    color: $brand-error;
-    animation: pulse 0.5s ease-in infinite;
-  }
-
   .controller & {
     font-size: 2rem;
     color: $gray-light;
+  }
+
+  &.warning {
+    color: $brand-error;
+    animation: pulse 0.5s ease-in infinite;
   }
 }
