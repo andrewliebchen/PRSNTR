@@ -27,7 +27,11 @@ class Admin extends Component {
     }
 
     if (currentUser !== presentation.createdBy) {
-      return <div>Not allowed</div>;
+      return (
+        <Wrapper>
+          <div>Not allowed</div>
+        </Wrapper>
+      );
     }
 
     return (

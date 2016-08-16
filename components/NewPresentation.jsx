@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { createContainer } from 'meteor/react-meteor-data';
 import Spinner from 'react-spinkit';
 import { Presentations } from '../api/main';
+import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
-export default class NewPresentation extends Component {
+class NewPresentation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,8 +14,8 @@ export default class NewPresentation extends Component {
   }
 
   renderContent() {
-    if (!Meteor.currentUser) {
-      return <div>Log in, duh!</div>;
+    if (!this.props.currentUser) {
+      return <AccountsUIWrapper/>;
     }
 
     return (
@@ -55,3 +57,13 @@ export default class NewPresentation extends Component {
     });
   }
 }
+
+NewPresentation.propTypes = {
+  currentUser: PropTypes.string
+};
+
+export default createContainer(({params}) => {
+  return {
+    currentUser: Meteor.userId(),
+  };
+}, NewPresentation);

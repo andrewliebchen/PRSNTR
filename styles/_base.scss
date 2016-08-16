@@ -73,3 +73,10 @@ body,
     background-color: $gray-lighter;
   }
 }
+
+.accounts-container {
+  a,
+  a:hover {
+    color: $brand-primary;
+  }
+}
