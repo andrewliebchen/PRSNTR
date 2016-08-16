@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import SwapArray from 'swap-array';
-import DocumentTitle from 'react-document-title';
 import { Presentations } from '../api/main';
+import Wrapper from './Wrapper.jsx';
 import NewSlide from './NewSlide.jsx';
 import Slide from './Slide.jsx';
 import Icon from './Icons.jsx';
@@ -20,14 +20,18 @@ const Action = (props) =>
 
 class Admin extends Component {
   render() {
-    const { dataIsReady, presentation } = this.props;
+    const { dataIsReady, presentation, currentUser } = this.props;
 
     if (!dataIsReady) {
       return <Loader/>;
     }
 
+    if (currentUser !== presentation.createdBy) {
+      return <div>Not allowed</div>;
+    }
+
     return (
-      <DocumentTitle title="Admin | Slides dot 🎉">
+      <Wrapper title="Admin | Slides dot 🎉">
         <div className="container container__inverse admin">
           <header className="admin__header">
             <h1 className="admin__title">
@@ -75,7 +79,7 @@ class Admin extends Component {
           <NewSlide {...this.props}/>
           </div>
         </div>
-      </DocumentTitle>
+      </Wrapper>
     );
   }
 
@@ -121,7 +125,8 @@ class Admin extends Component {
 
 Admin.propTypes = {
   dataIsReady: PropTypes.bool.isRequired,
-  presentation: PropTypes.object.isRequired
+  presentation: PropTypes.object.isRequired,
+  currentUser: PropTypes.string,
 }
 
 export default createContainer(({params}) => {
@@ -130,5 +135,6 @@ export default createContainer(({params}) => {
   return {
     dataIsReady,
     presentation: dataIsReady ? dataHandle : {},
+    currentUser: Meteor.userId(),
   };
 }, Admin);

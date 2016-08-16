@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Meteor } from 'meteor/meteor';
 import Spinner from 'react-spinkit';
 import { Presentations } from '../api/main';
 
@@ -11,6 +12,10 @@ export default class NewPresentationButton extends Component {
   }
 
   render() {
+    if (!Meteor.currentUser) {
+      return <div>Log in, duh!</div>;
+    }
+
     return (
       <button
         className="button"
@@ -30,7 +35,8 @@ export default class NewPresentationButton extends Component {
         source: '# Welcome to Slides dot 🎉!\n\nClick to edit this slide, or delete it and start fresh!'
       }],
       currentSlide: 0,
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      createdBy: Meteor.userId()
     }, (error, id) => {
       if (id) {
         this.setState({isLoading: false});

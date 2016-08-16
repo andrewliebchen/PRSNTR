@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import MobileDetect from 'mobile-detect';
 import keydown from 'react-keydown';
-import DocumentTitle from 'react-document-title';
 import { Presentations } from '../api/main';
+import Wrapper from './Wrapper.jsx';
 import Controller from './Controller.jsx';
 import Slides from './Slides.jsx';
 import Loader from './Loader.jsx';
@@ -51,7 +52,7 @@ class Presentation extends Component {
   }
 
   render() {
-    const { dataIsReady, presentation } = this.props;
+    const { dataIsReady, presentation, currentUser } = this.props;
     const slidesLength = dataIsReady ? presentation.slides.length : 0;
 
     if (!dataIsReady) {
@@ -70,7 +71,7 @@ class Presentation extends Component {
     }
 
     return (
-      <DocumentTitle
+      <Wrapper
         title={`${presentation.title ? presentation.title : 'Untitled'} | Slides dot 🎉`}>
         <div className="container presentation__container">
           <Slides
@@ -84,7 +85,7 @@ class Presentation extends Component {
             canAdvance={this._canAdvance()}
             slidesLength={slidesLength}/>
         </div>
-      </DocumentTitle>
+      </Wrapper>
     );
   }
 
@@ -97,7 +98,8 @@ class Presentation extends Component {
 
 Presentation.propTypes = {
   dataIsReady: PropTypes.bool.isRequired,
-  presentation: PropTypes.object.isRequired
+  presentation: PropTypes.object.isRequired,
+  currentUser: PropTypes.string,
 }
 
 export default createContainer(({params}) => {
@@ -106,5 +108,6 @@ export default createContainer(({params}) => {
   return {
     dataIsReady,
     presentation: dataIsReady ? dataHandle : {},
+    currentUser: Meteor.userId(),
   };
 }, keydown(Presentation));

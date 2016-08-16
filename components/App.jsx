@@ -8,7 +8,7 @@ export default class App extends Component {
   render() {
     return (
       <Router history={browserHistory}>
-        <Route path="/new" component={NewPresentation}/>
+        <Route path="/" component={NewPresentation}/>
         <Route path="/:id" component={Presentation}/>
         <Route path="/:id/admin" component={Admin}/>
       </Router>
