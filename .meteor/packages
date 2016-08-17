@@ -17,7 +17,7 @@ ecmascript@0.5.7              # Enable ECMAScript2015+ syntax in app code
 
 autopublish@1.0.7             # Publish all data to the clients (for prototyping)
 react-meteor-data
-fourseven:scss
+fourseven:scss@3.8.0
 seba:minifiers-autoprefixer
 mrt:normalize.css
 accounts-ui
