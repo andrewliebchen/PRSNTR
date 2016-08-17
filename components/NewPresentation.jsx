@@ -44,7 +44,7 @@ class NewPresentation extends Component {
     Presentations.insert({
       slides: [{
         type: 'text',
-        source: '# Welcome to Slides dot 🎉!\n\nClick to edit this slide, or delete it and start fresh!'
+        source: '# Welcome to Slides.🎉!\n\nClick to edit this slide, or delete it and start fresh!'
       }],
       currentSlide: 0,
       createdAt: Date.now(),

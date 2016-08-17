@@ -35,7 +35,7 @@ class Admin extends Component {
     }
 
     return (
-      <Wrapper title="Admin | Slides dot 🎉">
+      <Wrapper title="Admin | Slides.🎉">
         <div className="container container__inverse admin">
           <header className="admin__header">
             <h1 className="admin__title">
