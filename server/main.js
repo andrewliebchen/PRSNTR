@@ -23,5 +23,40 @@ Meteor.methods({
         }
       }
     );
+  },
+
+  createPresentation(args) {
+    return Presentations.insert({
+      slides: args.slide,
+      currentSlide: args.currentSlide,
+      createdAt: args.createdAt,
+      createdBy: args.createdBy
+    });
+  },
+
+  createSlide(args) {
+    return Presentations.update(args.id, {
+      $push: {
+        slides: {
+          type: args.type,
+          source: args.source
+        }
+      }
+    });
+  },
+
+  changeSlide(args) {
+    return Presentations.update(args.id, {
+      $inc: { currentSlide: args.inc }
+    });
+  },
+
+  updateSlide(args) {
+    return Presentations.update(args.id, {
+      $set: {
+        title: args.title,
+        time: args.time
+      }
+    });
   }
 });

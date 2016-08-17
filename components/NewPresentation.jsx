@@ -41,7 +41,7 @@ class NewPresentation extends Component {
 
   handleNewPresentation() {
     this.setState({isLoading: true});
-    Presentations.insert({
+    Meteor.call('createPresentation', {
       slides: [{
         type: 'text',
         source: '# Welcome to Slides.🎉!\n\nClick to edit this slide, or delete it and start fresh!'

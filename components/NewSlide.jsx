@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Meteor } from 'meteor/meteor';
 import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
 import Tabs from 'react-simpletabs';
@@ -97,13 +98,10 @@ class NewSlide extends Component {
     const { type, source } = this.state;
     if (source) {
       this.setState({isLoading: true});
-      Presentations.update(this.props.presentation._id, {
-        $push: {
-          slides: {
-            type: type,
-            source: source
-          }
-        }
+      Meteor.call('createSlide', {
+        id: this.props.presentation._id,
+        type: type,
+        source: source
       }, (error, success) => {
         if (success) {
           if (keepOpen) {

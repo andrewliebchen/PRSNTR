@@ -67,11 +67,10 @@ class Settings extends Component {
   }
 
   handleSave() {
-    Presentations.update(this.props.presentation._id, {
-      $set: {
-        title: this.refs.title.value,
-        time: this.refs.time.value
-      }
+    Meteor.call('updatePresentation', {
+      id: this.props.presentation._id,
+      title: this.refs.title.value,
+      time: this.refs.time.value
     }, (error, success) => {
       if (success) {
         this.setState({overlay: false});

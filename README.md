@@ -9,3 +9,5 @@ Coming soon:
 * ◻️ Dedicated controller view
 * ◻️ Edit slides
 * ✅ Offline indicator
+* ✅ Remove insecure
+* ◻️ Remove autopublish

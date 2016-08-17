@@ -90,8 +90,9 @@ class Presentation extends Component {
   }
 
   handleChangeSlide(inc) {
-    Presentations.update(this.props.presentation._id, {
-      $inc: { currentSlide: inc }
+    Meteor.call('changeSlide', {
+      id: this.props.presentation._id,
+      inc: inc
     });
   }
 }
