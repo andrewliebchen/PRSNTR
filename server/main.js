@@ -38,10 +38,12 @@ Meteor.methods({
   },
 
   createSlide(args) {
+    const highestOrderValue = Slides.findOne({}, {sort: {order: -1}}).order;
     return Slides.insert({
       presentation: args.presentation,
       type: args.type,
-      source: args.source
+      source: args.source,
+      order: highestOrderValue + 1
     });
   },
 
@@ -58,5 +60,29 @@ Meteor.methods({
         time: args.time
       }
     });
+  },
+
+  reOrderSlide(args) {
+    const dragOverOrder = Slides.findOne(args.dragOver).order;
+    const nextOrder = Slides.findOne({order: {$gt: dragOverOrder}}).order;
+    const newOrder = (dragOverOrder + nextOrder) / 2;
+
+    // Update dragged over slide
+    Slides.update(args.dragOver, {
+      $set: {
+        order: newOrder
+      }
+    });
+
+    // Update dragged slide
+    return Slides.update(args.dragging, {
+      $set: {
+        order: dragOverOrder
+      }
+    });
+  },
+
+  deleteSlide(id) {
+    return Slides.remove(id);
   }
 });

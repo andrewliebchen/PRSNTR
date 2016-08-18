@@ -9,9 +9,14 @@
 }
 
 .slide {
+  transition: 0.1s linear;
   background-color: white;
   color: $gray-dark;
   position: relative;
+
+  &.is-dragover {
+    box-shadow: 0 0 0 0.5rem rgba($brand-primary, 0.7), $shadow-base;
+  }
 }
 
 .slide__inverse {

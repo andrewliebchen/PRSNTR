@@ -113,7 +113,7 @@ export default createContainer(({params}) => {
     presentation: dataIsReady ? Presentations.findOne() : {},
     slides: dataIsReady ? Slides.find(
       {presentation: params.id},
-      {sort: {order: -1}}
+      {sort: {order: 1}}
     ).fetch() : [],
     currentUser: Meteor.userId(),
   };

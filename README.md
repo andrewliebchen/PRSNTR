@@ -5,9 +5,9 @@ It's an online presentation machine...present slides from your computer and cont
 Coming soon:
 * ✅ User accounts
 * ◻️ One-click deployment to Heroku
-* ◻️ Drag and drop re-order
+* ✅ Drag and drop re-order
 * ◻️ Dedicated controller view
 * ◻️ Edit slides
 * ✅ Offline indicator
 * ✅ Move methods to server
-* ◻️ Remove autopublish
+* ✅ Remove autopublish

@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-import SwapArray from 'swap-array';
 import { Presentations, Slides } from '../api/main';
 import Wrapper from './Wrapper.jsx';
 import NewSlide from './NewSlide.jsx';
@@ -19,6 +18,21 @@ const Action = (props) =>
   </a>
 
 class Admin extends Component {
+  constructor(props) {
+    super(props);
+    this.handleDragStart = this.handleDragStart.bind(this);
+    this.handleDragEnd = this.handleDragEnd.bind(this);
+    this.handleDragOver = this.handleDragOver.bind(this);
+    this.state = {
+      dragging: null,
+      dragOver: null
+    };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.slides !== this.props.slides || nextState.dragOver !== this.state.dragOver;
+  }
+
   render() {
     const { dataIsReady, presentation, currentUser, slides } = this.props;
 
@@ -49,16 +63,15 @@ class Admin extends Component {
           </header>
           <div className="admin__slides">
             {slides.map((slide, i) =>
-              <div
-                className="admin__slide__container"
-                key={i}
-                dragStart={this.handleDragStart}
-                dragEnd={this.handleDragEnd}
-                dragOver={this.handleDragOver}
-                draggable>
+              <div className="admin__slide__container" key={i}>
                 <Slide
                   slide={slide}
-                  prefix="admin">
+                  prefix="admin"
+                  isDragOver={this.state.dragOver === slide._id}
+                  dragStart={this.handleDragStart}
+                  dragEnd={this.handleDragEnd}
+                  dragOver={this.handleDragOver}
+                  draggable>
                   <div className="admin__slide__overlay">
                     <div className="admin__slide__actions">
                       <Action
@@ -81,25 +94,31 @@ class Admin extends Component {
     );
   }
 
-  handleDragStart() {
-    console.log('drag start');
+  handleDragStart(slide) {
+    this.setState({dragging: slide._id});
   }
 
-  handleDragEnd() {
-    console.log('drag end');
+  handleDragOver(slide) {
+    this.setState({dragOver: slide._id});
   }
 
-  handleDragOver() {
-    console.log('drag over');
+  handleDragEnd(slide) {
+    Meteor.call('reOrderSlide', {
+      dragging: this.state.dragging,
+      dragOver: this.state.dragOver
+    }, (error, success) => {
+      if (success) {
+        this.setState({
+          dragging: null,
+          dragOver: null
+        });
+      }
+    });
   }
 
   handleDelete(slide) {
     if (window.confirm('You sure you want to delete this slide?')) {
-      Presentations.update(this.props.presentation._id, {
-        $pull: {
-          slides: slide
-        }
-      });
+      Meteor.call('deleteSlide', slide._id);
     }
   }
 
@@ -126,7 +145,7 @@ export default createContainer(({params}) => {
     presentation: dataIsReady ? Presentations.findOne() : {},
     slides: dataIsReady ? Slides.find(
       {presentation: params.id},
-      {sort: {order: -1}}
+      {sort: {order: 1}}
     ).fetch() : [],
     currentUser: Meteor.userId(),
   };
