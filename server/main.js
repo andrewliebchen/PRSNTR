@@ -38,13 +38,10 @@ Meteor.methods({
   },
 
   createSlide(args) {
-    return Presentations.update(args.id, {
-      $push: {
-        slides: {
-          type: args.type,
-          source: args.source
-        }
-      }
+    return Slides.insert({
+      presentation: args.presentation,
+      type: args.type,
+      source: args.source
     });
   },
 

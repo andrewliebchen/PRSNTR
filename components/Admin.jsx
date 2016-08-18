@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import SwapArray from 'swap-array';
-import { Presentations } from '../api/main';
+import { Presentations, Slides } from '../api/main';
 import Wrapper from './Wrapper.jsx';
 import NewSlide from './NewSlide.jsx';
 import Slide from './Slide.jsx';
@@ -20,7 +20,7 @@ const Action = (props) =>
 
 class Admin extends Component {
   render() {
-    const { dataIsReady, presentation, currentUser } = this.props;
+    const { dataIsReady, presentation, currentUser, slides } = this.props;
 
     if (!dataIsReady) {
       return <Loader/>;
@@ -46,35 +46,29 @@ class Admin extends Component {
               </a>
             </h1>
             <Settings {...this.props}/>
-
           </header>
           <div className="admin__slides">
-            {presentation.slides.map((slide, i) =>
-              <div className="admin__slide__container" key={i}>
+            {slides.map((slide, i) =>
+              <div
+                className="admin__slide__container"
+                key={i}
+                dragStart={this.handleDragStart}
+                dragEnd={this.handleDragEnd}
+                dragOver={this.handleDragOver}
+                draggable>
                 <Slide
                   slide={slide}
                   prefix="admin">
                   <div className="admin__slide__overlay">
                     <div className="admin__slide__actions">
-                      {/*<Action title="Edit" handleClick={null} type="edit"/>*/}
-                      {i > 0 &&
-                        <Action
-                          title="Move left"
-                          handleClick={this.handleMoveUp.bind(this, i)}
-                          type="arrow-left"/>}
-                      {i < presentation.slides.length &&
-                        <Action
-                          title="Move right"
-                          handleClick={this.handleMoveDown.bind(this, i)}
-                          type="arrow-right"/>}
-                      <Action
-                        title="Delete"
-                        handleClick={this.handleDelete.bind(this, slide)}
-                        type="delete"/>
                       <Action
                         title="Contrast"
                         handleClick={this.handleBackgroundToggle.bind(this, slide)}
                         type="contrast"/>
+                      <Action
+                        title="Delete"
+                        handleClick={this.handleDelete.bind(this, slide)}
+                        type="delete"/>
                     </div>
                   </div>
                 </Slide>
@@ -87,26 +81,16 @@ class Admin extends Component {
     );
   }
 
-  handleMoveUp(index) {
-    const { presentation } = this.props;
-    if (index !== 0) {
-      Presentations.update(presentation._id, {
-        $set: {
-          slides: SwapArray(presentation.slides, index, index - 1)
-        }
-      });
-    }
+  handleDragStart() {
+    console.log('drag start');
   }
 
-  handleMoveDown(index) {
-    const { presentation } = this.props;
-    if (index !== presentation.slides.length - 1) {
-      Presentations.update(presentation._id, {
-        $set: {
-          slides: SwapArray(presentation.slides, index, index + 1)
-        }
-      });
-    }
+  handleDragEnd() {
+    console.log('drag end');
+  }
+
+  handleDragOver() {
+    console.log('drag over');
   }
 
   handleDelete(slide) {
@@ -130,15 +114,20 @@ class Admin extends Component {
 Admin.propTypes = {
   dataIsReady: PropTypes.bool.isRequired,
   presentation: PropTypes.object.isRequired,
-  currentUser: PropTypes.string,
-}
+  slides: PropTypes.array.isRequired,
+  currentUser: PropTypes.string
+};
 
 export default createContainer(({params}) => {
-  const dataHandle = Presentations.findOne(params.id);
-  const dataIsReady = dataHandle ? true : false;
+  const dataHandle =  Meteor.subscribe('presentation', params.id);
+  const dataIsReady = dataHandle.ready();
   return {
     dataIsReady,
-    presentation: dataIsReady ? dataHandle : {},
+    presentation: dataIsReady ? Presentations.findOne() : {},
+    slides: dataIsReady ? Slides.find(
+      {presentation: params.id},
+      {sort: {order: -1}}
+    ).fetch() : [],
     currentUser: Meteor.userId(),
   };
 }, Admin);

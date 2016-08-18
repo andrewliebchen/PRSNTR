@@ -63,10 +63,10 @@ class Presentation extends Component {
       return (
         <Controller
           presentation={presentation}
+          slides={slides}
           changeSlide={this.handleChangeSlide}
           canReverse={this._canReverse()}
-          canAdvance={this._canAdvance()}
-          slidesLength={slidesLength}/>
+          canAdvance={this._canAdvance()}/>
       );
     }
 
@@ -113,7 +113,7 @@ export default createContainer(({params}) => {
     presentation: dataIsReady ? Presentations.findOne() : {},
     slides: dataIsReady ? Slides.find(
       {presentation: params.id},
-      {sort: {order: 1}}
+      {sort: {order: -1}}
     ).fetch() : [],
     currentUser: Meteor.userId(),
   };

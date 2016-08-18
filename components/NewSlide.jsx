@@ -99,7 +99,7 @@ class NewSlide extends Component {
     if (source) {
       this.setState({isLoading: true});
       Meteor.call('createSlide', {
-        id: this.props.presentation._id,
+        presentation: this.props.presentation._id,
         type: type,
         source: source
       }, (error, success) => {
@@ -107,7 +107,7 @@ class NewSlide extends Component {
           if (keepOpen) {
             this.setState({isLoading: false});
             this.refs.source.value = '';
-            this.refs.source.focus();
+            // this.refs.source.focus();
           } else {
             this.setState({
               overlay: false,

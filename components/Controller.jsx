@@ -6,7 +6,7 @@ import Timer from './Timer.jsx';
 
 export default class Controller extends Component {
   render() {
-    const { presentation, changeSlide, canReverse, canAdvance, slidesLength } = this.props;
+    const { presentation, slides, changeSlide, canReverse, canAdvance } = this.props;
     return (
       <div className="controller container__inverse">
         <div className="top">
@@ -17,7 +17,7 @@ export default class Controller extends Component {
         </div>
         <div className="actions bottom">
           <SlidesList
-            slides={presentation.slides}
+            slides={slides}
             currentSlide={presentation.currentSlide}
             prefix="controller"/>
           <Tappable
@@ -34,8 +34,8 @@ export default class Controller extends Component {
 
 Controller.propTypes = {
   presentation: PropTypes.object,
+  slides: PropTypes.array,
   changeSlide: PropTypes.func,
   canReverse: PropTypes.bool,
-  canAdvance: PropTypes.bool,
-  slidesLength: PropTypes.number
+  canAdvance: PropTypes.bool
 };
