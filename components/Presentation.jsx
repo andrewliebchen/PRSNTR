@@ -3,10 +3,10 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import MobileDetect from 'mobile-detect';
 import keydown from 'react-keydown';
-import { Presentations } from '../api/main';
+import { Presentations, Slides } from '../api/main';
 import Wrapper from './Wrapper.jsx';
 import Controller from './Controller.jsx';
-import Slides from './Slides.jsx';
+import SlidesList from './SlidesList.jsx';
 import Loader from './Loader.jsx';
 import Info from './Info.jsx';
 
@@ -23,8 +23,8 @@ class Presentation extends Component {
   }
 
   _canAdvance() {
-    const { presentation } = this.props;
-    return presentation.slides.length - 1 > presentation.currentSlide;
+    const { presentation, slides } = this.props;
+    return slides.length - 1 > presentation.currentSlide;
   };
 
   _canReverse() {
@@ -52,8 +52,8 @@ class Presentation extends Component {
   }
 
   render() {
-    const { dataIsReady, presentation, currentUser } = this.props;
-    const slidesLength = dataIsReady ? presentation.slides.length : 0;
+    const { dataIsReady, presentation, slides, currentUser } = this.props;
+    const slidesLength = slides.length;
 
     if (!dataIsReady) {
       return <Loader/>;
@@ -72,14 +72,15 @@ class Presentation extends Component {
 
     return (
       <Wrapper
-        title={`${presentation.title ? presentation.title : 'Untitled'} | Slides.🎉`}>
+        title={`${presentation.title} | Slides.🎉`}>
         <div className="container presentation__container">
-          <Slides
-            slides={presentation.slides}
+          <SlidesList
+            slides={slides}
             currentSlide={presentation.currentSlide}
             prefix="presentation"/>
           <Info
             presentation={presentation}
+            slides={slides}
             changeSlide={this.handleChangeSlide}
             canReverse={this._canReverse()}
             canAdvance={this._canAdvance()}
@@ -100,15 +101,20 @@ class Presentation extends Component {
 Presentation.propTypes = {
   dataIsReady: PropTypes.bool.isRequired,
   presentation: PropTypes.object.isRequired,
+  slides: PropTypes.array.isRequired,
   currentUser: PropTypes.string,
 }
 
 export default createContainer(({params}) => {
-  const dataHandle = Presentations.findOne(params.id);
-  const dataIsReady = dataHandle ? true : false;
+  const dataHandle =  Meteor.subscribe('presentation', params.id);
+  const dataIsReady = dataHandle.ready();
   return {
     dataIsReady,
-    presentation: dataIsReady ? dataHandle : {},
+    presentation: dataIsReady ? Presentations.findOne() : {},
+    slides: dataIsReady ? Slides.find(
+      {presentation: params.id},
+      {sort: {order: 1}}
+    ).fetch() : [],
     currentUser: Meteor.userId(),
   };
 }, keydown(Presentation));

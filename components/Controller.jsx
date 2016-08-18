@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Tappable from 'react-tappable';
-import Slides from './Slides.jsx';
+import SlidesList from './SlidesList.jsx';
 import Progress from './Progress.jsx';
 import Timer from './Timer.jsx';
 
@@ -16,7 +16,7 @@ export default class Controller extends Component {
           </div>
         </div>
         <div className="actions bottom">
-          <Slides
+          <SlidesList
             slides={presentation.slides}
             currentSlide={presentation.currentSlide}
             prefix="controller"/>

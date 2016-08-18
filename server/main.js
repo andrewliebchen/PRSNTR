@@ -1,15 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Presentations } from '../api/main';
-
-Meteor.startup(() => {
-  if (Presentations.find({}).fetch().length === 0) {
-    Presentations.insert({
-      slides: ['1', '2', '3'],
-      currentSlide: 0,
-      createdAt: Date.now()
-    });
-  }
-});
+import { Presentations, Slides } from '../api/main';
 
 Meteor.methods({
   toggleBackground(args) {
@@ -26,12 +16,25 @@ Meteor.methods({
   },
 
   createPresentation(args) {
-    return Presentations.insert({
-      slides: args.slide,
-      currentSlide: args.currentSlide,
-      createdAt: args.createdAt,
-      createdBy: args.createdBy
+    const presentation = () => {
+      return Presentations.insert({
+        title: 'Untitled',
+        currentSlide: args.currentSlide,
+        createdAt: args.createdAt,
+        createdBy: args.createdBy
+      });
+    };
+
+    const newPresentation = presentation();
+
+    Slides.insert({
+      type: 'text',
+      source: '# Welcome to Slides.🎉!\n\nClick to edit this slide, or delete it and start fresh!',
+      order: 0,
+      presentation: newPresentation
     });
+
+    return newPresentation;
   },
 
   createSlide(args) {

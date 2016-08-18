@@ -12,7 +12,7 @@ const Action = (props) =>
 
 export default class Info extends Component {
   render() {
-    const { presentation, changeSlide, canReverse, canAdvance, slidesLength } = this.props;
+    const { presentation, slides, changeSlide, canReverse, canAdvance, slidesLength } = this.props;
     return (
       <div className="info">
         <div className="info__item">
@@ -21,6 +21,7 @@ export default class Info extends Component {
         <div className="info__progress info__item">
           <Progress
             presentation={presentation}
+            slides={slides}
             changeSlide={changeSlide}/>
         </div>
         <Action
@@ -51,6 +52,7 @@ export default class Info extends Component {
 
 Info.propTypes = {
   presentation: PropTypes.object,
+  slides: PropTypes.array,
   changeSlide: PropTypes.func,
   canReverse: PropTypes.bool,
   canAdvance: PropTypes.bool,

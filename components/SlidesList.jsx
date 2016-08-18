@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Slide from './Slide.jsx';
 
-export default class Slides extends Component {
+export default class SlidesList extends Component {
   render() {
     const { slides, currentSlide, prefix } = this.props;
     const slidesStyle = {
@@ -22,7 +22,7 @@ export default class Slides extends Component {
   }
 }
 
-Slides.propTypes = {
+SlidesList.propTypes = {
   slides: PropTypes.array,
   currentSlide: PropTypes.number,
   prefix: PropTypes.string

@@ -4,10 +4,10 @@ import Tappable from 'react-tappable';
 
 export default class Progress extends Component {
   render() {
-    const { presentation, changeSlide, showProgress } = this.props;
+    const { presentation, slides, changeSlide, showProgress } = this.props;
     return (
       <div className="progress">
-        {presentation.slides.map((slide, i) => {
+        {slides.map((slide, i) => {
           const slideClassName = classnames({
             'progress__slide': true,
             'is-current': presentation.currentSlide === i,
@@ -31,6 +31,7 @@ export default class Progress extends Component {
 
 Progress.propTypes = {
   presentation: PropTypes.object,
+  slides: PropTypes.array,
   changeSlide: PropTypes.func,
   showProgress: PropTypes.bool
 };
