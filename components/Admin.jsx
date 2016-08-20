@@ -6,17 +6,9 @@ import Wrapper from './Wrapper.jsx';
 import NewSlide from './NewSlide.jsx';
 import EditSlide from './EditSlide.jsx';
 import Slide from './Slide.jsx';
-import Icon from './Icons.jsx';
+import SlideAction from './SlideAction.jsx'
 import Settings from './Settings.jsx';
 import Loader from './Loader.jsx';
-
-const Action = (props) =>
-  <a
-    className="admin__slide__action"
-    onClick={props.handleClick}
-    title={props.title}>
-    <Icon type={props.type} size="1.5rem"/>
-  </a>
 
 class Admin extends Component {
   constructor(props) {
@@ -76,11 +68,11 @@ class Admin extends Component {
                   <div className="admin__slide__overlay">
                     <div className="admin__slide__actions">
                       <EditSlide slide={slide}/>
-                      <Action
+                      <SlideAction
                         title="Contrast"
                         handleClick={this.handleBackgroundToggle.bind(this, slide)}
                         type="contrast"/>
-                      <Action
+                      <SlideAction
                         title="Delete"
                         handleClick={this.handleDelete.bind(this, slide)}
                         type="delete"/>

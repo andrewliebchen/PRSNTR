@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Overlay from './Overlay.jsx';
 import SlideForm from './SlideForm.jsx';
+import SlideAction from './SlideAction.jsx';
 
 export default class EditSlide extends Component {
   constructor(props) {
@@ -18,7 +19,10 @@ export default class EditSlide extends Component {
     const { overlay, type, source } = this.state;
     return (
       <span>
-        <a onClick={this.handleToggleEditSlide.bind(this)}>Edit</a>
+        <SlideAction
+          handleClick={this.handleToggleEditSlide.bind(this)}
+          title="edit"
+          type="edit"/>
         <Overlay
           show={overlay}
           toggle={this.handleToggleEditSlide.bind(this)}>
