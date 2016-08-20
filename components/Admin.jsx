@@ -4,6 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Presentations, Slides } from '../api/main';
 import Wrapper from './Wrapper.jsx';
 import NewSlide from './NewSlide.jsx';
+import EditSlide from './EditSlide.jsx';
 import Slide from './Slide.jsx';
 import Icon from './Icons.jsx';
 import Settings from './Settings.jsx';
@@ -74,6 +75,7 @@ class Admin extends Component {
                   draggable>
                   <div className="admin__slide__overlay">
                     <div className="admin__slide__actions">
+                      <EditSlide slide={slide}/>
                       <Action
                         title="Contrast"
                         handleClick={this.handleBackgroundToggle.bind(this, slide)}

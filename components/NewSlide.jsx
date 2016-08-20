@@ -2,15 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
-import Tabs from 'react-simpletabs';
-import Textarea from 'react-expanding-textarea';
 import Spinner from 'react-spinkit';
 import Icon from './Icons.jsx';
 import Overlay from './Overlay.jsx';
+import SlideForm from './SlideForm.jsx';
 
 class NewSlide extends Component {
   constructor(props) {
     super(props);
+    this.handleChangeTab = this.handleChangeTab.bind(this);
+    this.handleSourceChange = this.handleSourceChange.bind(this);
     this.state = {
       overlay: false,
       type: 'image',
@@ -39,34 +40,9 @@ class NewSlide extends Component {
         <Overlay
           show={overlay}
           toggle={this.handleToggleNewSlide.bind(this)}>
-          <Tabs onAfterChange={this.handleChangeTab.bind(this)}>
-            <Tabs.Panel title="Image slide">
-              <p>
-                Create an image-only slide by pasting the image URL below.
-                For example, if the image is in your <code>/public</code> folder in Dropbox, select "Copy Public Link" from your context menu, and paste it here.
-              </p>
-              <input
-                type="url"
-                className="input"
-                onChange={this.handleSourceChange.bind(this)}
-                placeholder="http://example.com/portfolio.png"
-                ref="source"
-                autoFocus/>
-            </Tabs.Panel>
-            <Tabs.Panel title="Text slide">
-              <p>
-                Create a text-only slide by writing below.
-                You can format your text with Markdown.
-              </p>
-              <Textarea
-                rows="3"
-                className="textarea"
-                placeholder="Add some content"
-                onChange={this.handleSourceChange.bind(this)}
-                ref="source"
-                autoFocus />
-            </Tabs.Panel>
-          </Tabs>
+          <SlideForm
+            tabChange={this.handleChangeTab}
+            sourceChange={this.handleSourceChange}/>
           <button
             className="button"
             onClick={this.handleAddSlide.bind(this, true)}>
@@ -106,7 +82,7 @@ class NewSlide extends Component {
         if (success) {
           if (keepOpen) {
             this.setState({isLoading: false});
-            this.refs.source.value = '';
+            // this.refs.source.value = '';
             // this.refs.source.focus();
           } else {
             this.setState({
