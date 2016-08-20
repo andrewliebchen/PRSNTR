@@ -19,6 +19,7 @@ export default class SlideForm extends Component {
             className="input"
             onChange={sourceChange.bind(this)}
             placeholder="http://example.com/portfolio.png"
+            defaultValue={defaultType === 'image' ? defaultSource : null}
             ref="source"
             autoFocus/>
         </Tabs.Panel>
@@ -32,6 +33,7 @@ export default class SlideForm extends Component {
             className="textarea"
             placeholder="Add some content"
             onChange={sourceChange.bind(this)}
+            defaultValue={defaultType === 'text' ? defaultSource : null}
             ref="source"
             autoFocus />
         </Tabs.Panel>

@@ -70,16 +70,16 @@ $admin-slide-height: 20vw;
   background-color: rgba($brand-primary, 0.8);
   bottom: 0;
   left: 0;
-  opacity: 0;
+  // opacity: 0;
   position: absolute;
   right: 0;
   top: 0;
   transition: 0.1s ease-in-out;
   border-radius: inherit;
 
-  .admin__slide__container:hover & {
-    opacity: 1;
-  }
+  // .admin__slide__container:hover & {
+  //   opacity: 1;
+  // }
 }
 
 .admin__slide__actions {
