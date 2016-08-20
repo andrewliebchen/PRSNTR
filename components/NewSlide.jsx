@@ -42,17 +42,11 @@ class NewSlide extends Component {
           toggle={this.handleToggleNewSlide.bind(this)}>
           <SlideForm
             tabChange={this.handleChangeTab}
-            sourceChange={this.handleSourceChange}/>
-          <button
-            className="button"
-            onClick={this.handleAddSlide.bind(this, true)}>
-            {isLoading ? <Spinner spinnerName="three-bounce" noFadeIn/> : 'Add slide'}
-          </button>
-          <a
-            className="new-slide__secondary"
-            onClick={this.handleAddSlide.bind(this, false)}>
-            Add slide and close
-          </a>
+            sourceChange={this.handleSourceChange}
+            primaryClick={this.handleAddSlide.bind(this, true)}
+            primaryLabel={isLoading ? <Spinner spinnerName="three-bounce" noFadeIn/> : 'Add slide'}
+            secondaryClick={this.handleAddSlide.bind(this, false)}
+            secondaryLabel="Add slide and close"/>
         </Overlay>
       </div>
     );

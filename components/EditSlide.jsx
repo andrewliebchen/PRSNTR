@@ -11,12 +11,13 @@ export default class EditSlide extends Component {
     this.state = {
       overlay: false,
       type: this.props.slide.type,
-      source: this.props.slide.source
+      source: this.props.slide.source,
+      isLoading: false
     };
   }
 
   render() {
-    const { overlay, type, source } = this.state;
+    const { overlay, type, source, isLoading } = this.state;
     return (
       <span>
         <SlideAction
@@ -30,7 +31,11 @@ export default class EditSlide extends Component {
             tabChange={this.handleChangeTab}
             sourceChange={this.handleSourceChange}
             defaultType={type}
-            defaultSource={source}/>
+            defaultSource={source}
+            primaryClick={this.handleSaveSlide.bind(this)}
+            primaryLabel={isLoading ? <Spinner spinnerName="three-bounce" noFadeIn/> : 'Save slide'}
+            secondaryClick={this.handleToggleEditSlide.bind(this)}
+            secondaryLabel="Cancel"/>
         </Overlay>
       </span>
     );
@@ -46,5 +51,9 @@ export default class EditSlide extends Component {
 
   handleSourceChange(event) {
     this.setState({source: event.target.value});
+  }
+
+  handleSaveSlide() {
+    console.log('save');
   }
 }
