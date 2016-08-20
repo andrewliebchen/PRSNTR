@@ -17,10 +17,10 @@ export default class Slide extends Component {
     return (
       <div
         className={`${slideClassName} ${prefix}__slide`}
-        onDragStart={dragStart.bind(null, slide)}
-        onDragEnd={dragEnd.bind(null, slide)}
-        onDragOver={dragOver.bind(null, slide)}
-        draggable={draggable}>
+        draggable={draggable}
+        onDragStart={draggable ? dragStart.bind(null, slide) : null}
+        onDragEnd={draggable ? dragEnd.bind(null, slide) : null}
+        onDragOver={draggable ? dragOver.bind(null, slide) : null}>
         {slide.type === 'image' ?
           <img
             className="slide__content__image"
