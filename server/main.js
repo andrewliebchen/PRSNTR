@@ -29,7 +29,7 @@ Meteor.methods({
 
     Slides.insert({
       type: 'text',
-      source: '# Welcome to Slides.🎉!\n\nClick to edit this slide, or delete it and start fresh!',
+      source: '# Welcome to Slides 🎉!\n\nClick to edit this slide, or delete it and start fresh!',
       order: 0,
       presentation: newPresentation
     });

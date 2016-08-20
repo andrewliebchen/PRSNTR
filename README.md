@@ -1,4 +1,4 @@
-# Slides.🎉
+# Slides 🎉
 
 It's an online presentation machine...present slides from your computer and control the presentation with your phone. Made with React and Meteor.
 

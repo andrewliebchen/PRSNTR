@@ -72,7 +72,7 @@ class Presentation extends Component {
 
     return (
       <Wrapper
-        title={`${presentation.title} | Slides.🎉`}>
+        title={`${presentation.title} | Slides 🎉`}>
         <div className="container presentation__container">
           <SlidesList
             slides={slides}
