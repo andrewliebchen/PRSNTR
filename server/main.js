@@ -84,5 +84,14 @@ Meteor.methods({
 
   deleteSlide(id) {
     return Slides.remove(id);
+  },
+
+  updateSlide(args) {
+    return Slides.update(args.id, {
+      $set: {
+        type: args.type,
+        source: args.source
+      }
+    });
   }
 });

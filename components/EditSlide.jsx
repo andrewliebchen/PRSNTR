@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Spinner from 'react-spinkit';
 import Overlay from './Overlay.jsx';
 import SlideForm from './SlideForm.jsx';
 import SlideAction from './SlideAction.jsx';
@@ -54,6 +55,23 @@ export default class EditSlide extends Component {
   }
 
   handleSaveSlide() {
-    console.log('save');
+    const { type, source } = this.state;
+    this.setState({isLoading: true});
+    Meteor.call('updateSlide', {
+      id: this.props.slide._id,
+      type: type,
+      source: source
+    }, (error, success) => {
+      if (success) {
+        this.setState({
+          overlay: false,
+          isLoading: false
+        });
+      }
+    });
   }
 }
+
+EditSlide.propTypes = {
+  slide: PropTypes.object
+};

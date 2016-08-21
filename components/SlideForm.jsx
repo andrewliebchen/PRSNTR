@@ -14,6 +14,7 @@ export default class SlideForm extends Component {
       secondaryClick,
       secondaryLabel
     } = this.props;
+    
     return (
       <span>
         <Tabs
