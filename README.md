@@ -7,7 +7,7 @@ Coming soon:
 * ◻️ One-click deployment to Heroku
 * ✅ Drag and drop re-order
 * ◻️ Dedicated controller view
-* ◻️ Edit slides
+* ✅ Edit slides
 * ✅ Offline indicator
 * ✅ Move methods to server
 * ✅ Remove autopublish
