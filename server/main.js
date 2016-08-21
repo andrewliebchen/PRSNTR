@@ -40,15 +40,6 @@ Meteor.methods({
     });
   },
 
-  updateSlide(args) {
-    return Presentations.update(args.id, {
-      $set: {
-        title: args.title,
-        time: args.time
-      }
-    });
-  },
-
   reOrderSlide(args) {
     const dragOverOrder = Slides.findOne(args.dragOver).order;
     const nextOrder = Slides.findOne({order: {$gt: dragOverOrder}}).order;
@@ -88,5 +79,15 @@ Meteor.methods({
         darkBackground: !slide.darkBackground
       }
     })
+  },
+
+  updatePresentation(args) {
+    return Presentations.update(args.id, {
+      $set: {
+        title: args.title,
+        time: args.time,
+        updatedAt: args.updatedAt
+      }
+    });
   }
 });

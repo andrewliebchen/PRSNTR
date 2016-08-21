@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Meteor } from 'meteor/meteor';
 import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
 import Icon from './Icons.jsx';
@@ -23,13 +24,14 @@ class Settings extends Component {
   render() {
     const { presentation } = this.props;
     return (
-      <span>
-        <a
-          className="admin__settings__toggle"
-          onClick={this.handleOverlayToggle}>
-          <Icon type="settings" size="1.5rem"/>
-        </a>
-
+      <div className="admin__header__item">
+        <div className="block">
+          <Icon
+            type="settings"
+            size="1.5rem"
+            onClick={this.handleOverlayToggle}
+            title="Settings"/>
+        </div>
         <Overlay
           show={this.state.overlay}
           toggle={this.handleOverlayToggle}>
@@ -58,7 +60,7 @@ class Settings extends Component {
             Save changes
           </button>
         </Overlay>
-      </span>
+      </div>
     );
   }
 
@@ -67,10 +69,12 @@ class Settings extends Component {
   }
 
   handleSave() {
+    console.log('click');
     Meteor.call('updatePresentation', {
       id: this.props.presentation._id,
       title: this.refs.title.value,
-      time: this.refs.time.value
+      time: this.refs.time.value,
+      updatedAt: Date.now()
     }, (error, success) => {
       if (success) {
         this.setState({overlay: false});

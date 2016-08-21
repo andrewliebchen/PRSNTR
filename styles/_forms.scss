@@ -48,10 +48,6 @@ label {
   padding: 1rem;
   text-align: center;
 
-  &:hover {
-    box-shadow: $shadow-base;
-  }
-
   .spinner {
     transform: translateY(3px) scale(0.9);
 

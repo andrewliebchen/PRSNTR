@@ -57,7 +57,6 @@ $slides-offset: 70vw;
 
 .controller__slide {
   border-radius: $border-radius;
-  box-shadow: $shadow-base;
   font-size: 6px;
   margin: 0 $controller-offset;
   width: 100vw - ($controller-offset * 2);

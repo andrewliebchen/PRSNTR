@@ -3,12 +3,13 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Presentations, Slides } from '../api/main';
 import Wrapper from './Wrapper.jsx';
+import Header from './Header.jsx';
 import NewSlide from './NewSlide.jsx';
 import EditSlide from './EditSlide.jsx';
 import Slide from './Slide.jsx';
 import SlideAction from './SlideAction.jsx'
-import Settings from './Settings.jsx';
 import Loader from './Loader.jsx';
+import Icon from './Icons.jsx';
 
 class Admin extends Component {
   constructor(props) {
@@ -42,50 +43,52 @@ class Admin extends Component {
     }
 
     return (
-      <Wrapper title="Admin | Slides 🎉">
-        <div className="container container__inverse admin">
-          <header className="admin__header">
-            <h1 className="admin__title">
-              <a
-                href={`/${presentation._id}`}
-                title="View presentation">
-                {presentation.title ? presentation.title : 'Untitled'}
-              </a>
-            </h1>
-            <Settings {...this.props}/>
-          </header>
-          <div className="admin__slides">
-            {slides.map((slide, i) =>
-              <div className="admin__slide__container" key={i}>
-                <Slide
-                  slide={slide}
-                  prefix="admin"
-                  isDragOver={this.state.dragOver === slide._id}
-                  dragStart={this.handleDragStart}
-                  dragEnd={this.handleDragEnd}
-                  dragOver={this.handleDragOver}
-                  draggable>
-                  <div className="admin__slide__overlay">
-                    <div className="admin__slide__actions">
-                      <EditSlide slide={slide}/>
-                      <SlideAction
-                        title="Contrast"
-                        handleClick={this.handleBackgroundToggle.bind(this, slide)}
-                        type="contrast"/>
-                      <SlideAction
-                        title="Delete"
-                        handleClick={this.handleDelete.bind(this, slide)}
-                        type="delete"/>
-                    </div>
-                  </div>
-                </Slide>
-              </div>
-            )}
-          <NewSlide {...this.props}/>
+      <Wrapper
+        title="Admin | Slides 🎉"
+        className="admin"
+        inverse>
+        <Header presentation={presentation}>
+          <div className="block">
+            <Icon
+              type="play"
+              size="1.5rem"
+              title="Start presentation"
+              onClick={this.handleViewPresentation.bind(this)}/>
           </div>
+        </Header>
+        <div className="admin__slides">
+          {slides.map((slide, i) =>
+            <div className="admin__slide__container" key={i}>
+              <Slide
+                slide={slide}
+                prefix="admin"
+                isDragOver={this.state.dragOver === slide._id}
+                dragStart={this.handleDragStart}
+                dragEnd={this.handleDragEnd}
+                dragOver={this.handleDragOver}
+                draggable>
+                <div className="admin__slide__actions">
+                  <EditSlide slide={slide}/>
+                  <SlideAction
+                    title="Contrast"
+                    handleClick={this.handleBackgroundToggle.bind(this, slide)}
+                    type="contrast"/>
+                  <SlideAction
+                    title="Delete"
+                    handleClick={this.handleDelete.bind(this, slide)}
+                    type="delete"/>
+                </div>
+              </Slide>
+            </div>
+          )}
+        <NewSlide {...this.props}/>
         </div>
       </Wrapper>
     );
+  }
+
+  handleViewPresentation() {
+    window.location.href = `/${this.props.presentation._id}`;
   }
 
   handleDragStart(slide) {

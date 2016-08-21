@@ -15,7 +15,7 @@ const Overlay = (props) =>
         <a
           className="overlay__toggle"
           onClick={props.toggle}>
-          <Icon type="close" size="2rem"/>
+          <Icon type="close" size="3rem"/>
         </a>
       </div>}
   </CSSTransitionGroup>

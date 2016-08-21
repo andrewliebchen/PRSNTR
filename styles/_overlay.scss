@@ -19,13 +19,22 @@
 .overlay__toggle {
   color: inherit;
   display: inline-block;
-  fill: rgba(white, 0.5);
   position: absolute;
-  right: 2rem;
-  top: 2rem;
+  right: 0.5rem;
+  top: 0.5rem;
+
+  .icon {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1;
+    stroke: white;
+    fill: transparent;
+  }
 
   &:hover {
-    fill: white;
+    .icon {
+      fill: white;
+    }
   }
 }
 

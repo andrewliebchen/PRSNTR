@@ -1,15 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import classnames from 'classnames';
 import MobileDetect from 'mobile-detect';
 import keydown from 'react-keydown';
 import { Presentations, Slides } from '../api/main';
 import Wrapper from './Wrapper.jsx';
+import Header from './Header.jsx';
 import Controller from './Controller.jsx';
 import SlidesList from './SlidesList.jsx';
 import Loader from './Loader.jsx';
-import Info from './Info.jsx';
+import Icon from './Icons.jsx';
+import Timer from './Timer.jsx';
 
+const Action = (props) =>
+  <div className={props.className}>
+    <Icon
+      type={props.type}
+      onClick={props.handleClick}
+      size="1.5rem"/>
+  </div>
 
 class Presentation extends Component {
   constructor(props) {
@@ -72,20 +82,39 @@ class Presentation extends Component {
 
     return (
       <Wrapper
-        title={`${presentation.title} | Slides 🎉`}>
-        <div className="container presentation__container">
-          <SlidesList
-            slides={slides}
-            currentSlide={presentation.currentSlide}
-            prefix="presentation"/>
-          <Info
-            presentation={presentation}
-            slides={slides}
-            changeSlide={this.handleChangeSlide}
-            canReverse={this._canReverse()}
-            canAdvance={this._canAdvance()}
-            slidesLength={slidesLength}/>
-        </div>
+        title={`${presentation.title} | Slides 🎉`}
+        className="presentation">
+        <Header
+          presentation={presentation}
+          slidesLength={slides.length}
+          showProgress>
+          <Timer presentation={presentation}/>
+          <Action
+            className={classnames({
+              'block': true,
+              'is-disabled': presentation.currentSlide === 0
+            })}
+            handleClick={this.handleChangeSlide.bind(null, -(slidesLength - (slidesLength - presentation.currentSlide)))}
+            type="previous"/>
+          <Action
+            className={classnames({
+              'block': true,
+              'is-disabled': !this._canReverse()
+            })}
+            handleClick={this.handleChangeSlide.bind(null, -1)}
+            type="rewind"/>
+          <Action
+            className={classnames({
+              'block': true,
+              'is-disabled': !this._canAdvance()
+            })}
+            handleClick={this.handleChangeSlide.bind(null, 1)}
+            type="fast-forward"/>
+        </Header>
+        <SlidesList
+          slides={slides}
+          currentSlide={presentation.currentSlide}
+          prefix="presentation"/>
       </Wrapper>
     );
   }

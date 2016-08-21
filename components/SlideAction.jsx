@@ -3,7 +3,7 @@ import Icon from './Icons.jsx';
 
 const SlideAction = (props) =>
   <a
-    className="admin__slide__action"
+    className="admin__slide__action block"
     onClick={props.handleClick}
     title={props.title}>
     <Icon type={props.type} size="1.5rem"/>

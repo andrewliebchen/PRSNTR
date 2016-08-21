@@ -1,40 +1,17 @@
 $admin-slide-width: 25%;
 $admin-slide-height: 20vw;
+$admin-slide-offset: 2px;
+$admin-slide-action-size: 3rem;
 
 .admin {
   min-height: 100vh;
-  padding: 2rem;
-}
-
-.admin__header {
-  display: flex;
-  justify-content: center;
-}
-
-.admin__title {
-  letter-spacing: 0.02em;
-  margin: 0;
-  user-select: none;
-}
-
-.admin__settings__toggle {
-  display: block;
-  height: 100%;
-  padding: 0.5rem;
-  position: relative;
-
-  .icon {
-    @include svg-outline;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
 }
 
 .admin__slides {
   @include clearfix;
-  padding: 1rem;
   overflow: hidden;
+  margin: -($admin-slide-offset);
+  padding-top: $block-size-large;
 }
 
 .admin__slide__container {
@@ -45,14 +22,11 @@ $admin-slide-height: 20vw;
 }
 
 .admin__slide {
-  $offset: 0.5rem;
   position: absolute;
-  border-radius: $border-radius;
-  bottom: $offset;
-  box-shadow: $shadow-base;
-  left: $offset;
-  right: $offset;
-  top: $offset;
+  bottom: $admin-slide-offset;
+  left: $admin-slide-offset;
+  right: $admin-slide-offset;
+  top: $admin-slide-offset;
   overflow: hidden;
 
   .slide__content__image,
@@ -66,30 +40,28 @@ $admin-slide-height: 20vw;
   }
 }
 
-.admin__slide__overlay {
-  background-color: rgba($brand-primary, 0.8);
-  bottom: 0;
-  left: 0;
-  // opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: 0.1s ease-in-out;
-  border-radius: inherit;
-
-  // .admin__slide__container:hover & {
-  //   opacity: 1;
-  // }
-}
-
 .admin__slide__actions {
   position: absolute;
-  right: 0.25rem;
-  top: 0.75rem;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: -($admin-slide-action-size / 2);
 }
 
 .admin__slide__action {
-  padding: 0 0.25rem;
+  background-color: rgba($brand-primary, 0.9);
+  opacity: 0;
+  position: relative;
+  transition: 0.1s linear;
+
+  &:hover {
+    background-color: $brand-primary;
+  }
+
+  .admin__slide__container:hover & {
+    opacity: 1;
+  }
 }
 
 .new-slide-toggle {
@@ -99,6 +71,7 @@ $admin-slide-height: 20vw;
   cursor: pointer;
   transition: 0.1s linear;
   user-select: none;
+  margin: 1rem;
 }
 
 .new-slide-toggle__label {

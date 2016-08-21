@@ -1,0 +1,86 @@
+.header {
+  background-color: $gray-lighter;
+  height: $block-size-large;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  z-index: 9;
+  padding: 0 1rem;
+  color: $gray;
+  font-size: 1.25rem;
+  user-select: none;
+
+  .block {
+    margin-top: 0.5rem;
+    width: 2.5rem;
+
+    > .icon {
+      fill: $gray-light;
+    }
+
+    &:hover {
+      > .icon {
+        fill: $brand-primary;
+      }
+    }
+  }
+
+  .timer {
+    line-height: $block-size-large;
+    display: inline-block;
+    flex: none;
+    margin-right: 1rem;
+  }
+
+  &.show-progress {
+    transition: margin 0.1s ease-in-out;
+    margin-top: -($block-size-large);
+
+    &:hover {
+      margin-top: 0;
+    }
+  }
+}
+
+.header__left {
+  flex: 2;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.header__right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header__title {
+  letter-spacing: 0.02em;
+  font-weight: bold;
+  margin: 0;
+  line-height: $block-size-large;
+  padding-right: 1.5rem;
+}
+
+.header__progress {
+  transition: inherit;
+  height: 3px;
+  background-color: $gray-lightest;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  .show-progress:hover & {
+    height: 0.5rem;
+  }
+}
+
+.header__progress__fill {
+  transition: 0.1s ease-in-out;
+  background-color: $brand-primary;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}

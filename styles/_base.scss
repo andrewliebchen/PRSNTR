@@ -50,7 +50,7 @@ body,
 }
 
 .container__inverse {
-  background-color: $gray-dark;
+  background-color: $gray;
 }
 
 .container__blue {
@@ -67,10 +67,10 @@ body,
     $size: 3rem;
     height: $size;
     width: $size;
-  }
 
-  .cube {
-    background-color: $gray-lighter;
+    > div {
+      background-color: $gray-lighter;
+    }
   }
 }
 
@@ -79,4 +79,31 @@ body,
   a:hover {
     color: $brand-primary;
   }
+}
+
+.block {
+  height: $block-size;
+  width: $block-size;
+  display: inline-block;
+  position: relative;
+  transition: 0.1s linear;
+  cursor: pointer;
+
+  &.is-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+.block__large {
+  height: $block-size-large;
+  width: $block-size-large;
 }
