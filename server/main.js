@@ -2,19 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Presentations, Slides } from '../api/main';
 
 Meteor.methods({
-  toggleBackground(args) {
-    return Presentations.update(
-      {
-        _id: args.presentationId,
-        'slides.source': args.slide.source
-      }, {
-        $set: {
-          'slides.$.darkBackground': !args.slide.darkBackground
-        }
-      }
-    );
-  },
-
   createPresentation(args) {
     const presentation = () => {
       return Presentations.insert({
@@ -93,5 +80,13 @@ Meteor.methods({
         source: args.source
       }
     });
+  },
+
+  toggleBackground(slide) {
+    return Slides.update(slide._id, {
+      $set: {
+        darkBackground: !slide.darkBackground
+      }
+    })
   }
 });

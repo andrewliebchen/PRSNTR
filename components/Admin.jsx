@@ -117,10 +117,7 @@ class Admin extends Component {
   }
 
   handleBackgroundToggle(slide) {
-    Meteor.call('toggleBackground', {
-      presentationId: this.props.presentation._id,
-      slide: slide
-    });
+    Meteor.call('toggleBackground', slide);
   }
 }
 

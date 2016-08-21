@@ -12,3 +12,7 @@ Coming soon:
 * ✅ Move methods to server
 * ✅ Remove autopublish
 * ◻️ Fix edit buttons on admin slides
+* ◻️ Better styling for login
+* ◻️ Admin design
+* ◻️ Slide show view controller color
+* ◻️ User profile management
