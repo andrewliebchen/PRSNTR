@@ -11,3 +11,4 @@ Coming soon:
 * ✅ Offline indicator
 * ✅ Move methods to server
 * ✅ Remove autopublish
+* ◻️ Fix edit buttons on admin slides
