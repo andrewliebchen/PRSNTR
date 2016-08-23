@@ -27,7 +27,7 @@ class Settings extends Component {
       <div className="admin__header__item">
         <div className="block">
           <Icon
-            type="edit"
+            type="rulers"
             size="1.5rem"
             onClick={this.handleOverlayToggle}
             title="Edit presentation"/>
