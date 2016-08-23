@@ -27,10 +27,10 @@ class Settings extends Component {
       <div className="admin__header__item">
         <div className="block">
           <Icon
-            type="settings"
+            type="edit"
             size="1.5rem"
             onClick={this.handleOverlayToggle}
-            title="Settings"/>
+            title="Edit presentation"/>
         </div>
         <Overlay
           show={this.state.overlay}

@@ -87,7 +87,7 @@ class Presentation extends Component {
         <Header
           presentation={presentation}
           slidesLength={slides.length}
-          showProgress>
+          isPresentation>
           <Timer presentation={presentation}/>
           <Action
             className={classnames({

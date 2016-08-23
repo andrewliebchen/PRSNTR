@@ -10,7 +10,7 @@ $admin-slide-action-size: 3rem;
 .admin__slides {
   @include clearfix;
   overflow: hidden;
-  margin: -($admin-slide-offset);
+  margin: 2rem;
   padding-top: $block-size-large;
 }
 

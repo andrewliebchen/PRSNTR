@@ -5,10 +5,10 @@ import Icon from './Icons.jsx';
 
 export default class Header extends Component {
   render() {
-    const { presentation, slidesLength, showProgress, children } = this.props;
+    const { presentation, slidesLength, isPresentation, children } = this.props;
     const headerClassName = classnames({
       'header': true,
-      'show-progress': showProgress
+      'show-progress': isPresentation
     });
     return (
       <header className={headerClassName}>
@@ -16,7 +16,15 @@ export default class Header extends Component {
           <div className="header__title">
             {presentation.title ? presentation.title : 'Untitled'}
           </div>
-          <Settings {...this.props}/>
+          {isPresentation ?
+            <div className="block">
+              <Icon
+                type="settings"
+                size="1.5rem"
+                title="Account"
+                onClick={this.handleAdminNavigation.bind(this)}/>
+            </div>
+          : <Settings {...this.props}/>}
           <div className="block">
             <Icon
               type="user"
@@ -27,7 +35,7 @@ export default class Header extends Component {
         <div className="header__right">
           {children}
         </div>
-        {showProgress &&
+        {isPresentation &&
           <div className="header__progress">
             <div
               className="header__progress__fill"
@@ -36,10 +44,14 @@ export default class Header extends Component {
       </header>
     );
   }
+
+  handleAdminNavigation() {
+    window.location.href = `/${this.props.presentation._id}/admin`;
+  }
 }
 
 Header.propTypes = {
   presentation: PropTypes.object,
   slidesLength: PropTypes.number,
-  showProgress: PropTypes.bool
+  isPresentation: PropTypes.bool
 };
