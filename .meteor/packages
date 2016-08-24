@@ -25,3 +25,4 @@ templating@1.2.14
 smowden:offline-js
 insecure@1.0.7
 shell-server
+std:accounts-ui

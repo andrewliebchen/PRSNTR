@@ -8,8 +8,8 @@ const Overlay = (props) =>
     transitionEnterTimeout={250}
     transitionLeaveTimeout={200}>
     {props.show &&
-      <div className="overlay container__blue">
-        <div className="overlay__content">
+      <div className="overlay container__fixed container__blue">
+        <div className="centered__content">
           {props.children}
         </div>
         <a

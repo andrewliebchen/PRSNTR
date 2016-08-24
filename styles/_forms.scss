@@ -1,5 +1,5 @@
-.form-group {
-  margin-bottom: 2rem;
+.field {
+  margin-bottom: 1rem;
 }
 
 label {
@@ -8,23 +8,24 @@ label {
   padding-bottom: 0.5rem;
 }
 
-.input,
-.textarea,
-.button {
+input,
+textarea,
+button {
   appearance: none;
   background-color: transparent;
   border-radius: $border-radius;
   border: 0;
   outline: none;
   width: 100%;
+  color: inherit;
 
   &:focus {
-    box-shadow: 0 0 5px 3px rgba(white, 0.3);
+    box-shadow: 0 0 5px 3px rgba(white, 0.4);
   }
 }
 
-.input,
-.textarea {
+input,
+textarea {
   border: 1px solid;
   color: inherit;
   display: block;
@@ -35,12 +36,12 @@ label {
   }
 }
 
-.textarea {
+textarea {
   font-family: monospace;
   min-height: 6rem;
 }
 
-.button {
+button {
   background-color: white;
   color: $brand-primary;
   display: inline-block;
@@ -54,5 +55,15 @@ label {
     > div {
       background-color: $brand-primary;
     }
+  }
+}
+
+.buttons {
+  margin-top: 2rem;
+
+  a {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
   }
 }

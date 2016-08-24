@@ -1,19 +1,5 @@
 .overlay {
-  $offset: 0;
-  bottom: $offset;
-  left: $offset;
-  position: fixed;
-  right: $offset;
-  top: $offset;
   z-index: 9;
-}
-
-.overlay__content {
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  width: $width-base;
 }
 
 .overlay__toggle {

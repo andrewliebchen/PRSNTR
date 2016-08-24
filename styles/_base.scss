@@ -57,6 +57,23 @@ body,
   background-color: rgba($brand-primary, 0.95);
 }
 
+.container__fixed {
+  $offset: 0;
+  bottom: $offset;
+  left: $offset;
+  position: fixed;
+  right: $offset;
+  top: $offset;
+}
+
+.centered__content {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: $width-base;
+}
+
 .loader {
   left: 50%;
   position: fixed;
@@ -71,13 +88,6 @@ body,
     > div {
       background-color: $gray-lighter;
     }
-  }
-}
-
-.accounts-container {
-  a,
-  a:hover {
-    color: $brand-primary;
   }
 }
 

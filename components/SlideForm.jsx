@@ -14,7 +14,7 @@ export default class SlideForm extends Component {
       secondaryClick,
       secondaryLabel
     } = this.props;
-    
+
     return (
       <span>
         <Tabs
@@ -27,7 +27,6 @@ export default class SlideForm extends Component {
             </p>
             <input
               type="url"
-              className="input"
               onChange={sourceChange.bind(this)}
               placeholder="http://example.com/portfolio.png"
               defaultValue={defaultType === 'image' ? defaultSource : null}
@@ -41,7 +40,6 @@ export default class SlideForm extends Component {
             </p>
             <Textarea
               rows="3"
-              className="textarea"
               placeholder="Add some content"
               onChange={sourceChange.bind(this)}
               defaultValue={defaultType === 'text' ? defaultSource : null}
@@ -49,16 +47,16 @@ export default class SlideForm extends Component {
               autoFocus />
           </Tabs.Panel>
         </Tabs>
-        <button
-          className="button"
-          onClick={primaryClick}>
-          {primaryLabel}
-        </button>
-        <a
-          className="new-slide__secondary"
-          onClick={secondaryClick}>
-          {secondaryLabel}
-        </a>
+        <div className="buttons">
+          <button
+            onClick={primaryClick}>
+            {primaryLabel}
+          </button>
+          <a
+            onClick={secondaryClick}>
+            {secondaryLabel}
+          </a>
+        </div>
       </span>
     );
   }

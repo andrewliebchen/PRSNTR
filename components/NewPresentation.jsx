@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import Spinner from 'react-spinkit';
 import { Presentations } from '../api/main';
-import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+import Wrapper from './Wrapper.jsx';
 
 class NewPresentation extends Component {
   constructor(props) {
@@ -14,9 +14,9 @@ class NewPresentation extends Component {
   }
 
   renderContent() {
-    if (!this.props.currentUser) {
-      return <AccountsUIWrapper/>;
-    }
+    // if (!this.props.currentUser) {
+    //   return <AccountsUIWrapper/>;
+    // }
 
     return (
       <button
@@ -31,11 +31,13 @@ class NewPresentation extends Component {
 
   render() {
     return (
-      <div className="overlay container__blue">
-        <div className="overlay__content">
+      <Wrapper
+        title="New presentation | Slides 🎉"
+        className="container__fixed container__blue">
+        <div className="centered__content">
           {this.renderContent()}
         </div>
-      </div>
+      </Wrapper>
     );
   }
 
