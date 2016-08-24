@@ -4,6 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Spinner from 'react-spinkit';
 import { Presentations } from '../api/main';
 import Wrapper from './Wrapper.jsx';
+import Login from './Login.jsx';
 
 class NewPresentation extends Component {
   constructor(props) {
@@ -13,29 +14,22 @@ class NewPresentation extends Component {
     };
   }
 
-  renderContent() {
-    // if (!this.props.currentUser) {
-    //   return <AccountsUIWrapper/>;
-    // }
-
-    return (
-      <button
-        className="button"
-        onClick={this.handleNewPresentation.bind(this)}>
-        {this.state.isLoading ?
-          <Spinner spinnerName="three-bounce" noFadeIn/>
-        : <span>Create a new presentation</span>}
-      </button>
-    );
-  }
-
   render() {
+    if (!this.props.currentUser) {
+      return <Login />;
+    }
+
     return (
       <Wrapper
         title="New presentation | Slides 🎉"
         className="container__fixed container__blue">
-        <div className="centered__content">
-          {this.renderContent()}
+        <div className="centered__content buttons">
+          <button onClick={this.handleNewPresentation.bind(this)}>
+            {this.state.isLoading ?
+              <Spinner spinnerName="three-bounce" noFadeIn/>
+            : <span>Create a new presentation</span>}
+          </button>
+          <a onClick={this.handleSignOut.bind(this)}>Or sign out</a>
         </div>
       </Wrapper>
     );
@@ -53,6 +47,10 @@ class NewPresentation extends Component {
         window.location.href = `/${id}`;
       }
     });
+  }
+
+  handleSignOut() {
+    Meteor.logout();
   }
 }
 
