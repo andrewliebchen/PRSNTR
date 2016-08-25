@@ -5,10 +5,10 @@ import Icon from './Icons.jsx';
 
 export default class Header extends Component {
   render() {
-    const { presentation, slidesLength, isPresentation, children } = this.props;
+    const { presentation, slidesLength, isPresentation, currentUser, children } = this.props;
     const headerClassName = classnames({
       'header': true,
-      'show-progress': isPresentation
+      'is-presentation': isPresentation
     });
     return (
       <header className={headerClassName}>
@@ -25,15 +25,17 @@ export default class Header extends Component {
                 onClick={this.handleAdminNavigation.bind(this)}/>
             </div>
           : <Settings {...this.props}/>}
-          <div className="block">
-            <Icon
-              type="user"
-              size="1.5rem"
-              title="Account"/>
-          </div>
         </div>
         <div className="header__right">
           {children}
+          {!isPresentation &&
+            <div className="block session">
+              <Icon
+                type={currentUser ? 'logout' : 'user'}
+                size="1.5rem"
+                title="Account"
+                onClick={this.handleSession.bind(this)}/>
+            </div>}
         </div>
         {isPresentation &&
           <div className="header__progress">
@@ -48,10 +50,19 @@ export default class Header extends Component {
   handleAdminNavigation() {
     window.location.href = `/${this.props.presentation._id}/admin`;
   }
+
+  handleSession() {
+    if (this.props.currentUser) {
+      Meteor.logout();
+    } else {
+      window.location.href = '/login';
+    }
+  }
 }
 
 Header.propTypes = {
   presentation: PropTypes.object,
   slidesLength: PropTypes.number,
+  currentUser: PropTypes.string,
   isPresentation: PropTypes.bool
 };

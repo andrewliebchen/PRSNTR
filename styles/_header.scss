@@ -1,3 +1,5 @@
+$header-padding: 2rem;
+
 .header {
   background-color: $gray-lighter;
   height: $block-size;
@@ -5,7 +7,7 @@
   position: absolute;
   width: 100%;
   z-index: 9;
-  padding: 0 2rem;
+  padding-left: $header-padding;
   color: $gray;
   font-size: 1.25rem;
   user-select: none;
@@ -24,20 +26,21 @@
     }
   }
 
-  .timer {
-    line-height: $block-size;
-    display: inline-block;
-    flex: none;
-    margin-right: 1rem;
-  }
-
-  &.show-progress {
+  &.is-presentation {
+    padding-right: $header-padding;
     transition: margin 0.1s ease-in-out;
     margin-top: -($block-size);
 
     &:hover {
       margin-top: 0;
     }
+  }
+
+  .timer {
+    line-height: $block-size;
+    display: inline-block;
+    flex: none;
+    margin-right: 1rem;
   }
 }
 
@@ -70,7 +73,7 @@
   left: 0;
   right: 0;
 
-  .show-progress:hover & {
+  .is-presentation:hover & {
     height: 0.5rem;
   }
 }
@@ -82,4 +85,10 @@
   top: 0;
   left: 0;
   bottom: 0;
+}
+
+.block.session {
+  width: $block-size;
+  border-left: 1px solid $gray-light;
+  margin-left: 1rem;
 }

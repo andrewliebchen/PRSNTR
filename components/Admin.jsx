@@ -10,6 +10,7 @@ import Slide from './Slide.jsx';
 import SlideAction from './SlideAction.jsx'
 import Loader from './Loader.jsx';
 import Icon from './Icons.jsx';
+import Login from './Login.jsx';
 
 class Admin extends Component {
   constructor(props) {
@@ -35,11 +36,7 @@ class Admin extends Component {
     }
 
     if (currentUser !== presentation.createdBy) {
-      return (
-        <Wrapper>
-          <div>Not allowed</div>
-        </Wrapper>
-      );
+      return <Login/>;
     }
 
     return (
@@ -47,7 +44,7 @@ class Admin extends Component {
         title="Admin | Slides 🎉"
         className="admin"
         inverse>
-        <Header presentation={presentation}>
+        <Header presentation={presentation} currentUser={currentUser}>
           <div className="block">
             <Icon
               type="play"
