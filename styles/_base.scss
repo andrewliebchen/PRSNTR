@@ -117,3 +117,8 @@ body,
   height: $block-size-small;
   width: $block-size-small;
 }
+
+// Specificity
+.tooltip.tooltip {
+  padding: 0.5rem 0.75rem;
+}

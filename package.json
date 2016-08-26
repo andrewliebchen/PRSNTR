@@ -30,6 +30,7 @@
     "react-simpletabs": "^0.7.0",
     "react-spinkit": "^1.1.8",
     "react-tappable": "^0.8.2",
-    "react-timer-hoc": "^2.0.2"
+    "react-timer-hoc": "^2.0.2",
+    "react-tooltip": "^3.1.6"
   }
 }

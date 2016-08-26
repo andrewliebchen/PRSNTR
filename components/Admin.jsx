@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import ReactTooltip from 'react-tooltip';
 import { Presentations, Slides } from '../api/main';
 import Wrapper from './Wrapper.jsx';
 import Header from './Header.jsx';
@@ -45,13 +46,18 @@ class Admin extends Component {
         className="admin"
         inverse>
         <Header presentation={presentation} currentUser={currentUser}>
-          <div className="block">
+          <div
+            className="block"
+            data-tip
+            data-for="start">
             <Icon
               type="play"
               size="1.5rem"
-              title="Start presentation"
               onClick={this.handleViewPresentation.bind(this)}/>
           </div>
+          <ReactTooltip id="start" effect="solid" class="tooltip">
+            Start presentation
+          </ReactTooltip>
         </Header>
         <div className="admin__slides">
           {slides.map((slide, i) =>

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import ReactTooltip from 'react-tooltip';
 import classnames from 'classnames';
 import MobileDetect from 'mobile-detect';
 import keydown from 'react-keydown';
@@ -14,7 +15,10 @@ import Icon from './Icons.jsx';
 import Timer from './Timer.jsx';
 
 const Action = (props) =>
-  <div className={props.className}>
+  <div
+    className={props.className}
+    data-tip
+    data-for={props.tip}>
     <Icon
       type={props.type}
       onClick={props.handleClick}
@@ -96,21 +100,33 @@ class Presentation extends Component {
               'is-disabled': presentation.currentSlide === 0
             })}
             handleClick={this.handleChangeSlide.bind(null, -(slidesLength - (slidesLength - presentation.currentSlide)))}
-            type="previous"/>
+            type="previous"
+            tip="firstSlide"/>
           <Action
             className={classnames({
               'block': true,
               'is-disabled': !this._canReverse()
             })}
             handleClick={this.handleChangeSlide.bind(null, -1)}
-            type="rewind"/>
+            type="rewind"
+            tip="back"/>
           <Action
             className={classnames({
               'block': true,
               'is-disabled': !this._canAdvance()
             })}
             handleClick={this.handleChangeSlide.bind(null, 1)}
-            type="fast-forward"/>
+            type="fast-forward"
+            tip="next"/>
+          <ReactTooltip id="firstSlide" effect="solid" class="tooltip">
+            First slide
+          </ReactTooltip>
+          <ReactTooltip id="back" effect="solid" class="tooltip">
+            Previous slide
+          </ReactTooltip>
+          <ReactTooltip id="next" effect="solid" class="tooltip">
+            Next slide
+          </ReactTooltip>
         </Header>
         <SlidesList
           slides={slides}

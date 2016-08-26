@@ -1,5 +1,6 @@
 import React, { Component, PropTypes} from 'react';
 import classnames from 'classnames';
+import ReactTooltip from 'react-tooltip';
 import Settings from './Settings.jsx';
 import Icon from './Icons.jsx';
 
@@ -17,11 +18,13 @@ export default class Header extends Component {
             {presentation.title ? presentation.title : 'Untitled'}
           </div>
           {isPresentation ?
-            <div className="block">
+            <div
+              className="block"
+              data-tip
+              data-for="admin">
               <Icon
                 type="settings"
                 size="1.5rem"
-                title="Account"
                 onClick={this.handleAdminNavigation.bind(this)}/>
             </div>
           : <Settings {...this.props}/>}
@@ -29,11 +32,13 @@ export default class Header extends Component {
         <div className="header__right">
           {children}
           {!isPresentation &&
-            <div className="block session">
+            <div
+              className="block session"
+              data-tip
+              data-for={currentUser ? 'logout' : 'login'}>
               <Icon
                 type={currentUser ? 'logout' : 'user'}
                 size="1.5rem"
-                title="Account"
                 onClick={this.handleSession.bind(this)}/>
             </div>}
         </div>
@@ -43,6 +48,15 @@ export default class Header extends Component {
               className="header__progress__fill"
               style={{width: `${(presentation.currentSlide + 1) / slidesLength * 100}%`}}/>
           </div>}
+        <ReactTooltip id="admin" effect="solid" class="tooltip">
+          View settings
+        </ReactTooltip>
+        <ReactTooltip id="logout" effect="solid" class="tooltip">
+          Log out of Slides🎉
+        </ReactTooltip>
+        <ReactTooltip id="login" effect="solid" class="tooltip">
+          Log in to Slides🎉
+        </ReactTooltip>
       </header>
     );
   }

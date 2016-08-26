@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import keydown from 'react-keydown';
+import ReactTooltip from 'react-tooltip';
 import { Presentations } from '../api/main';
 import Icon from './Icons.jsx';
 import Overlay from './Overlay.jsx';
@@ -25,13 +26,19 @@ class Settings extends Component {
     const { presentation } = this.props;
     return (
       <div className="admin__header__item">
-        <div className="block">
+        <div
+          className="block"
+          data-tip
+          data-for="options">
           <Icon
             type="rulers"
             size="1.5rem"
             onClick={this.handleOverlayToggle}
             title="Edit presentation"/>
         </div>
+        <ReactTooltip id="options" effect="solid" class="tooltip">
+          Presentation options
+        </ReactTooltip>
         <Overlay
           show={this.state.overlay}
           toggle={this.handleOverlayToggle}>
