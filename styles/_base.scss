@@ -6,7 +6,7 @@ html,
 body {
   background-color: white;
   color: $gray-dark;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: $font-family-base;
   font-size: 18px;
   line-height: 1.5;
 }
@@ -31,6 +31,11 @@ img {
 
 svg {
   fill: inherit;
+}
+
+.offline-ui {
+  font-family: $font-family-base;
+  background-color: $gray-dark;
 }
 
 body,

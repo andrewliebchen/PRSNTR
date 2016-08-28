@@ -23,7 +23,7 @@ export default class EditSlide extends Component {
       <span>
         <SlideAction
           handleClick={this.handleToggleEditSlide.bind(this)}
-          title="edit"
+          tip="edit"
           type="edit"/>
         <Overlay
           show={overlay}

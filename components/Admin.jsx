@@ -73,13 +73,22 @@ class Admin extends Component {
                 <div className="admin__slide__actions">
                   <EditSlide slide={slide}/>
                   <SlideAction
-                    title="Contrast"
+                    tip="contrast"
                     handleClick={this.handleBackgroundToggle.bind(this, slide)}
                     type="contrast"/>
                   <SlideAction
-                    title="Delete"
+                    tip="delete"
                     handleClick={this.handleDelete.bind(this, slide)}
                     type="delete"/>
+                  <ReactTooltip id="edit" effect="solid" class="tooltip">
+                    Edit
+                  </ReactTooltip>
+                  <ReactTooltip id="contrast" effect="solid" class="tooltip">
+                    Contrast
+                  </ReactTooltip>
+                  <ReactTooltip id="delete" effect="solid" class="tooltip">
+                    Delete
+                  </ReactTooltip>
                 </div>
               </Slide>
             </div>
