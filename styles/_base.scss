@@ -122,3 +122,26 @@ body,
 .tooltip.tooltip {
   padding: 0.5rem 0.75rem;
 }
+
+// Animations
+.zoom-in-enter {
+  opacity: 0.01;
+  transform: scale(0.5);
+
+  &.zoom-in-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: 0.25s $ease-in-out-back;
+  }
+}
+
+.zoom-in-leave {
+  opacity: 1;
+  transform: scale(1);
+
+  &.zoom-in-leave-active {
+    opacity: 0.01;
+    transform: scale(0.5);
+    transition: 0.2s ease-in-out;
+  }
+}

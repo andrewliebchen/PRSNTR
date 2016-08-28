@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Slide from './Slide.jsx';
 
 export default class SlidesList extends Component {
@@ -11,12 +12,17 @@ export default class SlidesList extends Component {
 
     return (
       <div className={`slides ${prefix}__slides`} style={slidesStyle}>
-        {slides.map((slide, i) =>
-          <Slide
-            key={i}
-            slide={slide}
-            prefix={prefix}/>
-        )}
+        <CSSTransitionGroup
+          transitionName="zoom-in"
+          transitionEnterTimeout={250}
+          transitionLeaveTimeout={200}>
+          {slides.map((slide, i) =>
+            <Slide
+              key={i}
+              slide={slide}
+              prefix={prefix}/>
+          )}
+        </CSSTransitionGroup>
       </div>
     );
   }
