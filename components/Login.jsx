@@ -18,6 +18,11 @@ export default class Login extends Component {
   }
 
   handleSignedIn() {
-    window.location.href = '/new';
+    const redirect = this.props.location.query ? this.props.location.query.redirect : null;
+    if (redirect) {
+      window.location.href = `/${redirect}/admin`;
+    } else {
+      window.location.href = '/new';
+    }
   }
 }

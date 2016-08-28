@@ -67,7 +67,9 @@ export default class Header extends Component {
 
   handleSession() {
     if (this.props.currentUser) {
-      Meteor.logout();
+      Meteor.logout(() => {
+        window.location.href = `/login?redirect=${this.props.presentation._id}`
+      });
     } else {
       window.location.href = '/login';
     }

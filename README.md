@@ -16,5 +16,5 @@ Coming soon:
 * ✅ Admin design
 * ◻️ Slide show view controller color
 * ◻️ ~~User profile management~~
-* ◻️ Redirect login from admin URL
+* ✅ Redirect login from admin URL
 * ✅ Tooltips
