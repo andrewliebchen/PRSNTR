@@ -1,7 +1,7 @@
 import React, { Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import ReactTooltip from 'react-tooltip';
-import Settings from './Settings.jsx';
+import Options from './Options.jsx';
 import Icon from './Icons.jsx';
 
 export default class Header extends Component {
@@ -27,7 +27,7 @@ export default class Header extends Component {
                 size="1.5rem"
                 onClick={this.handleAdminNavigation.bind(this)}/>
             </div>
-          : <Settings {...this.props}/>}
+          : <Options {...this.props}/>}
         </div>
         <div className="header__right">
           {children}

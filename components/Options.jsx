@@ -6,7 +6,7 @@ import { Presentations } from '../api/main';
 import Icon from './Icons.jsx';
 import Overlay from './Overlay.jsx';
 
-class Settings extends Component {
+class Options extends Component {
   constructor(props) {
     super(props);
     this.handleOverlayToggle = this.handleOverlayToggle.bind(this);
@@ -42,30 +42,29 @@ class Settings extends Component {
         <Overlay
           show={this.state.overlay}
           toggle={this.handleOverlayToggle}>
-          <div className="form-group">
-            <label className="label">
+          <div className="field">
+            <label>
               Presentation title
             </label>
             <input
               type="text"
-              className="input"
               defaultValue={presentation.title ? presentation.title : 'Untitled'}
               ref="title"/>
           </div>
-          <div className="form-group">
-            <label className="label">
-              Presentation time
+          <div className="field">
+            <label>
+              Presentation length, in minutes
             </label>
             <input
               type="number"
-              className="input"
               defaultValue={presentation.time ? presentation.time : null}
               ref="time"/>
-            <small>Target length of the presentation, in minutes</small>
           </div>
-          <button className="button" onClick={this.handleSave.bind(this)}>
-            Save changes
-          </button>
+          <div className="buttons">
+            <button onClick={this.handleSave.bind(this)}>
+              Save changes
+            </button>
+          </div>
         </Overlay>
       </div>
     );
@@ -90,8 +89,8 @@ class Settings extends Component {
   }
 }
 
-Settings.propTypes = {
+Options.propTypes = {
   presentation: PropTypes.object
 };
 
-export default keydown(Settings);
+export default keydown(Options);
