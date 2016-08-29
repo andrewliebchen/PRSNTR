@@ -1,0 +1,38 @@
+$logo-color-multi:  #f7b600, #ffdd7d, #493816, #42ade2, #ff8736, #ed4c5c, #c28fef;
+
+.logo__container {
+  display: inline-block;
+  transform-origin: 50% 50%;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.logo {
+  transition: 0.1s linear;
+}
+
+@for $i from 1 through 7 {
+  $alpha: $i / 7;
+
+  .logo__light {
+    .logo__color#{$i} {
+      fill: rgba(white, $alpha);
+    }
+  }
+
+  .logo__dark {
+    .logo__color#{$i} {
+      fill: rgba($gray-dark, $alpha);
+      // fill: rgba(mix(grayscale(nth($logo-color-multi, $i)), $gray-dark), 0.7);
+    }
+  }
+
+  .logo__color#{$i} {
+    .logo__color &,
+    .logo__container:hover & {
+      fill: nth($logo-color-multi, $i);
+    }
+  }
+}

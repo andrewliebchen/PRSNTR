@@ -5,6 +5,7 @@ import Spinner from 'react-spinkit';
 import { Presentations } from '../api/main';
 import Wrapper from './Wrapper.jsx';
 import Login from './Login.jsx';
+import Logo from './Logo.jsx';
 
 class NewPresentation extends Component {
   constructor(props) {

@@ -4,7 +4,7 @@ It's an online presentation machine...present slides from your computer and cont
 
 Coming soon:
 * ✅ User accounts
-* ◻️ One-click deployment to Heroku
+* ◻️ One-click deployment to Heroku?
 * ✅ Drag and drop re-order
 * ◻️ Dedicated controller view
 * ✅ Edit slides
@@ -18,3 +18,4 @@ Coming soon:
 * ◻️ ~~User profile management~~
 * ✅ Redirect login from admin URL
 * ✅ Tooltips
+* ◻️ Logo
