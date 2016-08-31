@@ -29,9 +29,9 @@ class NewSlide extends Component {
   render() {
     const { overlay, type, source, isLoading } = this.state;
     return (
-      <div className="admin__slide__container">
+      <div className="grid__slide__container">
         <div
-          className="new-slide-toggle admin__slide"
+          className="new-slide-toggle grid__slide"
           onClick={this.handleToggleNewSlide.bind(this)}>
           <span className="new-slide-toggle__label">
             <Icon type="plus" size="3rem"/>

@@ -4,82 +4,85 @@ import ReactTooltip from 'react-tooltip';
 import Options from './Options.jsx';
 import Icon from './Icons.jsx';
 import Logo from './Logo.jsx';
+import Timer from './Timer.jsx';
+import HeaderAction from './HeaderAction.jsx';
+import Session from './Session.jsx';
 
 export default class Header extends Component {
   render() {
-    const { presentation, slidesLength, isPresentation, currentUser, children } = this.props;
+    const {
+      presentation,
+      slidesLength,
+      isPresentation,
+      currentUser,
+      toggleGrid,
+      canAdvance,
+      canReverse,
+      changeSlide,
+      canEdit
+    } = this.props;
     const headerClassName = classnames({
       'header': true,
-      'is-presentation': isPresentation
+      'is-presentation': isPresentation,
+      'show-grid': !isPresentation
     });
+
     return (
       <header className={headerClassName}>
         <div className="header__left">
-          <a href="/" className="logo__container">
+          <a href="/" className="logo__container block">
             <Logo size="2rem" color="dark"/>
           </a>
+          <HeaderAction
+            handleClick={toggleGrid}
+            type="grid"
+            tipId="grid"
+            tip="Show slides"/>
           <div className="header__title">
             {presentation.title ? presentation.title : 'Untitled'}
           </div>
-          {isPresentation ?
-            <span>
-              {currentUser &&
-                <div
-                  className="block"
-                  data-tip
-                  data-for="admin">
-                  <Icon
-                    type="settings"
-                    size="1.5rem"
-                    onClick={this.handleAdminNavigation.bind(this)}/>
-                </div>}
-              </span>
-          : <Options {...this.props}/>}
+          {canEdit && <Options {...this.props}/>}
         </div>
         <div className="header__right">
-          {children}
-          {!isPresentation &&
-            <div
-              className="block session"
-              data-tip
-              data-for={currentUser ? 'logout' : 'login'}>
-              <Icon
-                type={currentUser ? 'logout' : 'user'}
-                size="1.5rem"
-                onClick={this.handleSession.bind(this)}/>
-            </div>}
+          <Timer presentation={presentation}/>
+          {slidesLength > 1 &&
+            <span>
+              <HeaderAction
+                disabled={presentation.currentSlide === 0}
+                handleClick={changeSlide.bind(null, -(slidesLength - (slidesLength - presentation.currentSlide)))}
+                type="previous"
+                tipId="firstSlide"
+                tip="First slide"/>
+              <HeaderAction
+                disabled={!canReverse}
+                handleClick={changeSlide.bind(null, -1)}
+                type="rewind"
+                tipId="back"
+                tip="Previous slide"/>
+              <HeaderAction
+                disabled={!canAdvance}
+                handleClick={changeSlide.bind(null, 1)}
+                type="fast-forward"
+                tipId="next"
+                tip="Next slide"/>
+            </span>}
+          <Session {...this.props}/>
         </div>
+
         {isPresentation &&
           <div className="header__progress">
             <div
               className="header__progress__fill"
               style={{width: `${(presentation.currentSlide + 1) / slidesLength * 100}%`}}/>
           </div>}
+
         <ReactTooltip id="admin" effect="solid" class="tooltip">
           Presentation settings
         </ReactTooltip>
-        <ReactTooltip id="logout" effect="solid" class="tooltip">
-          Log out of Slides🎉
-        </ReactTooltip>
-        <ReactTooltip id="login" effect="solid" class="tooltip">
-          Log in to Slides🎉
-        </ReactTooltip>
+
+        <div className="header__trigger"/>
       </header>
     );
-  }
-
-  handleAdminNavigation() {
-    window.location.href = `/${this.props.presentation._id}/admin`;
-  }
-
-  handleSession() {
-    if (this.props.currentUser) {
-      Meteor.logout(() => {
-        window.location.href = `/login?redirect=${this.props.presentation._id}`
-      });
-    } else {
-      window.location.href = '/login';
-    }
   }
 }
 
@@ -87,5 +90,9 @@ Header.propTypes = {
   presentation: PropTypes.object,
   slidesLength: PropTypes.number,
   currentUser: PropTypes.string,
-  isPresentation: PropTypes.bool
+  isPresentation: PropTypes.bool,
+  toggleGrid: PropTypes.func,
+  canReverse: PropTypes.bool,
+  canAdvance: PropTypes.bool,
+  changeSlide: PropTypes.func,
 };

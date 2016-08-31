@@ -25,7 +25,7 @@ class Options extends Component {
   render() {
     const { presentation } = this.props;
     return (
-      <div className="admin__header__item">
+      <div className="grid__header__item">
         <div
           className="block"
           data-tip

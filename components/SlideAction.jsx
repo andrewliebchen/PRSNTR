@@ -3,7 +3,7 @@ import Icon from './Icons.jsx';
 
 const SlideAction = (props) =>
   <a
-    className="admin__slide__action block block__small"
+    className="grid__slide__action block block__small"
     onClick={props.handleClick}
     data-tip
     data-for={props.tip}

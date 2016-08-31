@@ -1,42 +1,43 @@
 $header-padding: 2rem;
 
 .header {
+  transition: 0.2s ease-in-out;
   background-color: $gray-lighter;
   height: $block-size;
   display: flex;
-  position: absolute;
+  position: fixed;
   width: 100%;
-  z-index: 9;
-  padding-left: $header-padding;
+  z-index: 99;
   color: $gray;
   font-size: 1.25rem;
   user-select: none;
 
-  .logo {
-    margin: 0.75rem 1rem 0 0;
+  &.is-presentation {
+    margin-top: -($block-size);
+
+    &:hover {
+      margin-top: 0;
+    }
+  }
+
+  &.show-grid {
+    transform: translateY(100vh);
+    margin-top: -($block-size) !important;
   }
 
   .block {
-    width: 2.5rem;
-
-    > .icon {
+    > svg {
       fill: $gray-light;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
     }
 
     &:hover {
       > .icon {
         fill: $brand-primary;
       }
-    }
-  }
-
-  &.is-presentation {
-    padding-right: $header-padding;
-    transition: margin 0.1s ease-in-out;
-    margin-top: -($block-size);
-
-    &:hover {
-      margin-top: 0;
     }
   }
 
@@ -58,6 +59,11 @@ $header-padding: 2rem;
   flex: 1;
   display: flex;
   justify-content: flex-end;
+}
+
+.logo__container {
+  border-right: 1px solid $gray-light;
+  margin-right: 1rem;
 }
 
 .header__title {
@@ -91,8 +97,15 @@ $header-padding: 2rem;
   bottom: 0;
 }
 
-.block.session {
-  width: $block-size;
+.session {
   border-left: 1px solid $gray-light;
   margin-left: 1rem;
+}
+
+.header__trigger {
+  $height: 2rem;
+  position: absolute;
+  width: 100%;
+  bottom: -($height);
+  height: $height;
 }
