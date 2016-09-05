@@ -7,7 +7,7 @@ const Logo = (props) =>
     enable-background="new 0 0 64 64"
     width={props.size}
     height={props.size}
-    className={`logo logo__${props.color}`}>
+    className={`logo logo__${props.color} ${props.className ? props.className : ''}`}>
     <path className="logo__color1" d="m2 61l8.6-3-6.5-3z"/>
     <path className="logo__color2" d="m26.9 36.4l-12.1-12.2-2 5.6z"/>
     <path className="logo__color1" d="m12.8 29.8l-2.2 6.3 26.8 12.5 1.3-.4-11.8-11.8z"/>
@@ -43,7 +43,8 @@ Logo.defaultProps = {
 
 Logo.propTypes = {
   size: PropTypes.string,
-  color: PropTypes.oneOf(['color', 'light', 'dark'])
+  color: PropTypes.oneOf(['color', 'light', 'dark']),
+  className: PropTypes.string
 };
 
 export default Logo;

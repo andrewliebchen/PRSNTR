@@ -25,6 +25,7 @@ class NewPresentation extends Component {
         title="New presentation | Slides 🎉">
         <div className="container__fixed container__blue">
           <div className="centered__content buttons">
+            <Logo color="light" size="6rem" className="logo__special"/>
             <button onClick={this.handleNewPresentation.bind(this)}>
               {this.state.isLoading ?
                 <Spinner/>
