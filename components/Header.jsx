@@ -44,7 +44,13 @@ export default class Header extends Component {
           {canEdit && <Options {...this.props}/>}
         </div>
         <div className="header__right">
-          <Timer presentation={presentation}/>
+          {isPresentation ?
+            <Timer presentation={presentation}/>
+          : <div className="timer">
+              <div className="count">
+                {presentation.time}:00
+              </div>
+            </div>}
           {slidesLength > 1 && isPresentation &&
             <span>
               <HeaderAction
