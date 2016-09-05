@@ -48,7 +48,7 @@ export default class Header extends Component {
             <Timer presentation={presentation}/>
           : <div className="timer">
               <div className="count">
-                {presentation.time}:00
+                {presentation.time ? presentation.time : '00'}:00
               </div>
             </div>}
           {slidesLength > 1 && isPresentation &&
