@@ -5,7 +5,7 @@ import Icon from './Icons.jsx';
 const Overlay = (props) =>
   <CSSTransitionGroup
     transitionName="zoom-in"
-    transitionEnterTimeout={250}
+    transitionEnterTimeout={200}
     transitionLeaveTimeout={200}>
     {props.show &&
       <div className="overlay container__fixed container__blue">

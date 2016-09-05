@@ -45,7 +45,7 @@ export default class Header extends Component {
         </div>
         <div className="header__right">
           <Timer presentation={presentation}/>
-          {slidesLength > 1 && !isPresentation &&
+          {slidesLength > 1 && isPresentation &&
             <span>
               <HeaderAction
                 disabled={presentation.currentSlide === 0}
