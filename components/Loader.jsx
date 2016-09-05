@@ -1,9 +1,15 @@
 import React from 'react';
-import Spinner from 'react-spinkit';
+
+const Spinner = (props) =>
+  <div className="sk-three-bounce spinner">
+    <div className="sk-child sk-bounce1"/>
+    <div className="sk-child sk-bounce2"/>
+    <div className="sk-child sk-bounce3"/>
+  </div>
 
 const Loader = (props) =>
   <div className="loader">
-    <Spinner spinnerName="three-bounce" noFadeIn/>
+    <Spinner/>
   </div>
 
-export default Loader;
+export { Loader, Spinner };

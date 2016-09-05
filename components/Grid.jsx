@@ -6,7 +6,7 @@ import NewSlide from './NewSlide.jsx';
 import EditSlide from './EditSlide.jsx';
 import Slide from './Slide.jsx';
 import SlideAction from './SlideAction.jsx'
-import Loader from './Loader.jsx';
+import { Loader } from './Loader.jsx';
 import Icon from './Icons.jsx';
 
 export default class Grid extends Component {

@@ -49,12 +49,8 @@ button {
   padding: 1rem;
   text-align: center;
 
-  .spinner {
-    transform: translateY(3px) scale(0.9);
-
-    > div {
-      background-color: $brand-primary;
-    }
+  .sk-child {
+    background-color: $brand-primary;
   }
 }
 

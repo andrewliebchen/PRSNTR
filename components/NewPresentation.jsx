@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-import Spinner from 'react-spinkit';
 import { Presentations } from '../api/main';
 import DocumentTitle from 'react-document-title';
 import Login from './Login.jsx';
 import Logo from './Logo.jsx';
+import { Spinner } from './Loader.jsx';
 
 class NewPresentation extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class NewPresentation extends Component {
           <div className="centered__content buttons">
             <button onClick={this.handleNewPresentation.bind(this)}>
               {this.state.isLoading ?
-                <Spinner spinnerName="three-bounce" noFadeIn/>
+                <Spinner/>
               : <span>Create a new presentation</span>}
             </button>
             <a onClick={this.handleSignOut.bind(this)}>Or sign out</a>

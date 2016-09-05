@@ -10,7 +10,7 @@ import DocumentTitle from 'react-document-title';
 import { Presentations, Slides } from '../api/main';
 import Header from './Header.jsx';
 import SlidesList from './SlidesList.jsx';
-import Loader from './Loader.jsx';
+import { Loader } from './Loader.jsx';
 import Icon from './Icons.jsx';
 import Grid from './Grid.jsx';
 

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import Spinner from 'react-spinkit';
 import Overlay from './Overlay.jsx';
 import SlideForm from './SlideForm.jsx';
 import SlideAction from './SlideAction.jsx';
+import { Spinner } from './Loader.jsx';
 
 export default class EditSlide extends Component {
   constructor(props) {

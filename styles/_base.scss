@@ -85,23 +85,6 @@ body {
   width: $width-base;
 }
 
-.loader {
-  left: 50%;
-  position: fixed;
-  top: 50%;
-  transform: translate3d(-50%, -50%, 0);
-
-  .spinner {
-    $size: 3rem;
-    height: $size;
-    width: $size;
-
-    > div {
-      background-color: $gray-lighter;
-    }
-  }
-}
-
 .block {
   height: $block-size;
   width: $block-size;

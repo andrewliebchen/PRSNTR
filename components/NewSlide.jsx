@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import keydown from 'react-keydown';
 import { Presentations } from '../api/main';
-import Spinner from 'react-spinkit';
 import Icon from './Icons.jsx';
 import Overlay from './Overlay.jsx';
 import SlideForm from './SlideForm.jsx';
+import { Spinner } from './Loader.jsx';
 
 class NewSlide extends Component {
   constructor(props) {
