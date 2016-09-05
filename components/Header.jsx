@@ -35,9 +35,9 @@ export default class Header extends Component {
           </a>
           <HeaderAction
             handleClick={toggleGrid}
-            type="grid"
+            type={isPresentation ? 'grid' : 'presentation'}
             tipId="grid"
-            tip="Show slides"/>
+            tip={isPresentation ? 'Show slides' : 'View presentation'}/>
           <div className="header__title">
             {presentation.title ? presentation.title : 'Untitled'}
           </div>
@@ -45,7 +45,7 @@ export default class Header extends Component {
         </div>
         <div className="header__right">
           <Timer presentation={presentation}/>
-          {slidesLength > 1 &&
+          {slidesLength > 1 && !isPresentation &&
             <span>
               <HeaderAction
                 disabled={presentation.currentSlide === 0}
