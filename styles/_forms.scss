@@ -15,9 +15,9 @@ button {
   background-color: transparent;
   border-radius: $border-radius;
   border: 0;
+  color: inherit;
   outline: none;
   width: 100%;
-  color: inherit;
 
   &:focus {
     box-shadow: 0 0 5px 3px rgba(white, 0.4);
@@ -59,7 +59,7 @@ button {
 
   a {
     display: block;
-    text-align: center;
     margin-top: 1.5rem;
+    text-align: center;
   }
 }

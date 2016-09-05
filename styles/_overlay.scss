@@ -10,11 +10,11 @@
   top: 0.5rem;
 
   .icon {
+    fill: transparent;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1;
     stroke: white;
-    fill: transparent;
   }
 
   &:hover {

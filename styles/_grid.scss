@@ -4,20 +4,20 @@ $grid-slide-offset: 2px;
 $grid-slide-action-size: 3rem;
 
 .grid {
-  z-index: 9;
   bottom: $block-size;
+  left: 0;
   min-height: auto;
   overflow: auto;
   position: fixed;
-  top: 0;
-  left: 0;
   right: 0;
+  top: 0;
+  z-index: 9;
 }
 
 .grid__slides {
   @include clearfix;
-  overflow: hidden;
   margin: 2rem;
+  overflow: hidden;
 }
 
 .grid__slide__container {
@@ -28,12 +28,12 @@ $grid-slide-action-size: 3rem;
 }
 
 .grid__slide {
-  position: absolute;
   bottom: $grid-slide-offset;
   left: $grid-slide-offset;
+  overflow: hidden;
+  position: absolute;
   right: $grid-slide-offset;
   top: $grid-slide-offset;
-  overflow: hidden;
 
   .slide__content__image,
   .slide__content__text {
@@ -47,12 +47,12 @@ $grid-slide-action-size: 3rem;
 }
 
 .grid__slide__actions {
-  position: absolute;
-  top: 50%;
   display: flex;
   justify-content: center;
-  width: 100%;
   margin-top: -($grid-slide-action-size / 2);
+  position: absolute;
+  top: 50%;
+  width: 100%;
 }
 
 .grid__slide__action {

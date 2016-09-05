@@ -18,19 +18,18 @@ $spinkit-delayRange: 0.32s;
 }
 
 .sk-three-bounce {
-  width: $spinkit-size * 2;
-  text-align: center;
   margin: auto;
+  text-align: center;
+  width: $spinkit-size * 2;
 }
 
 .sk-child {
-  width: $spinkit-size / 2;
-  height: $spinkit-size / 2;
+  animation: sk-three-bounce $spinkit-animationDuration ease-in-out 0s infinite both;
   background-color: $spinkit-spinner-color;
-
   border-radius: 100%;
   display: inline-block;
-  animation: sk-three-bounce $spinkit-animationDuration ease-in-out 0s infinite both;
+  height: $spinkit-size / 2;
+  width: $spinkit-size / 2;
 }
 
 .sk-bounce1 {

@@ -34,21 +34,23 @@ svg {
 }
 
 .offline-ui {
-  font-family: $font-family-base;
   background-color: $gray-dark;
+  border: 1px solid rgba(white, 0.1);
+  border-top: 0;
+  font-family: $font-family-base;
 }
 
 body {
-  overflow: hidden;
   height: 100vh;
+  overflow: hidden;
   width: 100vw;
 }
 
 .container {
+  min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
   width: 100vw;
-  min-height: 100vh;
 }
 
 .container__inverse,
@@ -86,24 +88,24 @@ body {
 }
 
 .block {
-  height: $block-size;
-  width: $block-size;
+  cursor: pointer;
   display: inline-block;
+  height: $block-size;
   position: relative;
   transition: 0.1s linear;
-  cursor: pointer;
+  width: $block-size;
 
   &.is-disabled {
-    pointer-events: none;
-    opacity: 0.5;
     cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
   }
 
   > .icon {
     fill: $gray-light;
+    left: 50%;
     position: absolute;
     top: 50%;
-    left: 50%;
     transform: translate3d(-50%, -50%, 0);
   }
 }
@@ -125,8 +127,7 @@ body {
   width: $block-size-small;
 }
 
-// Specificity
-.tooltip.tooltip {
+.tooltip.tooltip { // Specificity
   padding: 0.5rem 0.75rem;
 }
 
